@@ -4,9 +4,10 @@ import { Navigation } from '@/components/agency/Navigation'
 import { Hero } from '@/components/agency/Hero'
 import { ClientLogos } from '@/components/agency/ClientLogos'
 import { Services } from '@/components/agency/Services'
-import { Process } from '@/components/agency/Process'
-import { Industries } from '@/components/agency/Industries'
 import { CaseStudies } from '@/components/agency/CaseStudies'
+import { WhyChooseUs } from '@/components/agency/WhyChooseUs'
+import { Industries } from '@/components/agency/Industries'
+import { Process } from '@/components/agency/Process'
 import { About } from '@/components/agency/About'
 import { Testimonials } from '@/components/agency/Testimonials'
 import { Statistics } from '@/components/agency/Statistics'
@@ -30,11 +31,12 @@ export default function Home() {
         <Hero />
         <ClientLogos />
         <Services />
+        <CaseStudies />
+        <WhyChooseUs />
         <Industries />
         <Process />
-        <CaseStudies />
-        <About />
         <Testimonials />
+        <About />
         <Statistics />
         <FAQ />
         <CTA />

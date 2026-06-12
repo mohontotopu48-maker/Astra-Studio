@@ -1,18 +1,22 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { ArrowRight, Sparkles, MousePointer } from 'lucide-react'
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
+import { ArrowRight, Sparkles, Phone, Star, ChevronDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 const heroStats = [
   { value: '200+', label: 'Projects Delivered' },
   { value: '50+', label: 'Enterprise Clients' },
+  { value: '4.9', label: 'Average Rating' },
   { value: '12', label: 'Design Awards' },
-  { value: '98%', label: 'Client Satisfaction' },
 ]
 
-// Animated text reveal character by character
+const trustedLogos = [
+  'Google', 'Microsoft', 'Stripe', 'Spotify', 'Notion', 'Figma', 'Shopify', 'Airbnb',
+]
+
+// Animated text reveal word by word
 function AnimatedText({ text, className, delay = 0 }: { text: string; className?: string; delay?: number }) {
   const words = text.split(' ')
   
@@ -22,11 +26,11 @@ function AnimatedText({ text, className, delay = 0 }: { text: string; className?
         <span key={wordIndex} className="inline-block overflow-hidden mr-[0.25em]">
           <motion.span
             className="inline-block"
-            initial={{ y: '100%', opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
+            initial={{ y: '110%', opacity: 0, rotateX: 40 }}
+            animate={{ y: 0, opacity: 1, rotateX: 0 }}
             transition={{
-              duration: 0.7,
-              delay: delay + wordIndex * 0.08,
+              duration: 0.8,
+              delay: delay + wordIndex * 0.1,
               ease: [0.76, 0, 0.24, 1],
             }}
           >
@@ -66,15 +70,15 @@ function ParticleField() {
     resize()
     window.addEventListener('resize', resize)
 
-    // Create particles
-    for (let i = 0; i < 60; i++) {
+    // Create particles - fewer, more subtle
+    for (let i = 0; i < 40; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        size: Math.random() * 2 + 0.5,
-        opacity: Math.random() * 0.4 + 0.1,
+        vx: (Math.random() - 0.5) * 0.2,
+        vy: (Math.random() - 0.5) * 0.2,
+        size: Math.random() * 1.5 + 0.5,
+        opacity: Math.random() * 0.3 + 0.05,
       })
     }
 
@@ -101,11 +105,11 @@ function ParticleField() {
           const dx = p.x - p2.x
           const dy = p.y - p2.y
           const dist = Math.sqrt(dx * dx + dy * dy)
-          if (dist < 150) {
+          if (dist < 120) {
             ctx.beginPath()
             ctx.moveTo(p.x, p.y)
             ctx.lineTo(p2.x, p2.y)
-            ctx.strokeStyle = `rgba(200, 160, 100, ${0.03 * (1 - dist / 150)})`
+            ctx.strokeStyle = `rgba(200, 160, 100, ${0.02 * (1 - dist / 120)})`
             ctx.lineWidth = 0.5
             ctx.stroke()
           }
@@ -126,7 +130,7 @@ function ParticleField() {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 z-0 opacity-60"
+      className="absolute inset-0 z-0 opacity-40"
     />
   )
 }
@@ -150,8 +154,8 @@ export function Hero() {
       {/* Animated mesh gradient */}
       <div className="absolute inset-0 hero-gradient" />
 
-      {/* Animated grid background */}
-      <div className="absolute inset-0 grid-pattern opacity-[0.02]" />
+      {/* Dot pattern overlay - Design Monks style */}
+      <div className="absolute inset-0 dot-pattern opacity-[0.03]" />
 
       {/* Floating orbs with parallax */}
       <motion.div
@@ -181,43 +185,54 @@ export function Hero() {
         />
       </motion.div>
 
-      {/* Decorative spinning ring */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-[0.03]">
-        <div className="w-full h-full rounded-full border border-foreground animate-spin-slow" />
-      </div>
-
       <motion.div
         style={{ y, opacity, scale }}
         className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20 md:pt-40 md:pb-32"
       >
         <div className="text-center max-w-5xl mx-auto">
-          {/* Badge */}
+          {/* Rating badge - Design Monks style */}
           <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.8, delay: 2.4, ease: [0.76, 0, 0.24, 1] }}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-border/50 bg-surface/50 backdrop-blur-sm mb-10"
+            transition={{ duration: 0.8, delay: 1.8, ease: [0.76, 0, 0.24, 1] }}
+            className="flex flex-col items-center gap-3 mb-8"
           >
+            <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full border border-border/50 bg-surface/50 backdrop-blur-sm">
+              <div className="flex items-center gap-1">
+                <span className="text-lg font-bold gradient-text">4.9</span>
+                <div className="flex">
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <Star key={i} className="h-3.5 w-3.5 fill-[var(--accent-warm)] text-[var(--accent-warm)]" />
+                  ))}
+                </div>
+              </div>
+              <span className="text-sm text-muted-foreground">
+                Leading UI/UX Design Agency
+              </span>
+            </div>
+            
+            {/* Countries badge */}
             <motion.div
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 2.2, duration: 0.6 }}
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-foreground/5 backdrop-blur-sm border border-border/30"
             >
-              <Sparkles className="h-3.5 w-3.5 text-[var(--accent-warm)]" />
+              <span className="text-xs">🌍</span>
+              <span className="text-xs text-muted-foreground">Designing across 8+ countries</span>
             </motion.div>
-            <span className="text-sm text-muted-foreground">
-              Award-Winning Design Agency — Now Accepting Q2 2025 Projects
-            </span>
           </motion.div>
 
-          {/* Main Headline - Character by character reveal */}
+          {/* Main Headline - Word by word reveal */}
           <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.05] mb-6">
-            <AnimatedText text="We Design" delay={2.6} />
+            <AnimatedText text="We Design Products" delay={2.4} />
             <br />
             <span className="gradient-text">
-              <AnimatedText text="Digital Products" delay={3.0} />
+              <AnimatedText text="That Drive" delay={3.0} />
             </span>
-            <br />
-            <AnimatedText text="That Drive Growth" delay={3.4} />
+            <br className="hidden sm:block" />
+            <span className="gradient-text sm:hidden"> </span>
+            <AnimatedText text="Results" delay={3.4} />
           </div>
 
           {/* Subheadline */}
@@ -231,7 +246,7 @@ export function Hero() {
             elegant, conversion-focused digital experiences for the world&apos;s leading brands.
           </motion.p>
 
-          {/* CTA Buttons with magnetic effect */}
+          {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -246,8 +261,8 @@ export function Hero() {
               >
                 <a href="#contact">
                   <span className="relative z-10 flex items-center">
-                    Book a Discovery Call
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    <Phone className="mr-2 h-4 w-4" />
+                    Book a Call
                   </span>
                   {/* Shimmer overlay */}
                   <motion.div
@@ -270,11 +285,39 @@ export function Hero() {
             </MagneticButton>
           </motion.div>
 
-          {/* Stats with stagger */}
+          {/* Trusted by logos marquee */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 4.3 }}
+            className="mb-12"
+          >
+            <p className="text-xs text-muted-foreground uppercase tracking-widest mb-6">
+              Trusted by 200+ of the world&apos;s top brands
+            </p>
+            <div className="relative overflow-hidden max-w-3xl mx-auto">
+              {/* Edge fade gradients */}
+              <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-background to-transparent z-10" />
+              <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-background to-transparent z-10" />
+              
+              <div className="flex animate-marquee whitespace-nowrap">
+                {[...trustedLogos, ...trustedLogos].map((logo, i) => (
+                  <span
+                    key={i}
+                    className="mx-8 text-lg font-semibold text-muted-foreground/40 hover:text-muted-foreground/60 transition-colors duration-300 cursor-default"
+                  >
+                    {logo}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Stats with stagger */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 4.5 }}
             className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto"
           >
             {heroStats.map((stat, i) => (
@@ -284,7 +327,7 @@ export function Hero() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{
                   duration: 0.6,
-                  delay: 4.4 + i * 0.12,
+                  delay: 4.6 + i * 0.12,
                   ease: [0.76, 0, 0.24, 1],
                 }}
                 whileHover={{ scale: 1.05, y: -2 }}
@@ -304,7 +347,7 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 5, duration: 1 }}
+            transition={{ delay: 5.2, duration: 1 }}
             className="mt-16 flex flex-col items-center gap-2"
           >
             <span className="text-xs text-muted-foreground tracking-widest uppercase">Scroll</span>
@@ -312,7 +355,7 @@ export function Hero() {
               animate={{ y: [0, 8, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
             >
-              <MousePointer className="h-4 w-4 text-muted-foreground rotate-90" />
+              <ChevronDown className="h-4 w-4 text-muted-foreground" />
             </motion.div>
           </motion.div>
         </div>

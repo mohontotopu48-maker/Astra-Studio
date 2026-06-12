@@ -1,88 +1,221 @@
 'use client'
 
 import { useRef, useState } from 'react'
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import { motion, useInView, AnimatePresence } from 'framer-motion'
 import {
   Layers, Palette, Smartphone, BarChart3, PenTool, LayoutGrid,
-  Shield, Figma, RefreshCw
+  Shield, Figma, RefreshCw, ArrowRight, Monitor, Smartphone as Mobile,
+  Globe, Zap, ChevronRight, Check
 } from 'lucide-react'
-import { Card, CardContent } from '@/components/ui/card'
 import { AnimatedSection, StaggerContainer, StaggerItem } from '@/lib/animations'
 
 const services = [
-  { icon: Layers, title: 'Product Design', description: 'End-to-end product design that balances user needs with business goals. From research to pixel-perfect delivery.', category: 'UI/UX Design' },
-  { icon: BarChart3, title: 'SaaS Design', description: 'Complex interfaces made simple. We design SaaS platforms that users love and that scale with your business.', category: 'UI/UX Design' },
-  { icon: LayoutGrid, title: 'Dashboard Design', description: 'Data-rich dashboards that transform complex information into clear, actionable visual insights.', category: 'UI/UX Design' },
-  { icon: Smartphone, title: 'Mobile App Design', description: 'Native mobile experiences crafted with platform-specific precision and cross-platform efficiency.', category: 'UI/UX Design' },
-  { icon: Shield, title: 'UX Audit', description: 'Comprehensive usability analysis that identifies friction points and reveals growth opportunities.', category: 'UI/UX Design' },
-  { icon: Figma, title: 'Design Systems', description: 'Scalable design systems that ensure consistency, accelerate development, and evolve with your product.', category: 'UI/UX Design' },
-  { icon: PenTool, title: 'Brand Identity', description: 'Distinctive brand identities that capture your essence and resonate with your target audience.', category: 'Brand Design' },
-  { icon: Palette, title: 'Logo Design', description: 'Memorable logos that embody your brand story and stand the test of time across every medium.', category: 'Brand Design' },
-  { icon: RefreshCw, title: 'Rebranding', description: 'Strategic rebranding that refreshes your market position while honoring your brand heritage.', category: 'Brand Design' },
+  {
+    icon: Layers,
+    title: 'UI/UX Design',
+    subtitle: 'Creating user-friendly digital experiences.',
+    description: 'When it comes to UI/UX design, we create experiences that are simple to navigate. Our goal is to deliver user-friendly interactions that align with your brand and fulfill user needs.',
+    items: [
+      { label: 'UI/UX Design', value: 'Visual UI Design' },
+      { label: 'User Research', value: 'Usability Testing' },
+      { label: 'Wireframe & Prototyping', value: 'Interaction Design' },
+    ],
+    gradient: 'from-violet-600/90 to-purple-700/90',
+    accentLight: 'bg-violet-500/10',
+    accentColor: 'text-violet-400',
+    accentBorder: 'border-violet-500/20',
+    tools: ['Figma', 'XD', 'Sketch', 'Principle'],
+    image: '/services-uiux.svg',
+  },
+  {
+    icon: Palette,
+    title: 'Logo & Branding',
+    subtitle: 'Creating memorable identities for brands.',
+    description: 'Create distinctive logos and cohesive brand identities that reflect your company\'s essence with our advanced logo and branding services that help you connect with your target audience.',
+    items: [
+      { label: 'Custom Logo Design', value: 'Brand Identity Development' },
+      { label: 'Brand Guidelines & Strategy', value: 'Typography & Color Palette' },
+      { label: 'Marketing Collateral', value: 'Social Media Branding' },
+    ],
+    gradient: 'from-amber-500/90 to-orange-600/90',
+    accentLight: 'bg-amber-500/10',
+    accentColor: 'text-amber-400',
+    accentBorder: 'border-amber-500/20',
+    tools: ['Illustrator', 'Photoshop', 'Figma', 'After Effects'],
+    image: '/services-branding.svg',
+  },
+  {
+    icon: Globe,
+    title: 'Web Design',
+    subtitle: 'Building visually appealing & functional websites.',
+    description: 'We create visually appealing and user-friendly websites that offer flawless navigation, optimized performance, and a strong connection to your brand\'s identity.',
+    items: [
+      { label: 'Responsive Web Design', value: 'UI/UX Design' },
+      { label: 'E-commerce Website', value: 'Figma Sites Development' },
+      { label: 'CMS Integration', value: 'Landing Page Design' },
+    ],
+    gradient: 'from-emerald-500/90 to-teal-600/90',
+    accentLight: 'bg-emerald-500/10',
+    accentColor: 'text-emerald-400',
+    accentBorder: 'border-emerald-500/20',
+    tools: ['Figma', 'Webflow', 'Framer', 'WordPress'],
+    image: '/services-web.svg',
+  },
+  {
+    icon: Smartphone,
+    title: 'Mobile App Design',
+    subtitle: 'Intuitive interfaces for every device.',
+    description: 'We design mobile experiences that are simple to use and visually appealing. Our design ensures smoother performance and maximum value for users on every device.',
+    items: [
+      { label: 'App Concept & Strategy', value: 'UI/UX for Mobile' },
+      { label: 'Interaction Design', value: 'Mobile Prototyping' },
+      { label: 'Responsive Design', value: 'App Screenshot Service' },
+    ],
+    gradient: 'from-sky-500/90 to-blue-600/90',
+    accentLight: 'bg-sky-500/10',
+    accentColor: 'text-sky-400',
+    accentBorder: 'border-sky-500/20',
+    tools: ['Figma', 'ProtoPie', 'Principle', 'InVision'],
+    image: '/services-mobile.svg',
+  },
+  {
+    icon: BarChart3,
+    title: 'SaaS Design',
+    subtitle: 'Intuitive interfaces that boost user engagement.',
+    description: 'We focus on designing user-friendly and high-performing SaaS products that streamline workflows and enhance user satisfaction. We ensure a smooth journey from start to finish.',
+    items: [
+      { label: 'SaaS Product Strategy', value: 'UI/UX Design for SaaS' },
+      { label: 'Dashboard & Admin Panel', value: 'Usability Testing' },
+      { label: 'Onboarding Experience', value: 'Design System Creation' },
+    ],
+    gradient: 'from-rose-500/90 to-pink-600/90',
+    accentLight: 'bg-rose-500/10',
+    accentColor: 'text-rose-400',
+    accentBorder: 'border-rose-500/20',
+    tools: ['Figma', 'Mixpanel', 'Hotjar', 'Dovetail'],
+    image: '/services-saas.svg',
+  },
+  {
+    icon: Shield,
+    title: 'UX Audit',
+    subtitle: 'Comprehensive usability analysis for growth.',
+    description: 'Comprehensive usability analysis that identifies friction points and reveals growth opportunities. We analyze your product end-to-end and provide actionable recommendations.',
+    items: [
+      { label: 'Heuristic Evaluation', value: 'User Flow Analysis' },
+      { label: 'Accessibility Audit', value: 'Performance Review' },
+      { label: 'Competitive Analysis', value: 'Actionable Report' },
+    ],
+    gradient: 'from-cyan-500/90 to-teal-600/90',
+    accentLight: 'bg-cyan-500/10',
+    accentColor: 'text-cyan-400',
+    accentBorder: 'border-cyan-500/20',
+    tools: ['Hotjar', 'Maze', 'Lighthouse', 'Axe'],
+    image: '/services-audit.svg',
+  },
 ]
 
-// 3D Tilt Card Component
-function TiltCard({ children, className }: { children: React.ReactNode; className?: string }) {
-  const ref = useRef<HTMLDivElement>(null)
+function ServiceCard({ service, index }: { service: typeof services[0]; index: number }) {
   const [isHovered, setIsHovered] = useState(false)
-
-  const x = useMotionValue(0)
-  const y = useMotionValue(0)
-
-  const mouseXSpring = useSpring(x, { stiffness: 150, damping: 20 })
-  const mouseYSpring = useSpring(y, { stiffness: 150, damping: 20 })
-
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ['8deg', '-8deg'])
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ['-8deg', '8deg'])
-  const glareX = useTransform(mouseXSpring, [-0.5, 0.5], ['0%', '100%'])
-  const glareY = useTransform(mouseYSpring, [-0.5, 0.5], ['0%', '100%'])
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!ref.current) return
-    const rect = ref.current.getBoundingClientRect()
-    const width = rect.width
-    const height = rect.height
-    const mouseX = e.clientX - rect.left
-    const mouseY = e.clientY - rect.top
-    const xPct = mouseX / width - 0.5
-    const yPct = mouseY / height - 0.5
-    x.set(xPct)
-    y.set(yPct)
-  }
-
-  const handleMouseLeave = () => {
-    x.set(0)
-    y.set(0)
-    setIsHovered(false)
-  }
+  const ref = useRef<HTMLDivElement>(null)
+  const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <motion.div
-      ref={ref}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        rotateX,
-        rotateY,
-        transformStyle: 'preserve-3d',
-      }}
-      className={className}
-    >
-      {children}
-      {/* Glare effect */}
+    <StaggerItem>
       <motion.div
-        style={{
-          opacity: isHovered ? 0.15 : 0,
-          background: useTransform(
-            [glareX, glareY],
-            ([latestX, latestY]) =>
-              `radial-gradient(circle at ${latestX} ${latestY}, oklch(0.95 0 0 / 80%), transparent 60%)`
-          ),
-        }}
-        className="absolute inset-0 rounded-xl pointer-events-none transition-opacity duration-300"
-      />
-    </motion.div>
+        ref={ref}
+        initial={{ opacity: 0, y: 60 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.7, delay: index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        className="group relative rounded-2xl border border-border/50 bg-card overflow-hidden cursor-pointer"
+      >
+        {/* Image/gradient banner area */}
+        <div className={`relative h-48 md:h-56 bg-gradient-to-br ${service.gradient} overflow-hidden`}>
+          {/* Dot pattern overlay */}
+          <div className="absolute inset-0 dot-pattern opacity-10" />
+          
+          {/* Animated shapes */}
+          <motion.div
+            className="absolute -right-12 -top-12 w-48 h-48 rounded-full bg-white/10"
+            animate={isHovered ? { scale: 1.2, rotate: 45 } : { scale: 1, rotate: 0 }}
+            transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+          />
+          <motion.div
+            className="absolute -left-8 -bottom-8 w-32 h-32 rounded-full bg-white/5"
+            animate={isHovered ? { scale: 1.3, x: 10 } : { scale: 1, x: 0 }}
+            transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+          />
+
+          {/* Service icon and title on the banner */}
+          <div className="relative z-10 h-full flex flex-col justify-end p-6 md:p-8">
+            <motion.div
+              className="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center mb-4"
+              whileHover={{ scale: 1.1, rotate: 5 }}
+              transition={{ type: 'spring', stiffness: 300 }}
+            >
+              <service.icon className="h-6 w-6 text-white" />
+            </motion.div>
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-1">
+              {service.title}
+            </h3>
+            <p className="text-white/70 text-sm">
+              {service.subtitle}
+            </p>
+          </div>
+
+          {/* Hover arrow */}
+          <motion.div
+            className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center"
+            animate={isHovered ? { rotate: 45, scale: 1.1 } : { rotate: 0, scale: 1 }}
+            transition={{ duration: 0.3 }}
+          >
+            <ArrowRight className="h-5 w-5 text-white" />
+          </motion.div>
+        </div>
+
+        {/* Content area */}
+        <div className="p-6 md:p-8">
+          <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+            {service.description}
+          </p>
+
+          {/* Two-column service listing */}
+          <div className="grid grid-cols-2 gap-3 mb-6">
+            {service.items.map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -10 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ delay: 0.3 + i * 0.1, duration: 0.4 }}
+                className="flex items-center gap-2 text-sm group/item cursor-pointer"
+              >
+                <ChevronRight className="h-3.5 w-3.5 text-muted-foreground shrink-0 group-hover/item:text-[var(--accent-warm)] group-hover/item:translate-x-0.5 transition-all duration-200" />
+                <span className="text-foreground/80 group-hover/item:text-foreground transition-colors duration-200">
+                  {item.label}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Tool icons row */}
+          <div className="flex items-center gap-2 pt-4 border-t border-border/50">
+            <span className="text-xs text-muted-foreground mr-2">Tools:</span>
+            {service.tools.map((tool) => (
+              <span
+                key={tool}
+                className={`text-xs px-2.5 py-1 rounded-full ${service.accentLight} ${service.accentColor} border ${service.accentBorder} font-medium`}
+              >
+                {tool}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom accent line */}
+        <div className={`absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r ${service.gradient} scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left`} />
+      </motion.div>
+    </StaggerItem>
   )
 }
 
@@ -92,10 +225,11 @@ export function Services() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-16 md:mb-20">
           <span className="text-sm text-[var(--accent-warm)] font-medium uppercase tracking-widest mb-4 block">
-            Services
+            What We Do
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6">
-            Design That Moves the Needle
+            We Design Brands That{' '}
+            <span className="gradient-text">Speak to Audiences</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             From initial concept to final delivery, we provide end-to-end design services
@@ -103,46 +237,24 @@ export function Services() {
           </p>
         </AnimatedSection>
 
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" style={{ perspective: '1200px' }}>
-          {services.map((service) => (
-            <StaggerItem key={service.title}>
-              <TiltCard className="h-full">
-                <Card className="group relative overflow-hidden border-border/50 bg-surface hover:bg-surface-elevated hover:border-border transition-all duration-500 hover:shadow-xl h-full">
-                  <CardContent className="p-6 md:p-8">
-                    {/* Animated glow on hover */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-br from-[var(--accent-warm)]/8 to-[var(--accent-cool)]/8 opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-                    />
-
-                    {/* Animated border glow */}
-                    <div className="absolute -inset-px rounded-xl bg-gradient-to-r from-[var(--accent-warm)]/0 via-[var(--accent-warm)]/0 to-[var(--accent-cool)]/0 group-hover:from-[var(--accent-warm)]/20 group-hover:via-transparent group-hover:to-[var(--accent-cool)]/20 transition-all duration-700 -z-10 blur-sm" />
-
-                    <div className="relative z-10" style={{ transform: 'translateZ(30px)' }}>
-                      <div className="flex items-center gap-3 mb-4">
-                        <motion.div
-                          className="w-10 h-10 rounded-xl bg-gradient-to-br from-[var(--accent-warm)]/10 to-[var(--accent-cool)]/10 flex items-center justify-center"
-                          whileHover={{ scale: 1.1, rotate: 5 }}
-                          transition={{ type: 'spring', stiffness: 300 }}
-                        >
-                          <service.icon className="h-5 w-5 text-[var(--accent-warm)]" />
-                        </motion.div>
-                        <span className="text-xs text-muted-foreground uppercase tracking-wider font-medium">
-                          {service.category}
-                        </span>
-                      </div>
-                      <h3 className="text-xl font-semibold mb-3 group-hover:gradient-text transition-all duration-300">
-                        {service.title}
-                      </h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed">
-                        {service.description}
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </TiltCard>
-            </StaggerItem>
+        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {services.map((service, i) => (
+            <ServiceCard key={service.title} service={service} index={i} />
           ))}
         </StaggerContainer>
+
+        {/* Bottom CTA */}
+        <AnimatedSection className="text-center mt-12 md:mt-16">
+          <motion.a
+            href="#contact"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-[var(--accent-warm)] to-[var(--accent-cool)] text-white font-semibold text-base hover:shadow-[0_0_40px_oklch(0.75_0.15_55/30%)] transition-all duration-500"
+          >
+            Start a Project
+            <ArrowRight className="h-4 w-4" />
+          </motion.a>
+        </AnimatedSection>
       </div>
     </section>
   )
