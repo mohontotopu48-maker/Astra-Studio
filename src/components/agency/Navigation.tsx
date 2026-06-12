@@ -13,9 +13,31 @@ function ThemeToggle({ mounted, theme, setTheme }: { mounted: boolean; theme: st
       variant="ghost"
       size="icon"
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      className="rounded-full"
+      className="rounded-full overflow-hidden relative"
     >
-      {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+      <AnimatePresence mode="wait">
+        {theme === 'dark' ? (
+          <motion.div
+            key="sun"
+            initial={{ rotate: -90, scale: 0 }}
+            animate={{ rotate: 0, scale: 1 }}
+            exit={{ rotate: 90, scale: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <Sun className="h-4 w-4" />
+          </motion.div>
+        ) : (
+          <motion.div
+            key="moon"
+            initial={{ rotate: 90, scale: 0 }}
+            animate={{ rotate: 0, scale: 1 }}
+            exit={{ rotate: -90, scale: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <Moon className="h-4 w-4" />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </Button>
   )
 }
@@ -37,7 +59,6 @@ export function Navigation() {
 
   useEffect(() => {
     mountedRef.current = true
-    // Use requestAnimationFrame to avoid direct setState in effect
     requestAnimationFrame(() => setMounted(true))
   }, [])
 
@@ -65,48 +86,75 @@ export function Navigation() {
       <motion.header
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        transition={{ duration: 1, delay: 2.2, ease: [0.76, 0, 0.24, 1] }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
           isScrolled
-            ? 'bg-background/80 backdrop-blur-xl border-b border-border shadow-sm'
+            ? 'bg-background/70 backdrop-blur-2xl border-b border-border/50 shadow-[0_1px_0_0_oklch(1_0_0/5%)]'
             : 'bg-transparent'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
-            <a href="#" className="flex items-center gap-2 group">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[var(--accent-warm)] to-[var(--accent-cool)] flex items-center justify-center">
+            <motion.a
+              href="#"
+              className="flex items-center gap-2.5 group"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <motion.div
+                className="w-9 h-9 rounded-xl bg-gradient-to-br from-[var(--accent-warm)] to-[var(--accent-cool)] flex items-center justify-center"
+                whileHover={{ rotate: 90 }}
+                transition={{ duration: 0.4, ease: [0.76, 0, 0.24, 1] }}
+              >
                 <span className="text-white font-bold text-sm">A</span>
-              </div>
+              </motion.div>
               <span className="text-lg font-semibold tracking-tight">
                 Astra Studio
               </span>
-            </a>
+            </motion.a>
 
             {/* Desktop Nav */}
             <div className="hidden md:flex items-center gap-1">
-              {navLinks.map((link) => (
-                <a
+              {navLinks.map((link, i) => (
+                <motion.a
                   key={link.label}
                   href={link.href}
-                  className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 rounded-lg hover:bg-accent/50"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 2.5 + i * 0.05 }}
+                  className="relative px-4 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 rounded-lg group"
                 >
                   {link.label}
-                </a>
+                  <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-[var(--accent-warm)] to-[var(--accent-cool)] group-hover:w-6 transition-all duration-300 rounded-full" />
+                </motion.a>
               ))}
             </div>
 
             {/* Desktop Actions */}
-            <div className="hidden md:flex items-center gap-3">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 2.8 }}
+              className="hidden md:flex items-center gap-3"
+            >
               <ThemeToggle mounted={mounted} theme={theme} setTheme={setTheme} />
-              <Button
-                asChild
-                className="bg-gradient-to-r from-[var(--accent-warm)] to-[var(--accent-cool)] text-white border-0 hover:opacity-90 transition-opacity rounded-full px-6"
-              >
-                <a href="#contact">Start a Project</a>
-              </Button>
-            </div>
+              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                <Button
+                  asChild
+                  className="bg-gradient-to-r from-[var(--accent-warm)] to-[var(--accent-cool)] text-white border-0 hover:shadow-[0_0_30px_oklch(0.75_0.15_55/20%)] transition-shadow duration-500 rounded-full px-6 relative overflow-hidden"
+                >
+                  <a href="#contact">
+                    <span className="relative z-10">Start a Project</span>
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
+                      animate={{ x: ['-200%', '200%'] }}
+                      transition={{ duration: 4, repeat: Infinity, repeatDelay: 3, ease: 'linear' }}
+                    />
+                  </a>
+                </Button>
+              </motion.div>
+            </motion.div>
 
             {/* Mobile Actions */}
             <div className="flex md:hidden items-center gap-2">
@@ -117,7 +165,29 @@ export function Navigation() {
                 onClick={() => setIsMobileOpen(!isMobileOpen)}
                 className="rounded-full"
               >
-                {isMobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                <AnimatePresence mode="wait">
+                  {isMobileOpen ? (
+                    <motion.div
+                      key="close"
+                      initial={{ rotate: -90, scale: 0 }}
+                      animate={{ rotate: 0, scale: 1 }}
+                      exit={{ rotate: 90, scale: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <X className="h-5 w-5" />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="menu"
+                      initial={{ rotate: 90, scale: 0 }}
+                      animate={{ rotate: 0, scale: 1 }}
+                      exit={{ rotate: -90, scale: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Menu className="h-5 w-5" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </Button>
             </div>
           </nav>
@@ -131,14 +201,14 @@ export function Navigation() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl md:hidden"
+            transition={{ duration: 0.4 }}
+            className="fixed inset-0 z-40 bg-background/95 backdrop-blur-2xl md:hidden"
           >
             <motion.nav
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-              transition={{ duration: 0.3, delay: 0.1 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4, delay: 0.1 }}
               className="flex flex-col items-center justify-center h-full gap-8"
             >
               {navLinks.map((link, i) => (
@@ -146,10 +216,11 @@ export function Navigation() {
                   key={link.label}
                   href={link.href}
                   onClick={() => setIsMobileOpen(false)}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 + i * 0.05 }}
-                  className="text-2xl font-medium text-foreground hover:text-muted-foreground transition-colors"
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 30 }}
+                  transition={{ delay: 0.1 + i * 0.07, duration: 0.4, ease: [0.76, 0, 0.24, 1] }}
+                  className="text-3xl font-medium text-foreground hover:text-[var(--accent-warm)] transition-colors duration-300 reveal-underline"
                 >
                   {link.label}
                 </motion.a>
@@ -157,11 +228,11 @@ export function Navigation() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
+                transition={{ delay: 0.5 }}
               >
                 <Button
                   asChild
-                  className="bg-gradient-to-r from-[var(--accent-warm)] to-[var(--accent-cool)] text-white border-0 rounded-full px-8 py-6 text-lg"
+                  className="bg-gradient-to-r from-[var(--accent-warm)] to-[var(--accent-cool)] text-white border-0 rounded-full px-10 py-7 text-lg mt-4"
                   onClick={() => setIsMobileOpen(false)}
                 >
                   <a href="#contact">Start a Project</a>

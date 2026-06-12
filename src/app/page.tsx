@@ -15,11 +15,15 @@ import { CTA } from '@/components/agency/CTA'
 import { ContactForm } from '@/components/agency/ContactForm'
 import { Footer } from '@/components/agency/Footer'
 import { CustomCursor } from '@/components/agency/CustomCursor'
+import { PageLoader } from '@/components/agency/PageLoader'
+import { ScrollProgress } from '@/components/agency/ScrollProgress'
 
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
+      <PageLoader />
       <CustomCursor />
+      <ScrollProgress />
       <Navigation />
 
       <main className="flex-1">
