@@ -5,6 +5,7 @@ import { Hero } from '@/components/agency/Hero'
 import { ClientLogos } from '@/components/agency/ClientLogos'
 import { Services } from '@/components/agency/Services'
 import { CaseStudies } from '@/components/agency/CaseStudies'
+import { AIPoweredDesign } from '@/components/agency/AIPoweredDesign'
 import { WhyChooseUs } from '@/components/agency/WhyChooseUs'
 import { Industries } from '@/components/agency/Industries'
 import { Process } from '@/components/agency/Process'
@@ -32,6 +33,7 @@ export default function Home() {
         <ClientLogos />
         <Services />
         <CaseStudies />
+        <AIPoweredDesign />
         <WhyChooseUs />
         <Industries />
         <Process />
