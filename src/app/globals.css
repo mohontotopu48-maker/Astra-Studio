@@ -179,6 +179,14 @@
   background-clip: text;
 }
 
+/* Hero headline gradient - multi-stop deep purple */
+.hero-gradient-text {
+  background: linear-gradient(135deg, #690ba8, #5a0990, #480773, #360656);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 /* Glow effect utilities */
 .glow {
   box-shadow: 0 0 20px #592DB520, 0 0 60px #773DF215;

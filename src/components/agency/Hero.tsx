@@ -223,16 +223,13 @@ export function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Main Headline - Word by word reveal */}
-          <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.05] mb-6 font-display">
+          {/* Main Headline - 2 lines */}
+          <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.1] mb-6 font-display">
             <AnimatedText text="We Design Products" delay={2.4} />
             <br />
-            <span className="gradient-text">
-              <AnimatedText text="That Drive" delay={3.0} />
+            <span className="hero-gradient-text">
+              <AnimatedText text="That Drive Results" delay={3.0} />
             </span>
-            <br className="hidden sm:block" />
-            <span className="gradient-text sm:hidden"> </span>
-            <AnimatedText text="Results" delay={3.4} />
           </div>
 
           {/* Subheadline */}
@@ -257,7 +254,7 @@ export function Hero() {
               <Button
                 asChild
                 size="lg"
-                className="bg-gradient-to-r from-[#592DB5] to-[#773DF2] text-white border-0 hover:shadow-[0_0_40px_#592DB540] transition-all duration-500 rounded-full px-8 py-6 text-base group relative overflow-hidden"
+                className="bg-gradient-to-r from-[#592DB5] to-[#773DF2] text-white border-0 hover:shadow-[0_0_40px_#592DB540] transition-all duration-500 rounded-full px-8 text-base group relative overflow-hidden h-[50px]"
               >
                 <a href="#contact">
                   <span className="relative z-10 flex items-center">
@@ -278,7 +275,7 @@ export function Hero() {
                 asChild
                 variant="outline"
                 size="lg"
-                className="rounded-full px-8 py-6 text-base border-border hover:bg-accent/50 hover:border-[#592DB5]/30 transition-all duration-300"
+                className="rounded-full px-8 text-base border-border hover:bg-accent/50 hover:border-[#592DB5]/30 transition-all duration-300 h-[50px]"
               >
                 <a href="#work">View Our Work</a>
               </Button>
