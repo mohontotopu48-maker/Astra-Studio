@@ -307,10 +307,10 @@ export function AIPoweredDesign() {
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
             transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-600/15 border border-emerald-500/20 mb-8"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#773DF2]/15 border border-[#773DF2]/20 mb-8"
           >
-            <Sparkles className="h-3.5 w-3.5 text-emerald-400" />
-            <span className="text-sm text-emerald-400 font-medium">AI-Powered Design</span>
+            <Sparkles className="h-3.5 w-3.5 text-[#9B6BF5]" />
+            <span className="text-sm text-[#9B6BF5] font-medium">AI-Powered Design</span>
           </motion.div>
 
           <motion.h2

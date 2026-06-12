@@ -73,7 +73,7 @@ export function ContactForm() {
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <CheckCircle className="h-16 w-16 text-emerald-500 mx-auto mb-6" />
+            <CheckCircle className="h-16 w-16 text-[#773DF2] mx-auto mb-6" />
             <h3 className="text-2xl font-bold mb-3">Thank You!</h3>
             <p className="text-muted-foreground">
               We&apos;ve received your message and will get back to you within 24 hours.

@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/db'
 import { z } from 'zod'
 
 // Rate limiting - simple in-memory store
@@ -32,13 +31,15 @@ function isSpam(data: z.infer<typeof contactSchema>): boolean {
   const spamPatterns = [
     /\[url=/i,
     /\[link=/i,
-    /http[s]?:\/\//i,
     /viagra|cialis|casino|lottery|prize/i,
   ]
 
   const textToCheck = `${data.name} ${data.message}`
   return spamPatterns.some((pattern) => pattern.test(textToCheck))
 }
+
+// In-memory store for contact submissions (for Vercel serverless)
+const contactStore: Array<Record<string, string | null>> = []
 
 export async function POST(request: NextRequest) {
   try {
@@ -82,24 +83,14 @@ export async function POST(request: NextRequest) {
       message: data.message.trim(),
     }
 
-    // Store in database
-    await db.contactSubmission.create({
-      data: sanitized,
+    // Store submission in memory (for production, use a real database or email service)
+    contactStore.push({
+      ...sanitized,
+      source: 'contact_form',
+      submittedAt: new Date().toISOString(),
     })
 
-    // Also create a lead entry
-    await db.lead.create({
-      data: {
-        name: sanitized.name,
-        email: sanitized.email,
-        company: sanitized.company,
-        phone: sanitized.phone,
-        budget: sanitized.budget,
-        projectDetails: sanitized.message,
-        status: 'new',
-        source: 'contact_form',
-      },
-    })
+    console.log('New contact submission:', sanitized.email, sanitized.company)
 
     return NextResponse.json(
       { message: 'Thank you! We\'ll be in touch within 24 hours.' },

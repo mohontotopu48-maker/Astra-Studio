@@ -154,7 +154,7 @@ export function Hero() {
       {/* Animated mesh gradient */}
       <div className="absolute inset-0 hero-gradient" />
 
-      {/* Dot pattern overlay - Design Monks style */}
+      {/* Dot pattern overlay */}
       <div className="absolute inset-0 dot-pattern opacity-[0.03]" />
 
       {/* Floating orbs with parallax */}
@@ -190,7 +190,7 @@ export function Hero() {
         className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20 md:pt-40 md:pb-32"
       >
         <div className="text-center max-w-5xl mx-auto">
-          {/* Rating badge - Design Monks style */}
+          {/* Rating badge */}
           <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}

@@ -27,7 +27,7 @@ const features = [
   {
     icon: Lightbulb,
     title: 'Custom Design Solutions',
-    description: 'Our easy payment options are completely flexible. So, you can invest in your success while staying within your budget.',
+    description: 'We craft bespoke design solutions tailored to your unique brand identity and business goals, ensuring every pixel serves a purpose.',
   },
   {
     icon: Headphones,
@@ -37,11 +37,11 @@ const features = [
 ]
 
 const comparisonData = [
-  { feature: 'Speed', designMonks: true, inHouse: false, agency: false, freelancer: false, selfService: false },
-  { feature: 'Flexibility', designMonks: true, inHouse: true, agency: false, freelancer: true, selfService: true },
-  { feature: 'Quality', designMonks: true, inHouse: true, agency: true, freelancer: false, selfService: false },
-  { feature: 'Scalability', designMonks: true, inHouse: false, agency: true, freelancer: false, selfService: false },
-  { feature: 'Affordability', designMonks: true, inHouse: false, agency: false, freelancer: true, selfService: true },
+  { feature: 'Speed', astraStudio: true, inHouse: false, agency: false, freelancer: false, selfService: false },
+  { feature: 'Flexibility', astraStudio: true, inHouse: true, agency: false, freelancer: true, selfService: true },
+  { feature: 'Quality', astraStudio: true, inHouse: true, agency: true, freelancer: false, selfService: false },
+  { feature: 'Scalability', astraStudio: true, inHouse: false, agency: true, freelancer: false, selfService: false },
+  { feature: 'Affordability', astraStudio: true, inHouse: false, agency: false, freelancer: true, selfService: true },
 ]
 
 const skillTags = [
@@ -183,7 +183,7 @@ export function WhyChooseUs() {
                     <td
                       className={`p-4 md:p-5 text-center transition-colors duration-200 ${hoveredCol === 'us' ? 'bg-[#592DB5]/5' : ''}`}
                     >
-                      {row.designMonks ? (
+                      {row.astraStudio ? (
                         <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[#592DB5]/10">
                           <Check className="h-4 w-4 text-[#773DF2]" />
                         </span>
@@ -195,28 +195,28 @@ export function WhyChooseUs() {
                     </td>
                     <td className="p-4 md:p-5 text-center">
                       {row.inHouse ? (
-                        <Check className="h-4 w-4 text-emerald-500 mx-auto" />
+                        <Check className="h-4 w-4 text-[#773DF2] mx-auto" />
                       ) : (
                         <X className="h-4 w-4 text-muted-foreground/30 mx-auto" />
                       )}
                     </td>
                     <td className="p-4 md:p-5 text-center">
                       {row.agency ? (
-                        <Check className="h-4 w-4 text-emerald-500 mx-auto" />
+                        <Check className="h-4 w-4 text-[#773DF2] mx-auto" />
                       ) : (
                         <X className="h-4 w-4 text-muted-foreground/30 mx-auto" />
                       )}
                     </td>
                     <td className="p-4 md:p-5 text-center">
                       {row.freelancer ? (
-                        <Check className="h-4 w-4 text-emerald-500 mx-auto" />
+                        <Check className="h-4 w-4 text-[#773DF2] mx-auto" />
                       ) : (
                         <X className="h-4 w-4 text-muted-foreground/30 mx-auto" />
                       )}
                     </td>
                     <td className="p-4 md:p-5 text-center">
                       {row.selfService ? (
-                        <Check className="h-4 w-4 text-emerald-500 mx-auto" />
+                        <Check className="h-4 w-4 text-[#773DF2] mx-auto" />
                       ) : (
                         <X className="h-4 w-4 text-muted-foreground/30 mx-auto" />
                       )}

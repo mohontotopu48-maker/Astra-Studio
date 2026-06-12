@@ -1,11 +1,11 @@
 'use client'
 
 import { useRef, useState } from 'react'
-import { motion, useInView, AnimatePresence } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import {
-  Layers, Palette, Smartphone, BarChart3, PenTool, LayoutGrid,
-  Shield, Figma, RefreshCw, ArrowRight, Monitor, Smartphone as Mobile,
-  Globe, Zap, ChevronRight, Check
+  Layers, Palette, Smartphone, BarChart3,
+  Shield, ArrowRight,
+  Globe, ChevronRight
 } from 'lucide-react'
 import { AnimatedSection, StaggerContainer, StaggerItem } from '@/lib/animations'
 
@@ -25,7 +25,6 @@ const services = [
     accentColor: 'text-[#773DF2]',
     accentBorder: 'border-[#592DB5]/20',
     tools: ['Figma', 'XD', 'Sketch', 'Principle'],
-    image: '/services-uiux.svg',
   },
   {
     icon: Palette,
@@ -42,7 +41,6 @@ const services = [
     accentColor: 'text-[#773DF2]',
     accentBorder: 'border-[#773DF2]/20',
     tools: ['Illustrator', 'Photoshop', 'Figma', 'After Effects'],
-    image: '/services-branding.svg',
   },
   {
     icon: Globe,
@@ -59,7 +57,6 @@ const services = [
     accentColor: 'text-[#592DB5]',
     accentBorder: 'border-[#592DB5]/20',
     tools: ['Figma', 'Webflow', 'Framer', 'WordPress'],
-    image: '/services-web.svg',
   },
   {
     icon: Smartphone,
@@ -76,7 +73,6 @@ const services = [
     accentColor: 'text-[#773DF2]',
     accentBorder: 'border-[#773DF2]/20',
     tools: ['Figma', 'ProtoPie', 'Principle', 'InVision'],
-    image: '/services-mobile.svg',
   },
   {
     icon: BarChart3,
@@ -93,7 +89,6 @@ const services = [
     accentColor: 'text-[#592DB5]',
     accentBorder: 'border-[#4520A0]/20',
     tools: ['Figma', 'Mixpanel', 'Hotjar', 'Dovetail'],
-    image: '/services-saas.svg',
   },
   {
     icon: Shield,
@@ -110,7 +105,6 @@ const services = [
     accentColor: 'text-[#773DF2]',
     accentBorder: 'border-[#592DB5]/20',
     tools: ['Hotjar', 'Maze', 'Lighthouse', 'Axe'],
-    image: '/services-audit.svg',
   },
 ]
 
