@@ -88,10 +88,10 @@ export function ContactForm() {
     <section id="contact-form" className="py-24 md:py-32 bg-surface">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-12">
-          <span className="text-sm text-[var(--accent-warm)] font-medium uppercase tracking-widest mb-4 block">
+          <span className="text-sm text-[#773DF2] font-medium uppercase tracking-widest mb-4 block">
             Get in Touch
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-display tracking-tight mb-6">
             Let&apos;s Build Something Great
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -110,7 +110,7 @@ export function ContactForm() {
                   name="name"
                   placeholder="John Smith"
                   required
-                  className="bg-background border-border/50 focus:border-[var(--accent-warm)]/50"
+                  className="bg-background border-border/50 focus:border-[#592DB5]/50"
                 />
               </div>
               <div className="space-y-2">
@@ -121,7 +121,7 @@ export function ContactForm() {
                   type="email"
                   placeholder="john@company.com"
                   required
-                  className="bg-background border-border/50 focus:border-[var(--accent-warm)]/50"
+                  className="bg-background border-border/50 focus:border-[#592DB5]/50"
                 />
               </div>
             </div>
@@ -133,7 +133,7 @@ export function ContactForm() {
                   id="company"
                   name="company"
                   placeholder="Company name"
-                  className="bg-background border-border/50 focus:border-[var(--accent-warm)]/50"
+                  className="bg-background border-border/50 focus:border-[#592DB5]/50"
                 />
               </div>
               <div className="space-y-2">
@@ -143,7 +143,7 @@ export function ContactForm() {
                   name="phone"
                   type="tel"
                   placeholder="+1 (555) 000-0000"
-                  className="bg-background border-border/50 focus:border-[var(--accent-warm)]/50"
+                  className="bg-background border-border/50 focus:border-[#592DB5]/50"
                 />
               </div>
             </div>
@@ -172,7 +172,7 @@ export function ContactForm() {
                 placeholder="Tell us about your project, goals, and timeline..."
                 required
                 rows={5}
-                className="bg-background border-border/50 focus:border-[var(--accent-warm)]/50 resize-none"
+                className="bg-background border-border/50 focus:border-[#592DB5]/50 resize-none"
               />
             </div>
 
@@ -187,7 +187,7 @@ export function ContactForm() {
                 type="submit"
                 disabled={isSubmitting}
                 size="lg"
-                className="bg-gradient-to-r from-[var(--accent-warm)] to-[var(--accent-cool)] text-white border-0 hover:opacity-90 transition-all rounded-full px-8 py-6 text-base group"
+                className="bg-gradient-to-r from-[#592DB5] to-[#773DF2] text-white border-0 hover:opacity-90 transition-all rounded-full px-8 py-6 text-base group"
               >
                 {isSubmitting ? (
                   <>

@@ -29,7 +29,7 @@ export function PageLoader() {
               className="relative"
             >
               <motion.div
-                className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[var(--accent-warm)] to-[var(--accent-cool)] flex items-center justify-center"
+                className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#592DB5] to-[#773DF2] flex items-center justify-center"
                 animate={{ rotate: [0, 360] }}
                 transition={{ duration: 2, ease: [0.25, 0.46, 0.45, 0.94] }}
               >
@@ -38,7 +38,7 @@ export function PageLoader() {
               
               {/* Glow ring */}
               <motion.div
-                className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[var(--accent-warm)] to-[var(--accent-cool)]"
+                className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#592DB5] to-[#773DF2]"
                 animate={{ scale: [1, 1.5], opacity: [0.5, 0] }}
                 transition={{ duration: 1.5, repeat: Infinity, ease: 'easeOut' }}
               />
@@ -47,7 +47,7 @@ export function PageLoader() {
             {/* Loading bar */}
             <div className="w-48 h-[2px] bg-border/30 rounded-full overflow-hidden">
               <motion.div
-                className="h-full bg-gradient-to-r from-[var(--accent-warm)] to-[var(--accent-cool)] rounded-full loader-bar"
+                className="h-full bg-gradient-to-r from-[#592DB5] to-[#773DF2] rounded-full loader-bar"
               />
             </div>
 

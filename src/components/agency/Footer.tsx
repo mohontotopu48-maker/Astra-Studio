@@ -40,10 +40,10 @@ export function Footer() {
           {/* Brand column */}
           <div className="col-span-2 md:col-span-1">
             <a href="#" className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[var(--accent-warm)] to-[var(--accent-cool)] flex items-center justify-center">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#592DB5] to-[#773DF2] flex items-center justify-center">
                 <span className="text-white font-bold text-sm">A</span>
               </div>
-              <span className="text-lg font-semibold tracking-tight">
+              <span className="text-lg font-semibold font-display tracking-tight">
                 Astra Studio
               </span>
             </a>

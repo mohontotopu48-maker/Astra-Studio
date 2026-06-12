@@ -71,7 +71,7 @@ export function CustomCursor() {
           mass: 0.5,
         }}
       >
-        <div className="w-[300px] h-[300px] rounded-full bg-[var(--accent-warm)] blur-[80px]" />
+        <div className="w-[300px] h-[300px] rounded-full bg-[#592DB5] blur-[80px]" />
       </motion.div>
 
       {/* Trail dots */}
@@ -92,7 +92,7 @@ export function CustomCursor() {
           }}
         >
           <div
-            className="rounded-full bg-[var(--accent-warm)]"
+            className="rounded-full bg-[#592DB5]"
             style={{
               width: Math.max(4 - i * 0.5, 1),
               height: Math.max(4 - i * 0.5, 1),
@@ -139,7 +139,7 @@ export function CustomCursor() {
         <div
           className={`w-8 h-8 rounded-full border transition-colors duration-300 ${
             isHovering
-              ? 'border-[var(--accent-warm)] bg-[var(--accent-warm)]/10 shadow-[0_0_20px_oklch(0.75_0.15_55/20%)]'
+              ? 'border-[#592DB5] bg-[#592DB5]/10 shadow-[0_0_20px_#592DB530]'
               : 'border-foreground/20'
           }`}
         />

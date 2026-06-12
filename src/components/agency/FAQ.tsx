@@ -48,10 +48,10 @@ export function FAQ() {
     <section className="py-24 md:py-32 bg-surface">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-16 md:mb-20">
-          <span className="text-sm text-[var(--accent-warm)] font-medium uppercase tracking-widest mb-4 block">
+          <span className="text-sm text-[#773DF2] font-medium uppercase tracking-widest mb-4 block">
             FAQ
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-display tracking-tight mb-6">
             Frequently Asked Questions
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">

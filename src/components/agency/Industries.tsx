@@ -34,16 +34,16 @@ const industries = [
 ]
 
 const gradients = [
-  'from-violet-500/10 to-purple-500/5',
-  'from-amber-500/10 to-orange-500/5',
-  'from-emerald-500/10 to-teal-500/5',
-  'from-rose-500/10 to-pink-500/5',
-  'from-sky-500/10 to-blue-500/5',
-  'from-cyan-500/10 to-teal-500/5',
-  'from-lime-500/10 to-green-500/5',
-  'from-fuchsia-500/10 to-pink-500/5',
-  'from-indigo-500/10 to-violet-500/5',
-  'from-orange-500/10 to-red-500/5',
+  'from-[#592DB5]/10 to-[#773DF2]/5',
+  'from-[#773DF2]/10 to-[#592DB5]/5',
+  'from-[#592DB5]/8 to-[#9B6BF5]/5',
+  'from-[#9B6BF5]/10 to-[#592DB5]/5',
+  'from-[#4520A0]/10 to-[#592DB5]/5',
+  'from-[#592DB5]/10 to-[#B68DF7]/5',
+  'from-[#773DF2]/8 to-[#4520A0]/5',
+  'from-[#B68DF7]/10 to-[#773DF2]/5',
+  'from-[#592DB5]/10 to-[#4520A0]/5',
+  'from-[#773DF2]/10 to-[#9B6BF5]/5',
 ]
 
 function IndustryCard({ industry, index }: { industry: typeof industries[0]; index: number }) {
@@ -80,7 +80,7 @@ function IndustryCard({ industry, index }: { industry: typeof industries[0]; ind
         </p>
 
         {/* Bottom accent line */}
-        <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[var(--accent-warm)] to-[var(--accent-cool)] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+        <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#592DB5] to-[#773DF2] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
       </motion.div>
     </motion.div>
   )
@@ -94,10 +94,10 @@ export function Industries() {
     <section className="py-24 md:py-32 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-16 md:mb-20">
-          <span className="text-sm text-[var(--accent-warm)] font-medium uppercase tracking-widest mb-4 block">
+          <span className="text-sm text-[#773DF2] font-medium uppercase tracking-widest mb-4 block">
             Industries
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-display tracking-tight mb-6">
             Our Expertise Across{' '}
             <span className="gradient-text">Diverse Industries</span>
           </h2>
@@ -119,7 +119,7 @@ export function Industries() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => setShowAll(true)}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border hover:bg-accent/50 hover:border-[var(--accent-warm)]/30 transition-all duration-300 text-sm font-medium"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border hover:bg-accent/50 hover:border-[#592DB5]/30 transition-all duration-300 text-sm font-medium"
             >
               See All Industries
               <ArrowRight className="h-4 w-4" />

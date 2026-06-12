@@ -50,7 +50,7 @@ function ProcessTimeline() {
       {/* Animated vertical timeline line (desktop) */}
       <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-[1px] bg-border/30 -translate-x-1/2">
         <motion.div
-          className="w-full bg-gradient-to-b from-[var(--accent-warm)] to-[var(--accent-cool)]"
+          className="w-full bg-gradient-to-b from-[#592DB5] to-[#773DF2]"
           style={{ height: lineHeight }}
         />
       </div>
@@ -90,20 +90,20 @@ function ProcessStep({ step, index }: { step: typeof steps[0]; index: number }) 
       <div className={`flex-1 ${index % 2 === 0 ? 'lg:text-right' : 'lg:text-left'}`}>
         <div className="group">
           {/* Number with gradient */}
-          <div className="text-7xl md:text-8xl font-bold text-border/30 group-hover:text-[var(--accent-warm)]/15 transition-colors duration-500 mb-4">
+          <div className="text-7xl md:text-8xl font-bold text-border/30 group-hover:text-[#773DF2]/15 transition-colors duration-500 mb-4">
             {step.number}
           </div>
 
           {/* Icon with animation */}
           <motion.div
-            className={`inline-flex w-14 h-14 rounded-2xl bg-gradient-to-br from-[var(--accent-warm)]/10 to-[var(--accent-cool)]/10 items-center justify-center mb-4`}
+            className={`inline-flex w-14 h-14 rounded-2xl bg-gradient-to-br from-[#592DB5]/10 to-[#773DF2]/10 items-center justify-center mb-4`}
             whileHover={{ scale: 1.1, rotate: 5 }}
             transition={{ type: 'spring', stiffness: 300 }}
           >
-            <step.icon className="h-7 w-7 text-[var(--accent-warm)]" />
+            <step.icon className="h-7 w-7 text-[#773DF2]" />
           </motion.div>
 
-          <h3 className="text-2xl font-semibold mb-3">{step.title}</h3>
+          <h3 className="text-2xl font-semibold font-display mb-3">{step.title}</h3>
           <p className="text-muted-foreground mb-4 leading-relaxed max-w-md inline-block">
             {step.description}
           </p>
@@ -118,7 +118,7 @@ function ProcessStep({ step, index }: { step: typeof steps[0]; index: number }) 
                 viewport={{ once: true }}
                 className={`text-sm text-muted-foreground/70 flex items-center gap-2 ${index % 2 === 0 ? 'lg:justify-end' : ''}`}
               >
-                <div className="w-1.5 h-1.5 rounded-full bg-[var(--accent-warm)]/60" />
+                <div className="w-1.5 h-1.5 rounded-full bg-[#592DB5]/60" />
                 {detail}
               </motion.li>
             ))}
@@ -127,8 +127,8 @@ function ProcessStep({ step, index }: { step: typeof steps[0]; index: number }) 
       </div>
 
       {/* Center dot */}
-      <div className="hidden lg:flex w-5 h-5 rounded-full border-2 border-border bg-background z-10 flex-shrink-0 group-hover:border-[var(--accent-warm)] transition-colors">
-        <div className="w-full h-full rounded-full bg-gradient-to-br from-[var(--accent-warm)] to-[var(--accent-cool)] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <div className="hidden lg:flex w-5 h-5 rounded-full border-2 border-border bg-background z-10 flex-shrink-0 group-hover:border-[#592DB5] transition-colors">
+        <div className="w-full h-full rounded-full bg-gradient-to-br from-[#592DB5] to-[#773DF2] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
 
       {/* Spacer for alternating layout */}
@@ -145,10 +145,10 @@ export function Process() {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-16 md:mb-20">
-          <span className="text-sm text-[var(--accent-warm)] font-medium uppercase tracking-widest mb-4 block">
+          <span className="text-sm text-[#773DF2] font-medium uppercase tracking-widest mb-4 block">
             Process
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-display tracking-tight mb-6">
             From Vision to Launch
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">

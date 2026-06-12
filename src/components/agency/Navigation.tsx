@@ -103,13 +103,13 @@ export function Navigation() {
               whileTap={{ scale: 0.98 }}
             >
               <motion.div
-                className="w-9 h-9 rounded-xl bg-gradient-to-br from-[var(--accent-warm)] to-[var(--accent-cool)] flex items-center justify-center"
+                className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#592DB5] to-[#773DF2] flex items-center justify-center"
                 whileHover={{ rotate: 90 }}
                 transition={{ duration: 0.4, ease: [0.76, 0, 0.24, 1] }}
               >
                 <span className="text-white font-bold text-sm">A</span>
               </motion.div>
-              <span className="text-lg font-semibold tracking-tight">
+              <span className="text-lg font-semibold font-display tracking-tight">
                 Astra Studio
               </span>
             </motion.a>
@@ -126,7 +126,7 @@ export function Navigation() {
                   className="relative px-4 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 rounded-lg group"
                 >
                   {link.label}
-                  <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-[var(--accent-warm)] to-[var(--accent-cool)] group-hover:w-6 transition-all duration-300 rounded-full" />
+                  <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-[#592DB5] to-[#773DF2] group-hover:w-6 transition-all duration-300 rounded-full" />
                 </motion.a>
               ))}
             </div>
@@ -142,7 +142,7 @@ export function Navigation() {
               <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
                 <Button
                   asChild
-                  className="bg-gradient-to-r from-[var(--accent-warm)] to-[var(--accent-cool)] text-white border-0 hover:shadow-[0_0_30px_oklch(0.75_0.15_55/20%)] transition-shadow duration-500 rounded-full px-6 relative overflow-hidden"
+                  className="bg-gradient-to-r from-[#592DB5] to-[#773DF2] text-white border-0 hover:shadow-[0_0_30px_#592DB530] transition-shadow duration-500 rounded-full px-6 relative overflow-hidden"
                 >
                   <a href="#contact">
                     <span className="relative z-10">Start a Project</span>
@@ -220,7 +220,7 @@ export function Navigation() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 30 }}
                   transition={{ delay: 0.1 + i * 0.07, duration: 0.4, ease: [0.76, 0, 0.24, 1] }}
-                  className="text-3xl font-medium text-foreground hover:text-[var(--accent-warm)] transition-colors duration-300 reveal-underline"
+                  className="text-3xl font-medium text-foreground hover:text-[#773DF2] transition-colors duration-300 reveal-underline"
                 >
                   {link.label}
                 </motion.a>
@@ -232,7 +232,7 @@ export function Navigation() {
               >
                 <Button
                   asChild
-                  className="bg-gradient-to-r from-[var(--accent-warm)] to-[var(--accent-cool)] text-white border-0 rounded-full px-10 py-7 text-lg mt-4"
+                  className="bg-gradient-to-r from-[#592DB5] to-[#773DF2] text-white border-0 rounded-full px-10 py-7 text-lg mt-4"
                   onClick={() => setIsMobileOpen(false)}
                 >
                   <a href="#contact">Start a Project</a>

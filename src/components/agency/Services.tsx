@@ -20,10 +20,10 @@ const services = [
       { label: 'User Research', value: 'Usability Testing' },
       { label: 'Wireframe & Prototyping', value: 'Interaction Design' },
     ],
-    gradient: 'from-violet-600/90 to-purple-700/90',
-    accentLight: 'bg-violet-500/10',
-    accentColor: 'text-violet-400',
-    accentBorder: 'border-violet-500/20',
+    gradient: 'from-[#592DB5]/90 to-[#773DF2]/90',
+    accentLight: 'bg-[#592DB5]/10',
+    accentColor: 'text-[#773DF2]',
+    accentBorder: 'border-[#592DB5]/20',
     tools: ['Figma', 'XD', 'Sketch', 'Principle'],
     image: '/services-uiux.svg',
   },
@@ -37,10 +37,10 @@ const services = [
       { label: 'Brand Guidelines & Strategy', value: 'Typography & Color Palette' },
       { label: 'Marketing Collateral', value: 'Social Media Branding' },
     ],
-    gradient: 'from-amber-500/90 to-orange-600/90',
-    accentLight: 'bg-amber-500/10',
-    accentColor: 'text-amber-400',
-    accentBorder: 'border-amber-500/20',
+    gradient: 'from-[#773DF2]/90 to-[#592DB5]/90',
+    accentLight: 'bg-[#773DF2]/10',
+    accentColor: 'text-[#773DF2]',
+    accentBorder: 'border-[#773DF2]/20',
     tools: ['Illustrator', 'Photoshop', 'Figma', 'After Effects'],
     image: '/services-branding.svg',
   },
@@ -54,10 +54,10 @@ const services = [
       { label: 'E-commerce Website', value: 'Figma Sites Development' },
       { label: 'CMS Integration', value: 'Landing Page Design' },
     ],
-    gradient: 'from-emerald-500/90 to-teal-600/90',
-    accentLight: 'bg-emerald-500/10',
-    accentColor: 'text-emerald-400',
-    accentBorder: 'border-emerald-500/20',
+    gradient: 'from-[#592DB5]/80 to-[#9B6BF5]/90',
+    accentLight: 'bg-[#592DB5]/10',
+    accentColor: 'text-[#592DB5]',
+    accentBorder: 'border-[#592DB5]/20',
     tools: ['Figma', 'Webflow', 'Framer', 'WordPress'],
     image: '/services-web.svg',
   },
@@ -71,10 +71,10 @@ const services = [
       { label: 'Interaction Design', value: 'Mobile Prototyping' },
       { label: 'Responsive Design', value: 'App Screenshot Service' },
     ],
-    gradient: 'from-sky-500/90 to-blue-600/90',
-    accentLight: 'bg-sky-500/10',
-    accentColor: 'text-sky-400',
-    accentBorder: 'border-sky-500/20',
+    gradient: 'from-[#773DF2]/80 to-[#B68DF7]/90',
+    accentLight: 'bg-[#773DF2]/10',
+    accentColor: 'text-[#773DF2]',
+    accentBorder: 'border-[#773DF2]/20',
     tools: ['Figma', 'ProtoPie', 'Principle', 'InVision'],
     image: '/services-mobile.svg',
   },
@@ -88,10 +88,10 @@ const services = [
       { label: 'Dashboard & Admin Panel', value: 'Usability Testing' },
       { label: 'Onboarding Experience', value: 'Design System Creation' },
     ],
-    gradient: 'from-rose-500/90 to-pink-600/90',
-    accentLight: 'bg-rose-500/10',
-    accentColor: 'text-rose-400',
-    accentBorder: 'border-rose-500/20',
+    gradient: 'from-[#4520A0]/90 to-[#592DB5]/90',
+    accentLight: 'bg-[#4520A0]/10',
+    accentColor: 'text-[#592DB5]',
+    accentBorder: 'border-[#4520A0]/20',
     tools: ['Figma', 'Mixpanel', 'Hotjar', 'Dovetail'],
     image: '/services-saas.svg',
   },
@@ -105,10 +105,10 @@ const services = [
       { label: 'Accessibility Audit', value: 'Performance Review' },
       { label: 'Competitive Analysis', value: 'Actionable Report' },
     ],
-    gradient: 'from-cyan-500/90 to-teal-600/90',
-    accentLight: 'bg-cyan-500/10',
-    accentColor: 'text-cyan-400',
-    accentBorder: 'border-cyan-500/20',
+    gradient: 'from-[#592DB5]/90 to-[#4520A0]/90',
+    accentLight: 'bg-[#592DB5]/10',
+    accentColor: 'text-[#773DF2]',
+    accentBorder: 'border-[#592DB5]/20',
     tools: ['Hotjar', 'Maze', 'Lighthouse', 'Axe'],
     image: '/services-audit.svg',
   },
@@ -156,7 +156,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
             >
               <service.icon className="h-6 w-6 text-white" />
             </motion.div>
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-1">
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-1 font-display">
               {service.title}
             </h3>
             <p className="text-white/70 text-sm">
@@ -190,7 +190,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
                 transition={{ delay: 0.3 + i * 0.1, duration: 0.4 }}
                 className="flex items-center gap-2 text-sm group/item cursor-pointer"
               >
-                <ChevronRight className="h-3.5 w-3.5 text-muted-foreground shrink-0 group-hover/item:text-[var(--accent-warm)] group-hover/item:translate-x-0.5 transition-all duration-200" />
+                <ChevronRight className="h-3.5 w-3.5 text-muted-foreground shrink-0 group-hover/item:text-[#773DF2] group-hover/item:translate-x-0.5 transition-all duration-200" />
                 <span className="text-foreground/80 group-hover/item:text-foreground transition-colors duration-200">
                   {item.label}
                 </span>
@@ -224,10 +224,10 @@ export function Services() {
     <section id="services" className="py-24 md:py-32 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-16 md:mb-20">
-          <span className="text-sm text-[var(--accent-warm)] font-medium uppercase tracking-widest mb-4 block">
+          <span className="text-sm text-[#773DF2] font-medium uppercase tracking-widest mb-4 block">
             What We Do
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6 font-display">
             We Design Brands That{' '}
             <span className="gradient-text">Speak to Audiences</span>
           </h2>
@@ -249,7 +249,7 @@ export function Services() {
             href="#contact"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-[var(--accent-warm)] to-[var(--accent-cool)] text-white font-semibold text-base hover:shadow-[0_0_40px_oklch(0.75_0.15_55/30%)] transition-all duration-500"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-[#592DB5] to-[#773DF2] text-white font-semibold text-base hover:shadow-[0_0_40px_#592DB540] transition-all duration-500"
           >
             Start a Project
             <ArrowRight className="h-4 w-4" />

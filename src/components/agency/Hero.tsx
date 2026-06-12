@@ -96,7 +96,7 @@ function ParticleField() {
 
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(200, 160, 100, ${p.opacity * 0.3})`
+        ctx.fillStyle = `rgba(119, 61, 242, ${p.opacity * 0.3})`
         ctx.fill()
 
         // Draw connections
@@ -109,7 +109,7 @@ function ParticleField() {
             ctx.beginPath()
             ctx.moveTo(p.x, p.y)
             ctx.lineTo(p2.x, p2.y)
-            ctx.strokeStyle = `rgba(200, 160, 100, ${0.02 * (1 - dist / 120)})`
+            ctx.strokeStyle = `rgba(119, 61, 242, ${0.02 * (1 - dist / 120)})`
             ctx.lineWidth = 0.5
             ctx.stroke()
           }
@@ -160,7 +160,7 @@ export function Hero() {
       {/* Floating orbs with parallax */}
       <motion.div
         style={{ y: useTransform(scrollYProgress, [0, 1], [0, 100]) }}
-        className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-[var(--accent-warm)] opacity-[0.06] blur-[120px]"
+        className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-[#592DB5] opacity-[0.06] blur-[120px]"
       >
         <motion.div
           className="w-full h-full"
@@ -173,7 +173,7 @@ export function Hero() {
       </motion.div>
       <motion.div
         style={{ y: useTransform(scrollYProgress, [0, 1], [0, 150]) }}
-        className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] rounded-full bg-[var(--accent-cool)] opacity-[0.04] blur-[150px]"
+        className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] rounded-full bg-[#773DF2] opacity-[0.04] blur-[150px]"
       >
         <motion.div
           className="w-full h-full"
@@ -202,7 +202,7 @@ export function Hero() {
                 <span className="text-lg font-bold gradient-text">4.9</span>
                 <div className="flex">
                   {[1, 2, 3, 4, 5].map((i) => (
-                    <Star key={i} className="h-3.5 w-3.5 fill-[var(--accent-warm)] text-[var(--accent-warm)]" />
+                    <Star key={i} className="h-3.5 w-3.5 fill-[#773DF2] text-[#773DF2]" />
                   ))}
                 </div>
               </div>
@@ -224,7 +224,7 @@ export function Hero() {
           </motion.div>
 
           {/* Main Headline - Word by word reveal */}
-          <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.05] mb-6">
+          <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.05] mb-6 font-display">
             <AnimatedText text="We Design Products" delay={2.4} />
             <br />
             <span className="gradient-text">
@@ -257,7 +257,7 @@ export function Hero() {
               <Button
                 asChild
                 size="lg"
-                className="bg-gradient-to-r from-[var(--accent-warm)] to-[var(--accent-cool)] text-white border-0 hover:shadow-[0_0_40px_oklch(0.75_0.15_55/30%)] transition-all duration-500 rounded-full px-8 py-6 text-base group relative overflow-hidden"
+                className="bg-gradient-to-r from-[#592DB5] to-[#773DF2] text-white border-0 hover:shadow-[0_0_40px_#592DB540] transition-all duration-500 rounded-full px-8 py-6 text-base group relative overflow-hidden"
               >
                 <a href="#contact">
                   <span className="relative z-10 flex items-center">
@@ -278,7 +278,7 @@ export function Hero() {
                 asChild
                 variant="outline"
                 size="lg"
-                className="rounded-full px-8 py-6 text-base border-border hover:bg-accent/50 hover:border-[var(--accent-warm)]/30 transition-all duration-300"
+                className="rounded-full px-8 py-6 text-base border-border hover:bg-accent/50 hover:border-[#592DB5]/30 transition-all duration-300"
               >
                 <a href="#work">View Our Work</a>
               </Button>
@@ -333,7 +333,7 @@ export function Hero() {
                 whileHover={{ scale: 1.05, y: -2 }}
                 className="text-center cursor-default"
               >
-                <div className="text-2xl sm:text-3xl font-bold gradient-text mb-1">
+                <div className="text-2xl sm:text-3xl font-bold gradient-text mb-1 font-display">
                   {stat.value}
                 </div>
                 <div className="text-xs sm:text-sm text-muted-foreground">

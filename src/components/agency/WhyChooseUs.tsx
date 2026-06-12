@@ -65,10 +65,10 @@ function FeatureCard({ feature, index }: { feature: typeof features[0]; index: n
         transition={{ duration: 0.3 }}
         className="group relative rounded-2xl border border-border/50 bg-card p-6 h-full hover:border-border hover:shadow-lg transition-all duration-300"
       >
-        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[var(--accent-warm)]/10 to-[var(--accent-cool)]/10 flex items-center justify-center mb-4">
-          <feature.icon className="h-6 w-6 text-[var(--accent-warm)]" />
+        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#592DB5]/10 to-[#773DF2]/10 flex items-center justify-center mb-4">
+          <feature.icon className="h-6 w-6 text-[#773DF2]" />
         </div>
-        <h3 className="text-lg font-semibold mb-2 group-hover:gradient-text transition-all duration-300">
+        <h3 className="text-lg font-display font-semibold mb-2 group-hover:gradient-text transition-all duration-300">
           {feature.title}
         </h3>
         <p className="text-sm text-muted-foreground leading-relaxed">
@@ -76,7 +76,7 @@ function FeatureCard({ feature, index }: { feature: typeof features[0]; index: n
         </p>
 
         {/* Hover glow */}
-        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[var(--accent-warm)]/5 to-[var(--accent-cool)]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#592DB5]/5 to-[#773DF2]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
       </motion.div>
     </motion.div>
   )
@@ -88,15 +88,15 @@ export function WhyChooseUs() {
   return (
     <section className="py-24 md:py-32 bg-surface relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[var(--accent-warm)] opacity-[0.02] blur-[200px] rounded-full" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#592DB5] opacity-[0.02] blur-[200px] rounded-full" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <AnimatedSection className="text-center mb-16 md:mb-20">
-          <span className="text-sm text-[var(--accent-warm)] font-medium uppercase tracking-widest mb-4 block">
+          <span className="text-sm text-[#773DF2] font-medium uppercase tracking-widest mb-4 block">
             What Sets Us Apart
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold tracking-tight mb-6">
             Why Us? Because Your Growth{' '}
             <span className="gradient-text">Is Our Mission</span>
           </h2>
@@ -136,7 +136,7 @@ export function WhyChooseUs() {
         {/* Comparison table */}
         <AnimatedSection className="mb-12">
           <div className="text-center mb-10">
-            <h3 className="text-2xl md:text-3xl font-bold mb-3">
+            <h3 className="text-2xl md:text-3xl font-display font-bold mb-3">
               Astra Studio&apos;s Alternative?{' '}
               <span className="gradient-text">Think One More Time!</span>
             </h3>
@@ -181,11 +181,11 @@ export function WhyChooseUs() {
                   >
                     <td className="p-4 md:p-5 text-sm font-medium">{row.feature}</td>
                     <td
-                      className={`p-4 md:p-5 text-center transition-colors duration-200 ${hoveredCol === 'us' ? 'bg-[var(--accent-warm)]/5' : ''}`}
+                      className={`p-4 md:p-5 text-center transition-colors duration-200 ${hoveredCol === 'us' ? 'bg-[#592DB5]/5' : ''}`}
                     >
                       {row.designMonks ? (
-                        <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[var(--accent-warm)]/10">
-                          <Check className="h-4 w-4 text-[var(--accent-warm)]" />
+                        <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[#592DB5]/10">
+                          <Check className="h-4 w-4 text-[#773DF2]" />
                         </span>
                       ) : (
                         <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-muted">
@@ -229,7 +229,7 @@ export function WhyChooseUs() {
 
           {/* Descriptions below table */}
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mt-6">
-            <div className="text-xs text-muted-foreground p-3 rounded-lg bg-gradient-to-br from-[var(--accent-warm)]/5 to-[var(--accent-cool)]/5 border border-[var(--accent-warm)]/10">
+            <div className="text-xs text-muted-foreground p-3 rounded-lg bg-gradient-to-br from-[#592DB5]/5 to-[#773DF2]/5 border border-[#592DB5]/10">
               <span className="font-medium gradient-text">Astra Studio</span> — Expert-driven & committed to higher quality. Get effective results & full support.
             </div>
             <div className="text-xs text-muted-foreground p-3 rounded-lg bg-muted/50">
@@ -253,7 +253,7 @@ export function WhyChooseUs() {
             href="#contact"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-[var(--accent-warm)] to-[var(--accent-cool)] text-white font-semibold text-base hover:shadow-[0_0_40px_oklch(0.75_0.15_55/30%)] transition-all duration-500"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-[#592DB5] to-[#773DF2] text-white font-semibold text-base hover:shadow-[0_0_40px_#592DB540] transition-all duration-500"
           >
             Start a Project
             <ArrowRight className="h-4 w-4" />

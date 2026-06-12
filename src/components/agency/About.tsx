@@ -26,16 +26,16 @@ export function About() {
   return (
     <section id="about" className="py-24 md:py-32 relative overflow-hidden">
       {/* Decorative background */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[var(--accent-cool)] opacity-[0.02] blur-[150px] rounded-full" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[var(--accent-warm)] opacity-[0.02] blur-[120px] rounded-full" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#773DF2] opacity-[0.02] blur-[150px] rounded-full" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#592DB5] opacity-[0.02] blur-[120px] rounded-full" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <AnimatedSection>
-            <span className="text-sm text-[var(--accent-warm)] font-medium uppercase tracking-widest mb-4 block">
+            <span className="text-sm text-[#773DF2] font-medium uppercase tracking-widest mb-4 block">
               About Us
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-display tracking-tight mb-6">
               Design Partners, Not Just Designers
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed mb-6">
@@ -52,7 +52,7 @@ export function About() {
 
             {/* Animated divider */}
             <motion.div
-              className="mt-8 h-[1px] bg-gradient-to-r from-[var(--accent-warm)] to-transparent"
+              className="mt-8 h-[1px] bg-gradient-to-r from-[#592DB5] to-transparent"
               initial={{ width: 0 }}
               whileInView={{ width: '60%' }}
               transition={{ duration: 1, delay: 0.3 }}
@@ -69,17 +69,17 @@ export function About() {
                   className="group p-6 rounded-2xl border border-border/50 hover:border-border hover:bg-surface-elevated transition-all duration-500 cursor-default relative overflow-hidden"
                 >
                   {/* Hover glow */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-[var(--accent-warm)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#592DB5]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                   <div className="flex items-start gap-4 relative z-10">
                     <motion.div
-                      className="w-10 h-10 rounded-xl bg-gradient-to-br from-[var(--accent-warm)]/10 to-[var(--accent-cool)]/10 flex items-center justify-center flex-shrink-0 mt-0.5"
+                      className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#592DB5]/10 to-[#773DF2]/10 flex items-center justify-center flex-shrink-0 mt-0.5"
                       whileHover={{ rotate: 5, scale: 1.1 }}
                     >
                       <span className="text-sm font-bold gradient-text">{String(i + 1).padStart(2, '0')}</span>
                     </motion.div>
                     <div>
-                      <h3 className="text-lg font-semibold mb-2 group-hover:gradient-text transition-all duration-300">{value.title}</h3>
+                      <h3 className="text-lg font-semibold font-display mb-2 group-hover:gradient-text transition-all duration-300">{value.title}</h3>
                       <p className="text-sm text-muted-foreground leading-relaxed">
                         {value.description}
                       </p>

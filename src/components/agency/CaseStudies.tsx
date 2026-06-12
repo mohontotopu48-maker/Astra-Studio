@@ -16,10 +16,10 @@ const caseStudies = [
       { label: 'Retention Growth', value: '36%' },
     ],
     client: { name: 'Shubho Al-Faroque', role: 'Triply CEO' },
-    gradient: 'from-sky-400/90 to-blue-600/90',
-    bgColor: 'bg-sky-500',
-    accentColor: 'text-sky-400',
-    iconBg: 'bg-sky-500/10',
+    gradient: 'from-[#592DB5]/90 to-[#773DF2]/90',
+    bgColor: 'bg-[#592DB5]',
+    accentColor: 'text-[#773DF2]',
+    iconBg: 'bg-[#592DB5]/10',
   },
   {
     title: 'Transform Your Dining',
@@ -30,10 +30,10 @@ const caseStudies = [
       { label: 'Duration', value: '5 Months' },
     ],
     client: { name: 'Neil Saidi', role: 'Plate CEO' },
-    gradient: 'from-rose-400/90 to-pink-600/90',
-    bgColor: 'bg-rose-500',
-    accentColor: 'text-rose-400',
-    iconBg: 'bg-rose-500/10',
+    gradient: 'from-[#773DF2]/90 to-[#592DB5]/90',
+    bgColor: 'bg-[#773DF2]',
+    accentColor: 'text-[#773DF2]',
+    iconBg: 'bg-[#773DF2]/10',
   },
   {
     title: 'Reducing Carbon Footprints',
@@ -44,10 +44,10 @@ const caseStudies = [
       { label: 'Customer Acquisition', value: '40%' },
     ],
     client: { name: 'Ted Nash', role: 'Yenex CEO' },
-    gradient: 'from-amber-400/90 to-yellow-600/90',
-    bgColor: 'bg-amber-500',
-    accentColor: 'text-amber-400',
-    iconBg: 'bg-amber-500/10',
+    gradient: 'from-[#592DB5]/80 to-[#9B6BF5]/90',
+    bgColor: 'bg-[#9B6BF5]',
+    accentColor: 'text-[#9B6BF5]',
+    iconBg: 'bg-[#592DB5]/10',
   },
   {
     title: 'Revolutionize Fitness Goals',
@@ -58,10 +58,10 @@ const caseStudies = [
       { label: 'Duration', value: '2 Months' },
     ],
     client: { name: 'Omar', role: 'Fitmate CEO' },
-    gradient: 'from-emerald-400/90 to-green-600/90',
-    bgColor: 'bg-emerald-500',
-    accentColor: 'text-emerald-400',
-    iconBg: 'bg-emerald-500/10',
+    gradient: 'from-[#4520A0]/90 to-[#592DB5]/90',
+    bgColor: 'bg-[#4520A0]',
+    accentColor: 'text-[#592DB5]',
+    iconBg: 'bg-[#4520A0]/10',
   },
   {
     title: 'Simplifying Vehicle Care',
@@ -72,10 +72,10 @@ const caseStudies = [
       { label: 'Scope', value: 'Mobile App' },
     ],
     client: { name: 'Shubho Al-Farooque', role: 'Zantrik CEO' },
-    gradient: 'from-violet-400/90 to-purple-600/90',
-    bgColor: 'bg-violet-500',
-    accentColor: 'text-violet-400',
-    iconBg: 'bg-violet-500/10',
+    gradient: 'from-[#773DF2]/80 to-[#B68DF7]/90',
+    bgColor: 'bg-[#773DF2]',
+    accentColor: 'text-[#773DF2]',
+    iconBg: 'bg-[#773DF2]/10',
   },
 ]
 
@@ -112,15 +112,15 @@ export function CaseStudies() {
   return (
     <section id="work" className="py-24 md:py-32 bg-surface relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[var(--accent-warm)] opacity-[0.03] blur-[200px] rounded-full" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[var(--accent-cool)] opacity-[0.03] blur-[200px] rounded-full" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#592DB5] opacity-[0.03] blur-[200px] rounded-full" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#773DF2] opacity-[0.03] blur-[200px] rounded-full" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-16 md:mb-20">
-          <span className="text-sm text-[var(--accent-warm)] font-medium uppercase tracking-widest mb-4 block">
+          <span className="text-sm text-[#773DF2] font-medium uppercase tracking-widest mb-4 block">
             Industry Wins
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-display tracking-tight mb-6">
             Proven Success in{' '}
             <span className="gradient-text">Every Industry</span>
           </h2>
@@ -141,7 +141,7 @@ export function CaseStudies() {
               disabled={!canScrollLeft}
               className={`w-10 h-10 rounded-full border border-border flex items-center justify-center transition-all duration-300 ${
                 canScrollLeft
-                  ? 'bg-card hover:bg-accent hover:border-[var(--accent-warm)]/30 cursor-pointer'
+                  ? 'bg-card hover:bg-accent hover:border-[#592DB5]/30 cursor-pointer'
                   : 'opacity-30 cursor-not-allowed'
               }`}
             >
@@ -154,7 +154,7 @@ export function CaseStudies() {
               disabled={!canScrollRight}
               className={`w-10 h-10 rounded-full border border-border flex items-center justify-center transition-all duration-300 ${
                 canScrollRight
-                  ? 'bg-card hover:bg-accent hover:border-[var(--accent-warm)]/30 cursor-pointer'
+                  ? 'bg-card hover:bg-accent hover:border-[#592DB5]/30 cursor-pointer'
                   : 'opacity-30 cursor-not-allowed'
               }`}
             >
@@ -183,7 +183,7 @@ export function CaseStudies() {
           <motion.a
             href="#work"
             whileHover={{ x: 4 }}
-            className="inline-flex items-center gap-2 text-sm font-medium text-[var(--accent-warm)] hover:text-[var(--accent-warm)]/80 transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-medium text-[#773DF2] hover:text-[#773DF2]/80 transition-colors"
           >
             See All Projects
             <ArrowRight className="h-4 w-4" />
@@ -241,7 +241,7 @@ function CaseStudyCard({ study, index }: { study: typeof caseStudies[0]; index: 
 
         {/* Content */}
         <div className="p-6">
-          <h3 className="text-xl font-bold mb-2 group-hover:gradient-text transition-all duration-300">
+          <h3 className="text-xl font-bold font-display mb-2 group-hover:gradient-text transition-all duration-300">
             {study.title}
           </h3>
           <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-3">

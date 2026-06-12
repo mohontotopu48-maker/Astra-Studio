@@ -111,14 +111,14 @@ function TestimonialCard({ testimonial, index }: { testimonial: typeof testimoni
         className="relative rounded-2xl border border-border/50 bg-card p-6 h-full hover:border-border hover:shadow-lg transition-all duration-300"
       >
         {/* Quote icon */}
-        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[var(--accent-warm)]/10 to-[var(--accent-cool)]/10 flex items-center justify-center mb-4">
-          <Quote className="h-5 w-5 text-[var(--accent-warm)]" />
+        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#592DB5]/10 to-[#773DF2]/10 flex items-center justify-center mb-4">
+          <Quote className="h-5 w-5 text-[#773DF2]" />
         </div>
 
         {/* Stars */}
         <div className="flex gap-0.5 mb-4">
           {Array.from({ length: testimonial.rating }).map((_, i) => (
-            <Star key={i} className="h-3.5 w-3.5 fill-[var(--accent-warm)] text-[var(--accent-warm)]" />
+            <Star key={i} className="h-3.5 w-3.5 fill-[#773DF2] text-[#773DF2]" />
           ))}
         </div>
 
@@ -129,7 +129,7 @@ function TestimonialCard({ testimonial, index }: { testimonial: typeof testimoni
 
         {/* Author */}
         <div className="flex items-center gap-3 pt-4 border-t border-border/50">
-          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[var(--accent-warm)]/20 to-[var(--accent-cool)]/20 flex items-center justify-center">
+          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#592DB5]/20 to-[#773DF2]/20 flex items-center justify-center">
             <span className="text-xs font-bold gradient-text">
               {testimonial.author.split(' ').map(n => n[0]).join('')}
             </span>
@@ -143,7 +143,7 @@ function TestimonialCard({ testimonial, index }: { testimonial: typeof testimoni
         </div>
 
         {/* Hover glow */}
-        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[var(--accent-warm)]/5 to-[var(--accent-cool)]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#592DB5]/5 to-[#773DF2]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
       </motion.div>
     </motion.div>
   )
@@ -156,15 +156,15 @@ export function Testimonials() {
   return (
     <section id="testimonials" className="py-24 md:py-32 relative overflow-hidden">
       {/* Background decorative elements */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-[var(--accent-warm)] opacity-[0.03] blur-[150px] rounded-full" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-[var(--accent-cool)] opacity-[0.03] blur-[150px] rounded-full" />
+      <div className="absolute top-0 left-0 w-96 h-96 bg-[#592DB5] opacity-[0.03] blur-[150px] rounded-full" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#773DF2] opacity-[0.03] blur-[150px] rounded-full" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-16 md:mb-20">
-          <span className="text-sm text-[var(--accent-warm)] font-medium uppercase tracking-widest mb-4 block">
+          <span className="text-sm text-[#773DF2] font-medium uppercase tracking-widest mb-4 block">
             Client Stories
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-display tracking-tight mb-6">
             Success Stories That{' '}
             <span className="gradient-text">Inspire Us</span>
           </h2>
@@ -187,7 +187,7 @@ export function Testimonials() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => setShowAll(true)}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border hover:bg-accent/50 hover:border-[var(--accent-warm)]/30 transition-all duration-300 text-sm font-medium"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border hover:bg-accent/50 hover:border-[#592DB5]/30 transition-all duration-300 text-sm font-medium"
             >
               Show More Reviews
               <ChevronRight className="h-4 w-4" />

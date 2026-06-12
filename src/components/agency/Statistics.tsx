@@ -61,12 +61,12 @@ export function Statistics() {
       {/* Floating decorative lines */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          className="absolute top-1/4 -left-20 w-[1px] h-40 bg-gradient-to-b from-transparent via-[var(--accent-warm)]/20 to-transparent"
+          className="absolute top-1/4 -left-20 w-[1px] h-40 bg-gradient-to-b from-transparent via-[#592DB5]/20 to-transparent"
           animate={{ y: [-20, 20, -20] }}
           transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div
-          className="absolute bottom-1/4 -right-20 w-[1px] h-60 bg-gradient-to-b from-transparent via-[var(--accent-cool)]/20 to-transparent"
+          className="absolute bottom-1/4 -right-20 w-[1px] h-60 bg-gradient-to-b from-transparent via-[#773DF2]/20 to-transparent"
           animate={{ y: [20, -20, 20] }}
           transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
         />
@@ -74,10 +74,10 @@ export function Statistics() {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-16 md:mb-20">
-          <span className="text-sm text-[var(--accent-warm)] font-medium uppercase tracking-widest mb-4 block">
+          <span className="text-sm text-[#773DF2] font-medium uppercase tracking-widest mb-4 block">
             Impact
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-display tracking-tight mb-6">
             Numbers That Matter
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -95,7 +95,7 @@ export function Statistics() {
                 className="text-center group relative"
               >
                 {/* Glow behind on hover */}
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[var(--accent-warm)]/5 to-[var(--accent-cool)]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#592DB5]/5 to-[#773DF2]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
 
                 <div className="relative">
                   {/* Decorative ring */}
@@ -105,10 +105,10 @@ export function Statistics() {
                     transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
                     viewport={{ once: true }}
                   >
-                    <div className="absolute w-2 h-2 rounded-full bg-[var(--accent-warm)]/40 top-0 left-1/2 -translate-x-1/2" />
+                    <div className="absolute w-2 h-2 rounded-full bg-[#592DB5]/40 top-0 left-1/2 -translate-x-1/2" />
                   </motion.div>
 
-                  <div className="text-4xl sm:text-5xl md:text-6xl font-bold gradient-text mb-3">
+                  <div className="text-4xl sm:text-5xl md:text-6xl font-bold font-display gradient-text mb-3">
                     <AnimatedCounter value={stat.value} suffix={stat.suffix} />
                   </div>
                   <div className="text-base sm:text-lg font-medium mb-1">
@@ -120,7 +120,7 @@ export function Statistics() {
 
                   {/* Bottom accent line */}
                   <motion.div
-                    className="mt-4 mx-auto h-[2px] bg-gradient-to-r from-transparent via-[var(--accent-warm)] to-transparent"
+                    className="mt-4 mx-auto h-[2px] bg-gradient-to-r from-transparent via-[#592DB5] to-transparent"
                     initial={{ width: 0 }}
                     whileInView={{ width: '60%' }}
                     transition={{ delay: 0.5 + i * 0.1, duration: 0.8 }}

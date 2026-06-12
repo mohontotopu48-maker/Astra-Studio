@@ -80,23 +80,23 @@ function AICard({ card, index }: { card: typeof firstRowCards[0] | typeof second
       <motion.div
         whileHover={{ y: -6, scale: 1.01 }}
         transition={{ duration: 0.3, type: 'spring', stiffness: 200 }}
-        className="relative rounded-2xl border border-purple-500/20 bg-[#1A0B2E] p-6 md:p-8 h-full overflow-hidden"
+        className="relative rounded-2xl border border-[#592DB5]/20 bg-[#1A0B2E] p-6 md:p-8 h-full overflow-hidden"
         style={{ boxShadow: '0 10px 40px rgba(0, 0, 0, 0.3)' }}
       >
         {/* Subtle gradient overlay on hover */}
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#592DB5]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
         {/* Icon */}
         <motion.div
-          className="w-12 h-12 rounded-xl bg-purple-500/15 flex items-center justify-center mb-5"
+          className="w-12 h-12 rounded-xl bg-[#592DB5]/15 flex items-center justify-center mb-5"
           whileHover={{ scale: 1.1, rotate: 5 }}
           transition={{ type: 'spring', stiffness: 300 }}
         >
-          <card.icon className="h-6 w-6 text-purple-400" />
+          <card.icon className="h-6 w-6 text-[#773DF2]" />
         </motion.div>
 
         {/* Title */}
-        <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
+        <h3 className="text-xl md:text-2xl font-bold font-display text-white mb-3">
           {card.title}
         </h3>
 
@@ -109,7 +109,7 @@ function AICard({ card, index }: { card: typeof firstRowCards[0] | typeof second
         <CardContent card={card} />
 
         {/* Bottom accent line */}
-        <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-purple-500/60 to-violet-500/60 scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
+        <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#592DB5]/60 to-[#773DF2]/60 scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
       </motion.div>
     </motion.div>
   )
@@ -121,19 +121,19 @@ function CardContent({ card }: { card: typeof firstRowCards[0] | typeof secondRo
       <div className="space-y-3">
         <div className="flex items-center gap-2">
           {[1, 2, 3].map((i) => (
-            <div key={i} className="w-9 h-9 rounded-full bg-purple-500/15 flex items-center justify-center">
-              <Sparkles className="h-4 w-4 text-purple-400" />
+            <div key={i} className="w-9 h-9 rounded-full bg-[#592DB5]/15 flex items-center justify-center">
+              <Sparkles className="h-4 w-4 text-[#773DF2]" />
             </div>
           ))}
         </div>
         <div className="flex gap-2">
-          <div className="flex-1 bg-[#2A1B3E] border border-purple-500/15 rounded-lg px-3 py-2.5 text-sm text-white/50">
+          <div className="flex-1 bg-[#2A1B3E] border border-[#592DB5]/15 rounded-lg px-3 py-2.5 text-sm text-white/50">
             {card.inputPlaceholder}
           </div>
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-4 py-2.5 rounded-lg bg-gradient-to-r from-purple-600 to-violet-500 text-white text-sm font-semibold flex items-center gap-1.5"
+            className="px-4 py-2.5 rounded-lg bg-gradient-to-r from-[#592DB5] to-[#773DF2] text-white text-sm font-semibold flex items-center gap-1.5"
           >
             <Wand2 className="h-4 w-4" />
             {card.buttonText}
@@ -166,7 +166,7 @@ function CardContent({ card }: { card: typeof firstRowCards[0] | typeof secondRo
     return (
       <div className="space-y-3">
         <div className="flex items-center gap-2 bg-[#2A1B3E] rounded-lg px-4 py-3">
-          <Eye className="h-5 w-5 text-purple-400" />
+          <Eye className="h-5 w-5 text-[#773DF2]" />
           <span className="text-sm text-white/80 font-medium">Attention Insight</span>
         </div>
         {/* Bar chart visualization */}
@@ -177,7 +177,7 @@ function CardContent({ card }: { card: typeof firstRowCards[0] | typeof secondRo
               initial={{ height: 0 }}
               whileInView={{ height: `${h}%` }}
               transition={{ delay: 0.5 + i * 0.06, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="flex-1 bg-gradient-to-t from-purple-600 to-violet-400 rounded-sm min-w-0"
+              className="flex-1 bg-gradient-to-t from-[#592DB5] to-[#773DF2] rounded-sm min-w-0"
             />
           ))}
         </div>
@@ -196,14 +196,14 @@ function CardContent({ card }: { card: typeof firstRowCards[0] | typeof secondRo
             transition={{ delay: i * 0.15 }}
             className="flex items-center gap-3 bg-[#2A1B3E] rounded-lg px-4 py-3"
           >
-            <div className="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center flex-shrink-0">
-              <feature.icon className="h-4 w-4 text-purple-400" />
+            <div className="w-8 h-8 rounded-full bg-[#592DB5]/20 flex items-center justify-center flex-shrink-0">
+              <feature.icon className="h-4 w-4 text-[#773DF2]" />
             </div>
             <div>
               <div className="text-sm text-white font-medium">{feature.name}</div>
               <div className="text-xs text-white/50">{feature.sub}</div>
             </div>
-            <Check className="h-4 w-4 text-purple-400 ml-auto" />
+            <Check className="h-4 w-4 text-[#773DF2] ml-auto" />
           </motion.div>
         ))}
       </div>
@@ -226,8 +226,8 @@ function CardContent({ card }: { card: typeof firstRowCards[0] | typeof secondRo
               transition={{ delay: 0.3 + i * 0.1 }}
               className="flex flex-col items-center gap-1.5"
             >
-              <div className="w-10 h-10 rounded-full bg-purple-500/15 flex items-center justify-center">
-                <item.icon className="h-5 w-5 text-purple-400" />
+              <div className="w-10 h-10 rounded-full bg-[#592DB5]/15 flex items-center justify-center">
+                <item.icon className="h-5 w-5 text-[#773DF2]" />
               </div>
               <span className="text-[10px] text-white/50 text-center">{item.label}</span>
             </motion.div>
@@ -237,14 +237,14 @@ function CardContent({ card }: { card: typeof firstRowCards[0] | typeof secondRo
         <div className="bg-[#2A1B3E] rounded-lg p-3">
           <div className="flex items-center justify-between mb-2">
             <span className="text-xs text-white/50">Time Saved</span>
-            <span className="text-xs text-purple-400 font-semibold">68%</span>
+            <span className="text-xs text-[#773DF2] font-semibold">68%</span>
           </div>
-          <div className="h-2 bg-purple-500/10 rounded-full overflow-hidden">
+          <div className="h-2 bg-[#592DB5]/10 rounded-full overflow-hidden">
             <motion.div
               initial={{ width: 0 }}
               whileInView={{ width: '68%' }}
               transition={{ delay: 0.5, duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="h-full bg-gradient-to-r from-purple-600 to-violet-400 rounded-full"
+              className="h-full bg-gradient-to-r from-[#592DB5] to-[#773DF2] rounded-full"
             />
           </div>
         </div>
@@ -257,20 +257,20 @@ function CardContent({ card }: { card: typeof firstRowCards[0] | typeof secondRo
       <div className="space-y-3">
         {/* AI avatar placeholder */}
         <div className="flex justify-center">
-          <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-purple-500/20 to-violet-500/20 border border-purple-500/20 flex items-center justify-center overflow-hidden">
-            <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-purple-600/30 to-violet-500/30 flex items-center justify-center">
-              <Sparkles className="h-8 w-8 text-purple-400" />
+          <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#592DB5]/20 to-[#773DF2]/20 border border-[#592DB5]/20 flex items-center justify-center overflow-hidden">
+            <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-[#592DB5]/30 to-[#773DF2]/30 flex items-center justify-center">
+              <Sparkles className="h-8 w-8 text-[#773DF2]" />
             </div>
           </div>
         </div>
         <div className="flex gap-2">
-          <div className="flex-1 bg-purple-500/10 border border-purple-500/20 rounded-lg px-3 py-2.5 text-sm text-white/70">
+          <div className="flex-1 bg-[#592DB5]/10 border border-[#592DB5]/20 rounded-lg px-3 py-2.5 text-sm text-white/70">
             {card.promptText}
           </div>
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-4 py-2.5 rounded-lg bg-gradient-to-r from-purple-600 to-violet-500 text-white text-sm font-semibold flex items-center gap-1.5"
+            className="px-4 py-2.5 rounded-lg bg-gradient-to-r from-[#592DB5] to-[#773DF2] text-white text-sm font-semibold flex items-center gap-1.5"
           >
             <Wand2 className="h-4 w-4" />
             {card.buttonText}
@@ -293,8 +293,8 @@ export function AIPoweredDesign() {
       <div className="absolute inset-0 bg-gradient-to-b from-background via-[#0D0520] to-background" />
 
       {/* Decorative elements */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-600/5 blur-[200px] rounded-full" />
-      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-violet-600/3 blur-[150px] rounded-full" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#592DB5]/5 blur-[200px] rounded-full" />
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#592DB5]/3 blur-[150px] rounded-full" />
 
       {/* Dot pattern overlay */}
       <div className="absolute inset-0 dot-pattern opacity-[0.03]" />
@@ -317,10 +317,10 @@ export function AIPoweredDesign() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-display tracking-tight text-white mb-6"
           >
             Smarter Design,{' '}
-            <span className="bg-gradient-to-r from-purple-400 via-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#773DF2] via-[#9B6BF5] to-[#B68DF7] bg-clip-text text-transparent">
               Supercharged
             </span>{' '}
             by AI
@@ -353,16 +353,16 @@ export function AIPoweredDesign() {
             className="relative"
           >
             {/* Glowing central icon */}
-            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-purple-500 to-violet-500 flex items-center justify-center"
-              style={{ boxShadow: '0 0 40px rgba(139, 92, 246, 0.3), 0 0 80px rgba(139, 92, 246, 0.15)' }}
+            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#592DB5] to-[#773DF2] flex items-center justify-center"
+              style={{ boxShadow: '0 0 40px rgba(119, 61, 242, 0.3), 0 0 80px rgba(119, 61, 242, 0.15)' }}
             >
               <Sparkles className="h-9 w-9 text-white" />
             </div>
 
             {/* Connection dots */}
-            <div className="absolute -left-16 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-purple-500/40" />
-            <div className="absolute -right-16 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-purple-500/40" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full border border-dashed border-purple-500/15" />
+            <div className="absolute -left-16 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#592DB5]/40" />
+            <div className="absolute -right-16 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#592DB5]/40" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full border border-dashed border-[#592DB5]/15" />
           </motion.div>
         </div>
 

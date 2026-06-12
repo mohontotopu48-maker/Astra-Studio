@@ -23,12 +23,12 @@ export function CTA() {
 
       {/* Animated orbs */}
       <motion.div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-[var(--accent-warm)] opacity-[0.04] blur-[200px]"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-[#592DB5] opacity-[0.04] blur-[200px]"
         animate={{ scale: [1, 1.3, 1], rotate: [0, 90, 0] }}
         transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
       />
       <motion.div
-        className="absolute top-1/3 right-1/4 w-[400px] h-[400px] rounded-full bg-[var(--accent-cool)] opacity-[0.03] blur-[120px]"
+        className="absolute top-1/3 right-1/4 w-[400px] h-[400px] rounded-full bg-[#773DF2] opacity-[0.03] blur-[120px]"
         animate={{ scale: [1, 0.7, 1], y: [0, -30, 0] }}
         transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
       />
@@ -46,10 +46,10 @@ export function CTA() {
         className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
       >
         <AnimatedSection>
-          <span className="text-sm text-[var(--accent-warm)] font-medium uppercase tracking-widest mb-4 block">
+          <span className="text-sm text-[#773DF2] font-medium uppercase tracking-widest mb-4 block">
             Start Your Project
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
             Ready to Create Something{' '}
             <span className="gradient-text">Extraordinary?</span>
           </h2>
@@ -63,7 +63,7 @@ export function CTA() {
               <Button
                 asChild
                 size="lg"
-                className="bg-gradient-to-r from-[var(--accent-warm)] to-[var(--accent-cool)] text-white border-0 hover:shadow-[0_0_50px_oklch(0.75_0.15_55/30%)] transition-shadow duration-700 rounded-full px-10 py-7 text-lg group relative overflow-hidden"
+                className="bg-gradient-to-r from-[#592DB5] to-[#773DF2] text-white border-0 hover:shadow-[0_0_50px_#592DB540] transition-shadow duration-700 rounded-full px-10 py-7 text-lg group relative overflow-hidden"
               >
                 <a href="#contact-form">
                   <span className="relative z-10 flex items-center">
@@ -85,7 +85,7 @@ export function CTA() {
                 asChild
                 variant="outline"
                 size="lg"
-                className="rounded-full px-8 py-7 text-lg border-border hover:bg-accent/50 hover:border-[var(--accent-warm)]/30 transition-all duration-300"
+                className="rounded-full px-8 py-7 text-lg border-border hover:bg-accent/50 hover:border-[#592DB5]/30 transition-all duration-300"
               >
                 <a href="mailto:hello@astra.studio">hello@astra.studio</a>
               </Button>
