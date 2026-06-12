@@ -179,9 +179,9 @@
   background-clip: text;
 }
 
-/* Hero headline gradient - multi-stop deep purple */
+/* Hero headline gradient - brand purple */
 .hero-gradient-text {
-  background: linear-gradient(135deg, #690ba8, #5a0990, #480773, #360656);
+  background: linear-gradient(135deg, #592DB5, #773DF2);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
