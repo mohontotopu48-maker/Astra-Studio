@@ -1,195 +1,303 @@
 'use client'
 
-import { useRef, useState } from 'react'
-import { motion, useInView } from 'framer-motion'
-import {
-  Layers, Palette, Globe, Smartphone, BarChart3,
-  ArrowRight, ChevronRight, Code2, Globe2
-} from 'lucide-react'
-import { AnimatedSection, StaggerContainer, StaggerItem } from '@/lib/animations'
+import { useState, useRef } from 'react'
+import { motion, useInView, AnimatePresence } from 'framer-motion'
+import { ArrowRight } from 'lucide-react'
+import { AnimatedSection } from '@/lib/animations'
 import { useRouter, type PageRoute } from '@/hooks/use-router'
 
-const services: {
-  icon: typeof Layers
+interface ServiceItem {
   title: string
-  subtitle: string
+  titleBreak?: string
   description: string
   serviceList: string
-  gradient: string
   route: PageRoute
-}[] = [
+  images: string[]
+}
+
+const services: ServiceItem[] = [
   {
-    icon: Layers,
-    title: 'UI/UX Design',
-    route: 'product-design',
-    subtitle: 'Creating user-friendly digital experiences.',
+    title: 'UI/UX',
+    titleBreak: 'Design',
     description: 'When it comes to UI/UX design, we create experiences that are simple to navigate. Our goal is to deliver user-friendly interactions that align with your brand and fulfill user needs.',
     serviceList: 'UI/UX Design, App Design, Website Design, Dashboard Design, Wireframing & Prototyping, Interaction Design, and Product Design.',
-    gradient: 'from-violet-600 to-purple-700',
+    route: 'product-design',
+    images: ['/images/service-uiux-1.png', '/images/service-uiux-2.png'],
   },
   {
-    icon: Code2,
-    title: 'Web Development',
-    route: 'product-design',
-    subtitle: 'Building visually appealing & functional websites.',
-    description: 'Frontend Development, Backend Development, Full Stack Solutions, Mobile App Development, Custom Web Applications, API Integration.',
+    title: 'Web',
+    titleBreak: 'Development',
+    description: 'We build robust, scalable, and visually appealing web solutions that combine powerful functionality with stunning design to deliver exceptional user experiences.',
     serviceList: 'Frontend Development, Backend Development, Full Stack Solutions, Mobile App Development, Custom Web Applications, API Integration.',
-    gradient: 'from-amber-500 to-orange-600',
+    route: 'product-design',
+    images: ['/images/service-webdev-1.png', '/images/service-webdev-2.png'],
   },
   {
-    icon: Palette,
-    title: 'Logo & Branding',
-    route: 'product-design',
-    subtitle: 'Creating memorable identities for brands.',
+    title: 'Logo &',
+    titleBreak: 'Branding',
     description: 'Create distinctive logos and cohesive brand identities that reflect your company\'s essence with our advanced logo and branding services that help you connect with your target audience.',
     serviceList: 'Logo Design, Full Branding, Business Branding, 3D Logo, Custom Logo, Visual Identity, Brand Strategy, Social Media Branding, and Brand Guidelines.',
-    gradient: 'from-emerald-500 to-teal-600',
+    route: 'product-design',
+    images: ['/images/service-branding-1.png', '/images/service-branding-2.png'],
   },
   {
-    icon: Globe2,
-    title: 'Webflow & Framer',
-    route: 'product-design',
-    subtitle: 'Interactive web designs made simple.',
+    title: 'Webflow &',
+    titleBreak: 'Framer',
     description: 'We create visually appealing and user-friendly websites that offer flawless navigation, optimized performance, and a strong connection to your brand\'s identity using modern no-code tools.',
     serviceList: 'Custom Webflow Websites, Webflow Plugin, Framer Prototypes, Framer Material, Framer App, CMS Integration, Rapid Development.',
-    gradient: 'from-sky-500 to-blue-600',
+    route: 'product-design',
+    images: ['/images/service-webflow-1.png', '/images/service-webflow-2.png'],
   },
   {
-    icon: BarChart3,
-    title: 'SaaS Design',
-    route: 'saas-design',
-    subtitle: 'Intuitive interfaces that boost user engagement.',
+    title: 'SaaS',
+    titleBreak: 'Design',
     description: 'We focus on designing user-friendly and high-performing SaaS products that streamline workflows and enhance user satisfaction. We ensure a smooth journey from start to finish.',
     serviceList: 'SaaS Product Strategy, UI/UX Design for SaaS, Dashboard & Admin Panel, Usability Testing, Onboarding Experience, Design System Creation.',
-    gradient: 'from-rose-500 to-pink-600',
+    route: 'saas-design',
+    images: ['/images/service-saas-1.png', '/images/service-saas-2.png'],
   },
 ]
 
-function ServiceCard({ service, index }: { service: typeof services[0]; index: number }) {
-  const [isHovered, setIsHovered] = useState(false)
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
+function ServiceCard({
+  service,
+  index,
+  isActive,
+  onHover,
+  onLeave,
+}: {
+  service: ServiceItem
+  index: number
+  isActive: boolean
+  onHover: () => void
+  onLeave: () => void
+}) {
   const { navigate } = useRouter()
 
   return (
-    <StaggerItem>
-      <motion.div
-        ref={ref}
-        initial={{ opacity: 0, y: 60 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.7, delay: index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] }}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        onClick={() => navigate(service.route)}
-        className="group relative rounded-2xl border border-border/50 bg-card overflow-hidden cursor-pointer"
-      >
-        {/* Gradient banner area - same as Design Monks */}
-        <div className={`relative h-48 md:h-56 bg-gradient-to-br ${service.gradient} overflow-hidden`}>
-          {/* Dot pattern overlay */}
-          <div className="absolute inset-0 dot-pattern opacity-10" />
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.6, delay: index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+      onMouseEnter={onHover}
+      onMouseLeave={onLeave}
+      onClick={() => navigate(service.route)}
+      className={`group cursor-pointer py-6 ${index < services.length - 1 ? 'border-b border-border/30' : ''}` }
+    >
+      {/* Service Title */}
+      <div className="flex items-start justify-between gap-4 mb-4">
+        <h3 className={`text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight font-display transition-colors duration-300 ${
+          isActive ? 'text-foreground' : 'text-muted-foreground'
+        }`}>
+          {service.title}{' '}
+          <span className="bg-gradient-to-r from-[#592DB5] to-[#773DF2] bg-clip-text text-transparent">
+            {service.titleBreak}
+          </span>
+        </h3>
 
-          {/* Animated decorative shapes */}
+        {/* Hover arrow indicator */}
+        <motion.div
+          className="flex-shrink-0 w-10 h-10 rounded-full border border-border/50 flex items-center justify-center mt-1 transition-all duration-300"
+          animate={isActive ? {
+            backgroundColor: 'rgba(89, 45, 181, 0.15)',
+            borderColor: 'rgba(119, 61, 242, 0.4)',
+          } : {}}
+        >
           <motion.div
-            className="absolute -right-12 -top-12 w-48 h-48 rounded-full bg-white/10"
-            animate={isHovered ? { scale: 1.2, rotate: 45 } : { scale: 1, rotate: 0 }}
-            transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] }}
-          />
-          <motion.div
-            className="absolute -left-8 -bottom-8 w-32 h-32 rounded-full bg-white/5"
-            animate={isHovered ? { scale: 1.3, x: 10 } : { scale: 1, x: 0 }}
-            transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] }}
-          />
-          <motion.div
-            className="absolute right-1/4 top-1/4 w-20 h-20 rounded-full bg-white/5"
-            animate={isHovered ? { scale: 1.5, y: -10 } : { scale: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          />
-
-          {/* Service icon and title on the banner */}
-          <div className="relative z-10 h-full flex flex-col justify-end p-6 md:p-8">
-            <motion.div
-              className="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center mb-4"
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              transition={{ type: 'spring', stiffness: 300 }}
-            >
-              <service.icon className="h-6 w-6 text-white" />
-            </motion.div>
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-1 font-display">
-              {service.title}
-            </h3>
-            <p className="text-white/70 text-sm">
-              {service.subtitle}
-            </p>
-          </div>
-
-          {/* Hover arrow */}
-          <motion.div
-            className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center"
-            animate={isHovered ? { rotate: 45, scale: 1.1 } : { rotate: 0, scale: 1 }}
+            animate={isActive ? { rotate: 45, scale: 1.1 } : { rotate: 0, scale: 1 }}
             transition={{ duration: 0.3 }}
           >
-            <ArrowRight className="h-5 w-5 text-white" />
+            <ArrowRight className={`h-4 w-4 transition-colors duration-300 ${isActive ? 'text-[#773DF2]' : 'text-muted-foreground'}`} />
           </motion.div>
-        </div>
+        </motion.div>
+      </div>
 
-        {/* Content area - Design Monks style */}
-        <div className="p-6 md:p-8">
-          {/* Description */}
-          <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-            {service.description}
-          </p>
+      {/* Gradient divider line */}
+      <motion.div
+        className="h-px mb-4 origin-left"
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: index * 0.1 + 0.2 }}
+        style={{
+          background: 'linear-gradient(90deg, #592DB5, #773DF2, transparent)',
+        }}
+      />
 
-          {/* Comma-separated service list - same as Design Monks */}
-          <p className="text-sm text-foreground/80 leading-relaxed mb-6">
-            {service.serviceList}
-          </p>
+      {/* Description text */}
+      <AnimatePresence>
+        {isActive && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+          >
+            <p className="text-muted-foreground text-sm leading-relaxed mb-3">
+              {service.description}
+            </p>
 
-          {/* See More link - same as Design Monks */}
-          <div className="flex items-center pt-4 border-t border-border/50">
+            {/* Comma-separated service list */}
+            <p className="text-sm text-foreground/70 leading-relaxed mb-4">
+              {service.serviceList}
+            </p>
+
+            {/* See More link */}
             <motion.span
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-[#773DF2] hover:text-[#592DB5] transition-colors cursor-pointer group/see"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-[#773DF2] hover:text-[#592DB5] transition-colors cursor-pointer"
               whileHover={{ x: 4 }}
             >
               See More
-              <ChevronRight className="h-4 w-4 group-hover/see:translate-x-1 transition-transform" />
+              <ArrowRight className="h-3.5 w-3.5" />
             </motion.span>
-          </div>
-        </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  )
+}
 
-        {/* Bottom accent line */}
-        <div className={`absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r ${service.gradient} scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left`} />
-      </motion.div>
-    </StaggerItem>
+function ServiceImages({ activeIndex }: { activeIndex: number }) {
+  const service = services[activeIndex]
+
+  return (
+    <div className="relative h-full min-h-[500px] lg:min-h-[600px]">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activeIndex}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+          className="absolute inset-0 flex flex-col gap-4"
+        >
+          {/* Main large image */}
+          <div className="flex-1 relative rounded-xl overflow-hidden border border-border/20 bg-card">
+            <div className="absolute inset-0 bg-gradient-to-br from-[#592DB5]/5 to-[#773DF2]/5 z-10" />
+            <motion.img
+              src={service.images[0]}
+              alt={`${service.title} ${service.titleBreak} - Project showcase`}
+              className="w-full h-full object-cover object-top"
+              initial={{ scale: 1.05 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.6 }}
+            />
+          </div>
+
+          {/* Secondary image row */}
+          <div className="flex gap-4 h-1/3">
+            <div className="flex-1 relative rounded-xl overflow-hidden border border-border/20 bg-card">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#592DB5]/5 to-[#773DF2]/5 z-10" />
+              <motion.img
+                src={service.images[1]}
+                alt={`${service.title} ${service.titleBreak} - Additional work`}
+                className="w-full h-full object-cover object-top"
+                initial={{ scale: 1.05, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+              />
+            </div>
+
+            {/* Stats card */}
+            <div className="w-1/3 rounded-xl border border-border/20 bg-gradient-to-br from-[#592DB5]/10 to-[#773DF2]/10 flex flex-col items-center justify-center p-4">
+              <motion.span
+                className="text-3xl md:text-4xl font-bold font-display bg-gradient-to-r from-[#592DB5] to-[#773DF2] bg-clip-text text-transparent"
+                initial={{ scale: 0.5, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                {activeIndex === 0 ? '200+' : activeIndex === 1 ? '150+' : activeIndex === 2 ? '180+' : activeIndex === 3 ? '120+' : '100+'}
+              </motion.span>
+              <span className="text-xs text-muted-foreground mt-1 text-center">Projects Delivered</span>
+            </div>
+          </div>
+        </motion.div>
+      </AnimatePresence>
+    </div>
   )
 }
 
 export function Services() {
+  const [activeService, setActiveService] = useState(0)
   const { navigate } = useRouter()
+  const sectionRef = useRef<HTMLElement>(null)
+  const isInView = useInView(sectionRef, { once: true, margin: '-100px' })
+
   return (
-    <section id="services" className="py-24 md:py-32 relative">
+    <section id="services" ref={sectionRef} className="py-24 md:py-32 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-16 md:mb-20">
-          <span className="text-sm text-[#773DF2] font-medium uppercase tracking-widest mb-4 block">
-            What We Do
-          </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6 font-display">
-            We Design Brands That{' '}
-            <span className="gradient-text">Speak to Audiences</span>
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            From initial concept to final delivery, we provide end-to-end design services
-            that transform businesses and delight users.
-          </p>
+        {/* Section Header - designmonks.co style */}
+        <AnimatedSection className="mb-12 md:mb-16">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
+            <div>
+              {/* "What We Do" tag/badge */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="inline-flex items-center px-3 py-1 rounded-full bg-[#592DB5]/10 border border-[#592DB5]/20 mb-4"
+              >
+                <span className="text-xs font-medium text-[#773DF2] uppercase tracking-widest">
+                  What We Do
+                </span>
+              </motion.div>
+
+              {/* Main heading with italic emphasis words */}
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight font-display">
+                We Design{' '}
+                <em className="not-italic bg-gradient-to-r from-[#592DB5] to-[#773DF2] bg-clip-text text-transparent">
+                  Brands
+                </em>{' '}
+                That{' '}
+                <em className="not-italic bg-gradient-to-r from-[#592DB5] to-[#773DF2] bg-clip-text text-transparent">
+                  Speak
+                </em>{' '}
+                to Audiences
+              </h2>
+            </div>
+
+            {/* Book a Call button (desktop) */}
+            <motion.button
+              onClick={() => navigate('contact')}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="hidden md:inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-[#592DB5] to-[#773DF2] text-white font-semibold text-sm hover:shadow-[0_0_40px_#592DB540] transition-all duration-500 flex-shrink-0"
+            >
+              Book a Call
+              <ArrowRight className="h-4 w-4" />
+            </motion.button>
+          </div>
         </AnimatedSection>
 
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {services.map((service, i) => (
-            <ServiceCard key={service.title} service={service} index={i} />
-          ))}
-        </StaggerContainer>
+        {/* Two-column layout - designmonks.co style */}
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-10">
+          {/* Left column - Service list */}
+          <div className="w-full lg:w-[42%] flex-shrink-0">
+            <div className="lg:sticky lg:top-28">
+              {services.map((service, i) => (
+                <ServiceCard
+                  key={service.title}
+                  service={service}
+                  index={i}
+                  isActive={activeService === i}
+                  onHover={() => setActiveService(i)}
+                  onLeave={() => {}}
+                />
+              ))}
+            </div>
+          </div>
 
-        {/* Bottom CTA - Book a Call button */}
-        <AnimatedSection className="text-center mt-12 md:mt-16">
+          {/* Right column - Image showcase */}
+          <div className="w-full lg:flex-1">
+            <div className="lg:sticky lg:top-28">
+              <ServiceImages activeIndex={activeService} />
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Book a Call button */}
+        <AnimatedSection className="text-center mt-12 md:mt-16 lg:hidden">
           <motion.button
             onClick={() => navigate('contact')}
             whileHover={{ scale: 1.02 }}

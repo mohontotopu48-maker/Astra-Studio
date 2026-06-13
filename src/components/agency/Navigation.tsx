@@ -6,6 +6,7 @@ import { Menu, X, Sun, Moon, ChevronDown, Palette, Monitor, LayoutDashboard, Sma
 import { useTheme } from 'next-themes'
 import { Button } from '@/components/ui/button'
 import { useRouter, type PageRoute } from '@/hooks/use-router'
+import { Logo } from '@/components/agency/Logo'
 
 function ThemeToggle({ mounted, theme, setTheme }: { mounted: boolean; theme: string | undefined; setTheme: (theme: string) => void }) {
   if (!mounted) return <div className="w-9 h-9" />
@@ -147,23 +148,7 @@ export function Navigation() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
-            <motion.button
-              onClick={goHome}
-              className="flex items-center gap-2.5 group"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <motion.div
-                className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#592DB5] to-[#773DF2] flex items-center justify-center"
-                whileHover={{ rotate: 90 }}
-                transition={{ duration: 0.4, ease: [0.76, 0, 0.24, 1] }}
-              >
-                <span className="text-white font-bold text-sm">A</span>
-              </motion.div>
-              <span className="text-lg font-semibold font-display tracking-tight">
-                Astra Studio
-              </span>
-            </motion.button>
+            <Logo variant="full" onClick={goHome} />
 
             {/* Desktop Nav with Dropdowns */}
             <div className="hidden lg:flex items-center gap-1">

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Logo } from '@/components/agency/Logo'
 
 export function PageLoader() {
   const [isLoading, setIsLoading] = useState(true)
@@ -29,11 +30,10 @@ export function PageLoader() {
               className="relative"
             >
               <motion.div
-                className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#592DB5] to-[#773DF2] flex items-center justify-center"
                 animate={{ rotate: [0, 360] }}
                 transition={{ duration: 2, ease: [0.25, 0.46, 0.45, 0.94] }}
               >
-                <span className="text-white font-bold text-2xl">A</span>
+                <Logo variant="icon" />
               </motion.div>
               
               {/* Glow ring */}

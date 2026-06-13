@@ -2,6 +2,7 @@
 
 import { useRouter, type PageRoute } from '@/hooks/use-router'
 import { Separator } from '@/components/ui/separator'
+import { Logo } from '@/components/agency/Logo'
 
 const footerLinks: Record<string, { label: string; route: PageRoute }[]> = {
   Services: [
@@ -42,17 +43,7 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-12">
           {/* Brand column */}
           <div className="col-span-2 md:col-span-1">
-            <button
-              onClick={goHome}
-              className="flex items-center gap-2 mb-4"
-            >
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#592DB5] to-[#773DF2] flex items-center justify-center">
-                <span className="text-white font-bold text-sm">A</span>
-              </div>
-              <span className="text-lg font-semibold font-display tracking-tight">
-                Astra Studio
-              </span>
-            </button>
+            <Logo variant="footer" onClick={goHome} className="mb-4" />
             <p className="text-sm text-muted-foreground leading-relaxed mb-4">
               Premium UI/UX &amp; Brand Design Agency. Crafting digital
               experiences that drive growth.
