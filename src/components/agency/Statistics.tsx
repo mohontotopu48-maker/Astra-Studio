@@ -64,7 +64,7 @@ export function Statistics() {
   return (
     <section ref={sectionRef} className="relative overflow-hidden">
       {/* Dark background section */}
-      <motion.div style={{ y: bgY }} className="relative bg-[#0a0a0a] py-24 md:py-32">
+      <motion.div style={{ y: bgY }} className="relative bg-[#0a0a0a] py-16 md:py-24">
         {/* Subtle dot pattern overlay */}
         <div className="absolute inset-0 dot-pattern opacity-[0.03]" />
 
@@ -74,7 +74,7 @@ export function Statistics() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section header */}
-          <AnimatedSection className="text-center mb-16 md:mb-20">
+          <AnimatedSection className="text-center mb-12 md:mb-16">
             <span className="text-sm text-[#B68DF7] font-medium uppercase tracking-widest mb-4 block">
               Impact
             </span>
@@ -100,7 +100,7 @@ export function Statistics() {
                   <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#592DB5]/10 to-[#773DF2]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
 
                   <div className="relative">
-                    <div className="text-5xl sm:text-6xl md:text-7xl font-bold font-display bg-gradient-to-r from-[#592DB5] via-[#773DF2] to-[#9B6BF5] bg-clip-text text-transparent mb-3">
+                    <div className="text-4xl sm:text-5xl md:text-6xl font-bold font-display bg-gradient-to-r from-[#592DB5] via-[#773DF2] to-[#9B6BF5] bg-clip-text text-transparent mb-3">
                       <AnimatedCounter value={stat.value} suffix={stat.suffix} isDecimal={stat.value === 4.9} />
                     </div>
                     <div className="text-base sm:text-lg font-medium text-white/70">
@@ -115,7 +115,7 @@ export function Statistics() {
       </motion.div>
 
       {/* Light background section with detail cards */}
-      <div className="relative bg-background py-24 md:py-32">
+      <div className="relative bg-background py-16 md:py-24">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-6">
             {detailStats.map((stat, i) => (

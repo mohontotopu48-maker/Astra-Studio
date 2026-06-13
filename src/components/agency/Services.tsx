@@ -224,7 +224,7 @@ export function Services() {
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' })
 
   return (
-    <section id="services" ref={sectionRef} className="py-24 md:py-32 relative">
+    <section id="services" ref={sectionRef} className="py-16 md:py-24 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header - designmonks.co style */}
         <AnimatedSection className="mb-12 md:mb-16">

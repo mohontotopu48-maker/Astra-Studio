@@ -219,7 +219,7 @@ export function Hero() {
           </motion.div>
 
           {/* Main Headline - 2 lines */}
-          <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.1] mb-6 font-display">
+          <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-6 font-display">
             <AnimatedText text="We Design Products" delay={2.4} />
             <br />
             <span className="hero-gradient-text">

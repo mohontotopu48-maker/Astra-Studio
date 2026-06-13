@@ -45,7 +45,7 @@ const faqs = [
 
 export function FAQ() {
   return (
-    <section className="py-24 md:py-32 bg-surface">
+    <section className="py-16 md:py-24 bg-surface">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-16 md:mb-20">
           <span className="text-sm text-[#773DF2] font-medium uppercase tracking-widest mb-4 block">

@@ -154,7 +154,7 @@ export function Testimonials() {
   const displayedTestimonials = showAll ? testimonials : testimonials.slice(0, 6)
 
   return (
-    <section id="testimonials" className="py-24 md:py-32 relative overflow-hidden">
+    <section id="testimonials" className="py-16 md:py-24 relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-[#592DB5] opacity-[0.03] blur-[150px] rounded-full" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#773DF2] opacity-[0.03] blur-[150px] rounded-full" />

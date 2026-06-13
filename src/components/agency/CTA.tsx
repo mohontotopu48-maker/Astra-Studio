@@ -19,7 +19,7 @@ export function CTA() {
   const opacity = useTransform(scrollYProgress, [0, 0.3], [0.5, 1])
 
   return (
-    <section id="contact" ref={sectionRef} className="py-24 md:py-32 relative overflow-hidden">
+    <section id="contact" ref={sectionRef} className="py-16 md:py-24 relative overflow-hidden">
       {/* Dark background */}
       <div className="absolute inset-0 bg-[#0a0a0a]" />
 
@@ -66,7 +66,7 @@ export function CTA() {
           <span className="text-sm text-[#B68DF7] font-medium uppercase tracking-widest mb-4 block">
             Start Your Project
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-white">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-6 text-white">
             Ready to Create Something{' '}
             <span className="bg-gradient-to-r from-[#592DB5] via-[#773DF2] to-[#9B6BF5] bg-clip-text text-transparent">
               Extraordinary?

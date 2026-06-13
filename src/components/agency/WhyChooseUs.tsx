@@ -86,7 +86,7 @@ export function WhyChooseUs() {
   const [hoveredCol, setHoveredCol] = useState<string | null>(null)
 
   return (
-    <section className="py-24 md:py-32 bg-surface relative overflow-hidden">
+    <section className="py-16 md:py-24 bg-surface relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#592DB5] opacity-[0.02] blur-[200px] rounded-full" />
 

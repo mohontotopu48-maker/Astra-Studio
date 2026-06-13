@@ -288,7 +288,7 @@ export function AIPoweredDesign() {
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' })
 
   return (
-    <section ref={sectionRef} className="py-24 md:py-32 relative overflow-hidden">
+    <section ref={sectionRef} className="py-16 md:py-24 relative overflow-hidden">
       {/* Dark purple background for the entire section */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-[#0D0520] to-background" />
 

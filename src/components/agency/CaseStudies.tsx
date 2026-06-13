@@ -111,7 +111,7 @@ function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
         className={`group rounded-2xl ${study.bgColor} overflow-hidden flex flex-col md:flex-row gap-0`}
       >
         {/* Text Content - Left side */}
-        <div className="flex-1 p-6 sm:p-8 md:p-10 flex flex-col justify-between">
+        <div className="flex-1 p-5 sm:p-7 md:p-8 flex flex-col justify-between">
           {/* Top: Tag, Title, Description */}
           <div>
             {/* Industry tag */}
@@ -120,21 +120,21 @@ function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
             </h3>
 
             {/* Title */}
-            <h4 className="text-2xl sm:text-3xl font-bold text-[#0a0a0a] font-display mb-3 leading-tight">
+            <h4 className="text-xl sm:text-2xl font-bold text-[#0a0a0a] font-display mb-2 leading-tight">
               {study.title}
             </h4>
 
             {/* Description */}
-            <p className="text-sm sm:text-base text-[#555] leading-relaxed mb-6">
+            <p className="text-sm text-[#555] leading-relaxed mb-5">
               {study.description}
             </p>
 
             {/* Statistics - two columns */}
-            <div className="flex gap-8 sm:gap-12 mb-6">
+            <div className="flex gap-6 sm:gap-10 mb-5">
               {study.metrics.map((metric, i) => (
                 <div key={i}>
                   <p className="text-xs sm:text-sm text-[#777] mb-1">{metric.label}</p>
-                  <div className="text-2xl sm:text-3xl font-bold text-[#0a0a0a] font-display">
+                  <div className="text-xl sm:text-2xl font-bold text-[#0a0a0a] font-display">
                     {metric.value}
                   </div>
                 </div>
@@ -165,7 +165,7 @@ function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
 
         {/* Image - Right side */}
         <div className="w-full md:w-[45%] lg:w-[42%] flex-shrink-0 relative">
-          <div className="h-64 md:h-full overflow-hidden">
+          <div className="h-52 md:h-full overflow-hidden">
             <motion.img
               src={study.image}
               alt={`${study.title} - ${study.category} project showcase`}
@@ -184,7 +184,7 @@ export function CaseStudies() {
   const { navigate } = useRouter()
 
   return (
-    <section id="work" className="py-24 md:py-32 relative">
+    <section id="work" className="py-16 md:py-24 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header - designmonks.co style */}
         <AnimatedSection className="mb-12 md:mb-16">
@@ -211,14 +211,14 @@ export function CaseStudies() {
         </AnimatedSection>
 
         {/* Case Study Cards - stacked vertically with large gap */}
-        <div className="flex flex-col gap-12 md:gap-20">
+        <div className="flex flex-col gap-8 md:gap-12">
           {caseStudies.map((study, i) => (
             <CaseStudyCard key={study.title} study={study} index={i} />
           ))}
         </div>
 
         {/* See All Projects button */}
-        <AnimatedSection className="text-center mt-12 md:mt-16">
+        <AnimatedSection className="text-center mt-8 md:mt-12">
           <motion.button
             onClick={() => navigate('case-studies')}
             whileHover={{ scale: 1.02 }}

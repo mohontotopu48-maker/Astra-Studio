@@ -385,6 +385,14 @@ section {
   animation: marquee 30s linear infinite;
 }
 
+.animate-marquee-slow {
+  animation: marquee 40s linear infinite;
+}
+
+.animate-marquee-slow-reverse {
+  animation: marquee 40s linear infinite reverse;
+}
+
 /* Spin slow */
 @keyframes spin-slow {
   from { transform: rotate(0deg); }

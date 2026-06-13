@@ -4,10 +4,27 @@
       <stop offset="0%" stopColor="#592DB5" />
       <stop offset="100%" stopColor="#773DF2" />
     </linearGradient>
+    <linearGradient id="bgLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#9B6BF5" />
+      <stop offset="100%" stopColor="#B68DF7" />
+    </linearGradient>
   </defs>
   <rect x="2" y="2" width="96" height="96" rx="20" fill="#0A0A14" />
+  <rect x="3" y="3" width="94" height="94" rx="19" fill="none" stroke="#592DB5" strokeOpacity="0.2" strokeWidth="0.5" />
+  <!-- D letter -->
+  <path d="M22 26H40C52 26 62 35 62 48V52C62 65 52 74 40 74H22V26Z" stroke="white" strokeWidth="1.5" strokeOpacity="0.35" fill="none" />
   <path d="M22 26H40C52 26 62 35 62 48V52C62 65 52 74 40 74H22V26Z" fill="url(#bg)" />
   <path d="M32 36H38C45 36 51 41 51 48V52C51 59 45 64 38 64H32V36Z" fill="#0A0A14" />
+  <path d="M32 36H38C45 36 51 41 51 48V52C51 59 45 64 38 64H32" fill="none" stroke="url(#bgLight)" strokeWidth="1.5" strokeOpacity="0.6" />
+  <path d="M22 26H40C52 26 62 35 62 48V52C62 65 52 74 40 74H22V26Z" fill="none" stroke="white" strokeWidth="0.8" strokeOpacity="0.25" />
+  <!-- N letter -->
+  <path d="M46 74V56L58 74H70V26H58V44L46 26H34V74H46Z" stroke="white" strokeWidth="1.5" strokeOpacity="0.35" fill="none" />
   <path d="M46 74V56L58 74H70V26H58V44L46 26H34V74H46Z" fill="url(#bg)" />
   <path d="M58 44V64L46 42V26H58V44Z" fill="#0A0A14" />
+  <path d="M34 74V26H46L58 44V26H70V74H58L46 56V74H34Z" fill="none" stroke="url(#bgLight)" strokeWidth="1.5" strokeOpacity="0.6" />
+  <path d="M46 74V56L58 74H70V26H58V44L46 26H34V74H46Z" fill="none" stroke="white" strokeWidth="0.8" strokeOpacity="0.25" />
+  <circle cx="12" cy="15" r="0.6" fill="white" fillOpacity="0.15" />
+  <circle cx="88" cy="12" r="0.5" fill="white" fillOpacity="0.12" />
+  <circle cx="85" cy="88" r="0.4" fill="white" fillOpacity="0.1" />
+  <circle cx="15" cy="85" r="0.5" fill="white" fillOpacity="0.12" />
 </svg>

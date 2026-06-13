@@ -24,7 +24,7 @@ const values = [
 
 export function About() {
   return (
-    <section id="about" className="py-24 md:py-32 relative overflow-hidden">
+    <section id="about" className="py-16 md:py-24 relative overflow-hidden">
       {/* Decorative background */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#773DF2] opacity-[0.02] blur-[150px] rounded-full" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#592DB5] opacity-[0.02] blur-[120px] rounded-full" />

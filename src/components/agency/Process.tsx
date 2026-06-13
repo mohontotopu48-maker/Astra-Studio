@@ -139,7 +139,7 @@ function ProcessStep({ step, index }: { step: typeof steps[0]; index: number }) 
 
 export function Process() {
   return (
-    <section id="process" className="py-24 md:py-32 bg-surface relative overflow-hidden">
+    <section id="process" className="py-16 md:py-24 bg-surface relative overflow-hidden">
       {/* Background pattern */}
       <div className="absolute inset-0 dot-pattern opacity-[0.3]" />
 

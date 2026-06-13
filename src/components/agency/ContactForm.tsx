@@ -66,7 +66,7 @@ export function ContactForm() {
 
   if (isSubmitted) {
     return (
-      <section id="contact-form" className="py-24 md:py-32 bg-surface">
+      <section id="contact-form" className="py-16 md:py-24 bg-surface">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
@@ -85,7 +85,7 @@ export function ContactForm() {
   }
 
   return (
-    <section id="contact-form" className="py-24 md:py-32 bg-surface">
+    <section id="contact-form" className="py-16 md:py-24 bg-surface">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-12">
           <span className="text-sm text-[#773DF2] font-medium uppercase tracking-widest mb-4 block">
