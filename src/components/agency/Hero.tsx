@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { ArrowRight, Sparkles, Phone, Star, ChevronDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { useRouter } from '@/hooks/use-router'
 
 const trustedLogos = [
   'Google', 'Microsoft', 'Stripe', 'Spotify', 'Notion', 'Figma', 'Shopify', 'Airbnb',
@@ -130,6 +131,7 @@ function ParticleField() {
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
+  const { navigate } = useRouter()
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start start', 'end start'],
@@ -252,7 +254,7 @@ export function Hero() {
                 <a href="#contact">
                   <span className="relative z-10 flex items-center">
                     <Phone className="mr-2 h-4 w-4" />
-                    Book a Call
+                    Book a Strategy Call
                   </span>
                   {/* Shimmer overlay */}
                   <motion.div
@@ -265,12 +267,15 @@ export function Hero() {
             </MagneticButton>
             <MagneticButton>
               <Button
-                asChild
+                onClick={() => navigate('product-design')}
                 variant="outline"
                 size="lg"
                 className="rounded-full px-8 text-base border-border hover:bg-accent/50 hover:border-[#592DB5]/30 transition-all duration-300 h-[50px]"
               >
-                <a href="#work">View Our Work</a>
+                <span className="flex items-center">
+                  <Sparkles className="mr-2 h-4 w-4" />
+                  Let's Make Some Impressive
+                </span>
               </Button>
             </MagneticButton>
           </motion.div>
