@@ -8,6 +8,8 @@ interface LogoProps {
   onClick?: () => void
 }
 
+// D+N interlocking monogram matching the uploaded Design Nuvio logo concept
+// Using brand purple gradient: #592DB5 → #773DF2
 function MonogramIcon({ size = 36 }: { size?: number }) {
   return (
     <svg
@@ -23,31 +25,36 @@ function MonogramIcon({ size = 36 }: { size?: number }) {
           <stop offset="100%" stopColor="#773DF2" />
         </linearGradient>
       </defs>
-      {/* Background rounded square */}
-      <rect x="2" y="2" width="96" height="96" rx="22" fill="url(#brandGradient)" />
-      
-      {/* Letter A - stylized geometric form */}
+      {/* Rounded square background */}
+      <rect x="2" y="2" width="96" height="96" rx="20" fill="url(#brandGradient)" />
+
+      {/* Letter D - left portion with curved right side */}
       <path
-        d="M24 72L38 28H42L32 60H48L46 72H24Z"
+        d="M20 24H38C50 24 60 33 60 46V54C60 67 50 76 38 76H20V24Z"
         fill="white"
         fillOpacity="0.95"
       />
-      {/* A crossbar */}
+      {/* D inner cutout (creates the D shape with curved negative space) */}
       <path
-        d="M30 54H44L42.5 60H31.5L30 54Z"
-        fill="white"
-        fillOpacity="0.4"
+        d="M30 34H36C43 34 49 39 49 46V54C49 61 43 66 36 66H30V34Z"
+        fill="url(#brandGradient)"
       />
-      
-      {/* Letter S - interlocking with A */}
+
+      {/* Letter N - right portion, interlocking with D */}
       <path
-        d="M56 32C56 32 58 28 66 28C74 28 76 32 76 36C76 42 68 42 64 42C60 42 52 42 52 48C52 54 58 56 64 56C70 56 76 54 76 54L74 62C74 62 70 66 62 66C54 66 50 62 50 58C50 52 58 50 62 50C66 50 72 50 72 44C72 38 66 38 62 38C58 38 54 38 54 34C54 32 56 32 56 32Z"
+        d="M44 76V58L56 76H68V24H56V42L44 24H32V76H44Z"
         fill="white"
-        fillOpacity="0.9"
+        fillOpacity="0.92"
       />
-      
-      {/* Subtle shine overlay */}
-      <rect x="2" y="2" width="96" height="48" rx="22" fill="white" fillOpacity="0.06" />
+      {/* N inner cutout for diagonal */}
+      <path
+        d="M56 42V66L44 44V24H56V42Z"
+        fill="url(#brandGradient)"
+        fillOpacity="0.7"
+      />
+
+      {/* Subtle shine overlay on top half */}
+      <rect x="2" y="2" width="96" height="46" rx="20" fill="white" fillOpacity="0.07" />
     </svg>
   )
 }
@@ -72,9 +79,11 @@ export function Logo({ variant = 'full', className = '', onClick }: LogoProps) {
         <MonogramIcon size={32} />
         <div className="flex flex-col">
           <span className="text-lg font-semibold font-display tracking-tight leading-none">
-            Astra
+            Design
           </span>
-          <span className="text-xs text-muted-foreground tracking-wide">Studio</span>
+          <span className="text-xs bg-gradient-to-r from-[#592DB5] to-[#773DF2] bg-clip-text text-transparent tracking-wide font-semibold">
+            Nuvio
+          </span>
         </div>
       </button>
     )
@@ -91,10 +100,10 @@ export function Logo({ variant = 'full', className = '', onClick }: LogoProps) {
       <MonogramIcon size={36} />
       <div className="flex items-baseline gap-1">
         <span className="text-lg font-semibold font-display tracking-tight">
-          Astra
+          Design
         </span>
         <span className="text-lg font-semibold font-display tracking-tight bg-gradient-to-r from-[#592DB5] to-[#773DF2] bg-clip-text text-transparent">
-          Studio
+          Nuvio
         </span>
       </div>
     </motion.button>

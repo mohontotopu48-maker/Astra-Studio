@@ -39,7 +39,7 @@ export function About() {
               Design Partners, Not Just Designers
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-              Astra Studio is a team of 30+ strategists, designers, and technologists
+              Design Nuvio is a team of 30+ strategists, designers, and technologists
               who believe great design is the most powerful business lever. Founded in
               2018, we&apos;ve helped 200+ companies transform their digital presence.
             </p>

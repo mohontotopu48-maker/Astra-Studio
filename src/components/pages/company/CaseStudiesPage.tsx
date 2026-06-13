@@ -131,7 +131,7 @@ const aggregateMetrics = [
 
 const testimonials = [
   {
-    quote: "Astra Studio transformed our entire digital presence. The results exceeded every KPI we set. They don't just design — they solve business problems.",
+    quote: "Design Nuvio transformed our entire digital presence. The results exceeded every KPI we set. They don't just design — they solve business problems.",
     name: "Sarah Mitchell",
     role: "VP of Product, FinFlow",
     gradient: "from-[#592DB5] to-[#773DF2]",
@@ -143,7 +143,7 @@ const testimonials = [
     gradient: "from-[#773DF2] to-[#9B6BF5]",
   },
   {
-    quote: "Working with Astra Studio felt like having an extension of our own team. Their design system has become the foundation of everything we build.",
+    quote: "Working with Design Nuvio felt like having an extension of our own team. Their design system has become the foundation of everything we build.",
     name: "Lisa Chen",
     role: "Head of Design, CloudMetrics",
     gradient: "from-[#4520A0] to-[#592DB5]",

@@ -58,7 +58,7 @@ export function PageLoader() {
               transition={{ delay: 0.3 }}
               className="text-xs text-muted-foreground tracking-[0.3em] uppercase"
             >
-              Astra Studio
+              Design Nuvio
             </motion.p>
           </div>
         </motion.div>

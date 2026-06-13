@@ -317,7 +317,7 @@ export default function SaaSDesignPage() {
 
       <PageCTA
         title="Ready to Transform Your SaaS Product?"
-        subtitle="Join the leading SaaS companies that trust Astra Studio to design products users love. Let's reduce churn and accelerate growth together."
+        subtitle="Join the leading SaaS companies that trust Design Nuvio to design products users love. Let's reduce churn and accelerate growth together."
         buttonText="Schedule a Consultation"
       />
     </PageLayout>

@@ -137,7 +137,7 @@ export function WhyChooseUs() {
         <AnimatedSection className="mb-12">
           <div className="text-center mb-10">
             <h3 className="text-2xl md:text-3xl font-display font-bold mb-3">
-              Astra Studio&apos;s Alternative?{' '}
+              Design Nuvio&apos;s Alternative?{' '}
               <span className="gradient-text">Think One More Time!</span>
             </h3>
           </div>
@@ -154,7 +154,7 @@ export function WhyChooseUs() {
                     onMouseEnter={() => setHoveredCol('us')}
                     onMouseLeave={() => setHoveredCol(null)}
                   >
-                    <span className="gradient-text">Astra Studio</span>
+                    <span className="gradient-text">Design Nuvio</span>
                   </th>
                   <th className="p-4 md:p-5 text-sm font-semibold text-center text-muted-foreground">
                     In-House Team
@@ -230,7 +230,7 @@ export function WhyChooseUs() {
           {/* Descriptions below table */}
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mt-6">
             <div className="text-xs text-muted-foreground p-3 rounded-lg bg-gradient-to-br from-[#592DB5]/5 to-[#773DF2]/5 border border-[#592DB5]/10">
-              <span className="font-medium gradient-text">Astra Studio</span> — Expert-driven & committed to higher quality. Get effective results & full support.
+              <span className="font-medium gradient-text">Design Nuvio</span> — Expert-driven & committed to higher quality. Get effective results & full support.
             </div>
             <div className="text-xs text-muted-foreground p-3 rounded-lg bg-muted/50">
               <span className="font-medium">In-House</span> — May ensure consistency, but limited expertise despite regular pay.

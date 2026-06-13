@@ -20,8 +20,8 @@ const sora = Sora({
 
 export const metadata: Metadata = {
   title: {
-    default: "Astra Studio — Premium UI/UX & Brand Design Agency",
-    template: "%s | Astra Studio",
+    default: "Design Nuvio — Premium UI/UX & Brand Design Agency",
+    template: "%s | Design Nuvio",
   },
   description:
     "Award-winning design agency specializing in UI/UX design, brand identity, and digital transformation. We craft premium digital experiences for SaaS, Fintech, AI, and Healthcare companies.",
@@ -39,23 +39,23 @@ export const metadata: Metadata = {
     "digital agency",
     "premium design",
   ],
-  authors: [{ name: "Astra Studio" }],
-  creator: "Astra Studio",
-  publisher: "Astra Studio",
+  authors: [{ name: "Design Nuvio" }],
+  creator: "Design Nuvio",
+  publisher: "Design Nuvio",
   icons: {
     icon: "/logo.svg",
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    siteName: "Astra Studio",
-    title: "Astra Studio — Premium UI/UX & Brand Design Agency",
+    siteName: "Design Nuvio",
+    title: "Design Nuvio — Premium UI/UX & Brand Design Agency",
     description:
       "Award-winning design agency specializing in UI/UX design, brand identity, and digital transformation.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Astra Studio — Premium UI/UX & Brand Design Agency",
+    title: "Design Nuvio — Premium UI/UX & Brand Design Agency",
     description:
       "Award-winning design agency specializing in UI/UX design, brand identity, and digital transformation.",
   },

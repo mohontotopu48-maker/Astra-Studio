@@ -30,15 +30,15 @@ interface FAQItem {
 const faqItems: FAQItem[] = [
   {
     category: "General",
-    question: "What services does Astra Studio offer?",
+    question: "What services does Design Nuvio offer?",
     answer:
-      "Astra Studio offers a comprehensive suite of design services including UI/UX design, brand identity development, product design, design systems, UX audits, prototyping, and front-end development. We work with startups, scale-ups, and enterprise clients to create digital products that are both beautiful and functional.",
+      "Design Nuvio offers a comprehensive suite of design services including UI/UX design, brand identity development, product design, design systems, UX audits, prototyping, and front-end development. We work with startups, scale-ups, and enterprise clients to create digital products that are both beautiful and functional.",
   },
   {
     category: "General",
-    question: "How long has Astra Studio been in business?",
+    question: "How long has Design Nuvio been in business?",
     answer:
-      "Astra Studio was founded in 2018, and we've been helping businesses transform their digital presence for over 7 years. In that time, we've completed more than 200 projects across industries including fintech, healthcare, SaaS, e-commerce, and education. Our team has grown to include 30+ talented designers, developers, and strategists.",
+      "Design Nuvio was founded in 2018, and we've been helping businesses transform their digital presence for over 7 years. In that time, we've completed more than 200 projects across industries including fintech, healthcare, SaaS, e-commerce, and education. Our team has grown to include 30+ talented designers, developers, and strategists.",
   },
   {
     category: "General",
@@ -180,7 +180,7 @@ export function FAQPage() {
               </h2>
               <p className="text-sm text-muted-foreground mb-6">
                 {activeCategory === "General" &&
-                  "General information about Astra Studio and our capabilities."}
+                  "General information about Design Nuvio and our capabilities."}
                 {activeCategory === "Services" &&
                   "Details about the design services we offer."}
                 {activeCategory === "Process" &&

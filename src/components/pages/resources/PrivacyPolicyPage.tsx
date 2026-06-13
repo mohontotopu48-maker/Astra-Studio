@@ -50,7 +50,7 @@ const sections = [
     title: "3. Information Sharing",
     content: [
       {
-        text: "We do not sell, trade, or rent your personal information to third parties. We may share your information with trusted service providers who assist us in operating our website, conducting our business, or serving our users, provided they agree to keep this information confidential. We may also disclose your information when we believe in good faith that such disclosure is necessary to comply with the law, enforce our policies, respond to claims, or protect the rights, property, or safety of Astra Studio, our users, or others. In the event of a merger, acquisition, or sale of assets, your information may be transferred as part of that transaction.",
+        text: "We do not sell, trade, or rent your personal information to third parties. We may share your information with trusted service providers who assist us in operating our website, conducting our business, or serving our users, provided they agree to keep this information confidential. We may also disclose your information when we believe in good faith that such disclosure is necessary to comply with the law, enforce our policies, respond to claims, or protect the rights, property, or safety of Design Nuvio, our users, or others. In the event of a merger, acquisition, or sale of assets, your information may be transferred as part of that transaction.",
       },
     ],
   },
@@ -86,7 +86,7 @@ const sections = [
     title: "7. Third-Party Services",
     content: [
       {
-        text: "Our website may contain links to third-party websites or services that are not owned or controlled by Astra Studio. We have no control over, and assume no responsibility for, the content, privacy policies, or practices of any third-party websites or services. We strongly advise you to review the privacy policies of any third-party services you access. The inclusion of any link does not imply our endorsement. We use third-party services including Google Analytics for website analytics, Vercel for hosting, and SendGrid for email communications, each of which has their own privacy policies.",
+        text: "Our website may contain links to third-party websites or services that are not owned or controlled by Design Nuvio. We have no control over, and assume no responsibility for, the content, privacy policies, or practices of any third-party websites or services. We strongly advise you to review the privacy policies of any third-party services you access. The inclusion of any link does not imply our endorsement. We use third-party services including Google Analytics for website analytics, Vercel for hosting, and SendGrid for email communications, each of which has their own privacy policies.",
       },
     ],
   },
@@ -134,7 +134,7 @@ export function PrivacyPolicyPage() {
     <PageLayout
       badge="Privacy Policy"
       title="Privacy Policy"
-      subtitle="Your privacy matters to us. This policy outlines how Astra Studio collects, uses, and protects your information."
+      subtitle="Your privacy matters to us. This policy outlines how Design Nuvio collects, uses, and protects your information."
     >
       {/* Last Updated */}
       <section className="pb-8">
@@ -222,7 +222,7 @@ export function PrivacyPolicyPage() {
                   <div className="mt-4 p-5 rounded-xl bg-muted/50 border border-border/50">
                     <div className="space-y-2 text-sm">
                       <p className="font-semibold text-foreground">
-                        Astra Studio
+                        Design Nuvio
                       </p>
                       <p className="text-muted-foreground">
                         Email: privacy@astrastudio.com

@@ -257,7 +257,7 @@ export default function ContactPage() {
           <motion.div {...fadeInUp} className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-display font-bold mb-4">Frequently Asked Questions</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Quick answers to common questions about working with Astra Studio.
+              Quick answers to common questions about working with Design Nuvio.
             </p>
           </motion.div>
           <div className="space-y-4">
@@ -345,7 +345,7 @@ export default function ContactPage() {
 
       <PageCTA
         title="Ready to Start Your Project?"
-        subtitle="Book a free consultation and let's explore how Astra Studio can bring your vision to life."
+        subtitle="Book a free consultation and let's explore how Design Nuvio can bring your vision to life."
         buttonText="Book a Free Consultation"
       />
     </PageLayout>

@@ -146,7 +146,7 @@ const hiringSteps = [
   {
     step: 1,
     title: "Application",
-    description: "Submit your resume and a short note about why Astra Studio excites you.",
+    description: "Submit your resume and a short note about why Design Nuvio excites you.",
     icon: FileText,
   },
   {
@@ -172,7 +172,7 @@ const hiringSteps = [
 export default function CareersPage() {
   return (
     <PageLayout
-      title="Join Astra Studio"
+      title="Join Design Nuvio"
       subtitle="Build the future of design with us. We're looking for passionate people who want to create work that matters."
       badge="Careers"
     >
@@ -180,7 +180,7 @@ export default function CareersPage() {
       <section className="py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeInUp} className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-display font-bold mb-4">Why Join Astra Studio?</h2>
+            <h2 className="text-3xl sm:text-4xl font-display font-bold mb-4">Why Join Design Nuvio?</h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               We invest in our people because extraordinary work requires extraordinary teams.
             </p>

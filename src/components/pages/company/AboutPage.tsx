@@ -73,7 +73,7 @@ const timelineEvents = [
 export default function AboutPage() {
   return (
     <PageLayout
-      title="About Astra Studio"
+      title="About Design Nuvio"
       subtitle="We are a team of passionate designers and engineers dedicated to crafting exceptional digital experiences that drive real business results."
       badge="About Us"
     >
@@ -88,7 +88,7 @@ export default function AboutPage() {
           >
             <img
               src="/images/about-team.png"
-              alt="About Astra Studio"
+              alt="About Design Nuvio"
               className="w-full h-[300px] sm:h-[400px] lg:h-[500px] object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />

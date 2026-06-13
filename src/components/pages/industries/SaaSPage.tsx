@@ -127,7 +127,7 @@ export default function SaaSPage() {
             <p className="text-lg text-muted-foreground leading-relaxed mb-6">
               The SaaS landscape demands more than just good looks. Your product needs to
               onboard users in seconds, demonstrate value immediately, and create habits
-              that keep customers coming back. At Astra Studio, we specialize in the unique
+              that keep customers coming back. At Design Nuvio, we specialize in the unique
               design challenges that subscription-based software faces.
             </p>
             <p className="text-muted-foreground leading-relaxed">

@@ -6,7 +6,7 @@ import { useRouter } from "@/hooks/use-router";
 
 export function PageCTA({
   title = "Ready to Transform Your Vision?",
-  subtitle = "Let's collaborate to create something extraordinary. Book a discovery call and see how Astra Studio can elevate your brand.",
+  subtitle = "Let's collaborate to create something extraordinary. Book a discovery call and see how Design Nuvio can elevate your brand.",
   buttonText = "Book a Discovery Call",
   secondaryButtonText,
   onButtonClick,

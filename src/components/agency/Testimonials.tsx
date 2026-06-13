@@ -8,42 +8,42 @@ import { AnimatedSection } from '@/lib/animations'
 
 const testimonials = [
   {
-    quote: 'We started with an MVP and needed a polished product. Astra Studio delivered with great communication, high-quality work, and quick iterations until everything felt right. Truly grateful and highly recommended.',
+    quote: 'We started with an MVP and needed a polished product. Design Nuvio delivered with great communication, high-quality work, and quick iterations until everything felt right. Truly grateful and highly recommended.',
     author: 'Sebastian',
     role: 'Founder',
     company: 'Salesgo',
     rating: 5,
   },
   {
-    quote: 'Working with Astra Studio was a fantastic experience. Their team was incredibly responsive, patient, and easy to work with throughout the entire process. They took the time to understand my ideas and delivered great work.',
+    quote: 'Working with Design Nuvio was a fantastic experience. Their team was incredibly responsive, patient, and easy to work with throughout the entire process. They took the time to understand my ideas and delivered great work.',
     author: 'David',
     role: 'Founder',
     company: 'Externalize It',
     rating: 5,
   },
   {
-    quote: 'Astra Studio did an amazing job bringing my brand to life. From the branding strategy to the logo, the team was professional, responsive, and kept me informed every step of the way. Highly recommended.',
+    quote: 'Design Nuvio did an amazing job bringing my brand to life. From the branding strategy to the logo, the team was professional, responsive, and kept me informed every step of the way. Highly recommended.',
     author: 'Tommy Lu',
     role: 'Founder',
     company: 'GoodGenes',
     rating: 5,
   },
   {
-    quote: 'Working with Astra Studio on our app and group websites was an excellent experience. They were patient, attentive to feedback, and delivered clean, consistent, high-quality work. We\'re happy to continue our partnership.',
+    quote: 'Working with Design Nuvio on our app and group websites was an excellent experience. They were patient, attentive to feedback, and delivered clean, consistent, high-quality work. We\'re happy to continue our partnership.',
     author: 'Sofia Gouveia',
     role: 'Design Director',
     company: 'Esdiac',
     rating: 5,
   },
   {
-    quote: 'I\'ve worked with Astra Studio on three websites, and they\'ve been nothing but exceptional. Their design is top-notch, development is reliable, and communication is always smooth. 10/10 partner.',
+    quote: 'I\'ve worked with Design Nuvio on three websites, and they\'ve been nothing but exceptional. Their design is top-notch, development is reliable, and communication is always smooth. 10/10 partner.',
     author: 'Austin',
     role: 'CEO',
     company: 'Clarity LLC',
     rating: 5,
   },
   {
-    quote: 'Astra Studio is a professional, reliable partner for end-to-end product builds. From clean, modern designs to seamless development, they exceeded my expectations. I couldn\'t be happier with the collaboration!',
+    quote: 'Design Nuvio is a professional, reliable partner for end-to-end product builds. From clean, modern designs to seamless development, they exceeded my expectations. I couldn\'t be happier with the collaboration!',
     author: 'Anika',
     role: 'Founder',
     company: 'Coinpulse',
@@ -57,35 +57,35 @@ const testimonials = [
     rating: 5,
   },
   {
-    quote: 'Big shoutout to the Astra Studio team. They brought our vision to life both visually and strategically. They nailed the balance between clean design and real business results, and their transparency made everything smooth.',
+    quote: 'Big shoutout to the Design Nuvio team. They brought our vision to life both visually and strategically. They nailed the balance between clean design and real business results, and their transparency made everything smooth.',
     author: 'Victor Okon',
     role: 'COO & Co-Founder',
     company: 'Dlicio',
     rating: 5,
   },
   {
-    quote: 'Astra Studio felt like part of our own team. They understood our vision, built a scalable UX we still use, and made the whole process easy. If you want more than just good looks, go with Astra Studio.',
+    quote: 'Design Nuvio felt like part of our own team. They understood our vision, built a scalable UX we still use, and made the whole process easy. If you want more than just good looks, go with Design Nuvio.',
     author: 'Jahnnobi Rahman',
     role: 'CEO & Founder',
     company: 'Relaxy',
     rating: 5,
   },
   {
-    quote: 'Thanks to Astra Studio for building a world-class website that captured our vision and helped us land customers from day one. They went beyond design, researching trends and bringing great ideas.',
+    quote: 'Thanks to Design Nuvio for building a world-class website that captured our vision and helped us land customers from day one. They went beyond design, researching trends and bringing great ideas.',
     author: 'Emran Hasan',
     role: 'CEO & Co-Founder',
     company: 'Klasio',
     rating: 5,
   },
   {
-    quote: 'We\'ve worked with Astra Studio for over 2 years on 10+ projects, and the experience has been outstanding. They deliver with precision, provide clear documentation, and make the whole process worry-free.',
+    quote: 'We\'ve worked with Design Nuvio for over 2 years on 10+ projects, and the experience has been outstanding. They deliver with precision, provide clear documentation, and make the whole process worry-free.',
     author: 'Moshiur Rahman Radif',
     role: 'COO',
     company: 'Ontik Technologies',
     rating: 5,
   },
   {
-    quote: 'We tried many designers before, but nothing really worked until we found Astra Studio. They turn simple ideas into clear, user-friendly designs, and their process is fast and effortless. We trust them fully.',
+    quote: 'We tried many designers before, but nothing really worked until we found Design Nuvio. They turn simple ideas into clear, user-friendly designs, and their process is fast and effortless. We trust them fully.',
     author: 'Arvin',
     role: 'Co-Founder',
     company: 'Medease',
@@ -169,7 +169,7 @@ export function Testimonials() {
             <span className="gradient-text">Inspire Us</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Our clients don&apos;t just hire us — they partner with us. Here&apos;s what they have to say about working with Astra Studio.
+            Our clients don&apos;t just hire us — they partner with us. Here&apos;s what they have to say about working with Design Nuvio.
           </p>
         </AnimatedSection>
 

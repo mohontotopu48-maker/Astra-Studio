@@ -126,7 +126,7 @@ export default function HealthcarePage() {
               Healthcare design carries a unique responsibility. Unlike other industries,
               the stakes are personal—a confusing medication display, an inaccessible
               appointment flow, or an unclear test result can directly impact someone&apos;s
-              health and wellbeing. At Astra Studio, we treat every healthcare project with
+              health and wellbeing. At Design Nuvio, we treat every healthcare project with
               the gravity and empathy it deserves.
             </p>
             <p className="text-muted-foreground leading-relaxed">

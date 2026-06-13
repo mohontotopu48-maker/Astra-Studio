@@ -24,13 +24,13 @@ const sections = [
     icon: <CheckCircle className="w-5 h-5" />,
     title: "1. Acceptance of Terms",
     content:
-      "By accessing or using the services provided by Astra Studio ('Company', 'we', 'us', or 'our'), you agree to be bound by these Terms of Service ('Terms'). If you do not agree to these Terms, you may not access or use our services. These Terms apply to all visitors, users, clients, and others who access or use our services. We reserve the right to update or modify these Terms at any time without prior notice. Your continued use of our services after any such changes constitutes your acceptance of the new Terms. It is your responsibility to review these Terms periodically.",
+      "By accessing or using the services provided by Design Nuvio ('Company', 'we', 'us', or 'our'), you agree to be bound by these Terms of Service ('Terms'). If you do not agree to these Terms, you may not access or use our services. These Terms apply to all visitors, users, clients, and others who access or use our services. We reserve the right to update or modify these Terms at any time without prior notice. Your continued use of our services after any such changes constitutes your acceptance of the new Terms. It is your responsibility to review these Terms periodically.",
   },
   {
     icon: <Briefcase className="w-5 h-5" />,
     title: "2. Services Description",
     content:
-      "Astra Studio provides UI/UX design, brand identity development, product design, design system creation, UX audits, prototyping, and related consulting services. Our services are delivered through project-based engagements, retainer agreements, or customized packages as mutually agreed upon. The specific scope, deliverables, timeline, and terms for each engagement will be outlined in a separate Statement of Work (SOW) or project agreement. We reserve the right to modify, suspend, or discontinue any aspect of our services at any time, with reasonable notice to affected clients.",
+      "Design Nuvio provides UI/UX design, brand identity development, product design, design system creation, UX audits, prototyping, and related consulting services. Our services are delivered through project-based engagements, retainer agreements, or customized packages as mutually agreed upon. The specific scope, deliverables, timeline, and terms for each engagement will be outlined in a separate Statement of Work (SOW) or project agreement. We reserve the right to modify, suspend, or discontinue any aspect of our services at any time, with reasonable notice to affected clients.",
   },
   {
     icon: <Handshake className="w-5 h-5" />,
@@ -42,13 +42,13 @@ const sections = [
     icon: <Shield className="w-5 h-5" />,
     title: "4. Intellectual Property",
     content:
-      "Upon full payment of all applicable fees, the client will receive ownership of the final deliverables as specified in the SOW. Astra Studio retains ownership of all pre-existing intellectual property, tools, frameworks, and methodologies used in the creation of deliverables. We reserve the right to use general knowledge, skills, experience, and techniques acquired during the project for future engagements. We also reserve the right to showcase the work in our portfolio and marketing materials unless a written confidentiality agreement states otherwise. Any third-party assets used in the project remain subject to their respective licenses.",
+      "Upon full payment of all applicable fees, the client will receive ownership of the final deliverables as specified in the SOW. Design Nuvio retains ownership of all pre-existing intellectual property, tools, frameworks, and methodologies used in the creation of deliverables. We reserve the right to use general knowledge, skills, experience, and techniques acquired during the project for future engagements. We also reserve the right to showcase the work in our portfolio and marketing materials unless a written confidentiality agreement states otherwise. Any third-party assets used in the project remain subject to their respective licenses.",
   },
   {
     icon: <FileText className="w-5 h-5" />,
     title: "5. Client Responsibilities",
     content:
-      "The client agrees to provide timely access to necessary information, materials, feedback, and approvals as required for the successful completion of the project. Delays in client feedback or approvals may result in corresponding delays to the project timeline. The client is responsible for ensuring that all materials provided to Astra Studio do not infringe upon the intellectual property rights of any third party. The client shall designate a primary point of contact authorized to make decisions and provide approvals on behalf of the client organization.",
+      "The client agrees to provide timely access to necessary information, materials, feedback, and approvals as required for the successful completion of the project. Delays in client feedback or approvals may result in corresponding delays to the project timeline. The client is responsible for ensuring that all materials provided to Design Nuvio do not infringe upon the intellectual property rights of any third party. The client shall designate a primary point of contact authorized to make decisions and provide approvals on behalf of the client organization.",
   },
   {
     icon: <CreditCard className="w-5 h-5" />,
@@ -66,13 +66,13 @@ const sections = [
     icon: <AlertTriangle className="w-5 h-5" />,
     title: "8. Limitation of Liability",
     content:
-      "To the maximum extent permitted by applicable law, Astra Studio shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, data, or business opportunities, arising out of or in connection with our services. Our total cumulative liability for any claims arising from or related to our services shall not exceed the total fees paid by the client for the specific project giving rise to the claim. This limitation applies regardless of the legal theory on which the claim is based, whether in contract, tort, strict liability, or otherwise.",
+      "To the maximum extent permitted by applicable law, Design Nuvio shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, data, or business opportunities, arising out of or in connection with our services. Our total cumulative liability for any claims arising from or related to our services shall not exceed the total fees paid by the client for the specific project giving rise to the claim. This limitation applies regardless of the legal theory on which the claim is based, whether in contract, tort, strict liability, or otherwise.",
   },
   {
     icon: <XCircle className="w-5 h-5" />,
     title: "9. Termination",
     content:
-      "Either party may terminate a project engagement with 30 days' written notice. In the event of termination, the client shall pay for all work completed up to the date of termination, including any non-cancellable expenses incurred on behalf of the project. Astra Studio may terminate immediately if the client fails to make payments when due, breaches the confidentiality provisions, or engages in conduct that is harmful to our reputation or business. Upon termination, we will deliver all completed work and work-in-progress for which payment has been received. Termination does not affect any rights or obligations that accrued prior to the termination date.",
+      "Either party may terminate a project engagement with 30 days' written notice. In the event of termination, the client shall pay for all work completed up to the date of termination, including any non-cancellable expenses incurred on behalf of the project. Design Nuvio may terminate immediately if the client fails to make payments when due, breaches the confidentiality provisions, or engages in conduct that is harmful to our reputation or business. Upon termination, we will deliver all completed work and work-in-progress for which payment has been received. Termination does not affect any rights or obligations that accrued prior to the termination date.",
   },
   {
     icon: <Gavel className="w-5 h-5" />,
@@ -84,7 +84,7 @@ const sections = [
     icon: <RefreshCw className="w-5 h-5" />,
     title: "11. Modifications",
     content:
-      "Astra Studio reserves the right to modify these Terms of Service at any time. We will notify clients of material changes by posting a notice on our website or sending an email to the address on file. The modified Terms will become effective upon posting or as specified in the notice. Your continued use of our services after the effective date of any modification constitutes your acceptance of the revised Terms. We encourage you to review these Terms periodically to stay informed of any updates. For active projects, any material changes to these Terms will not apply retroactively without the client's written consent.",
+      "Design Nuvio reserves the right to modify these Terms of Service at any time. We will notify clients of material changes by posting a notice on our website or sending an email to the address on file. The modified Terms will become effective upon posting or as specified in the notice. Your continued use of our services after the effective date of any modification constitutes your acceptance of the revised Terms. We encourage you to review these Terms periodically to stay informed of any updates. For active projects, any material changes to these Terms will not apply retroactively without the client's written consent.",
   },
   {
     icon: <Mail className="w-5 h-5" />,
@@ -100,7 +100,7 @@ export function TermsOfServicePage() {
     <PageLayout
       badge="Terms of Service"
       title="Terms of Service"
-      subtitle="Please review these terms carefully before using our services. They govern your relationship with Astra Studio."
+      subtitle="Please review these terms carefully before using our services. They govern your relationship with Design Nuvio."
     >
       {/* Last Updated */}
       <section className="pb-8">
@@ -136,7 +136,7 @@ export function TermsOfServicePage() {
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   These Terms of Service constitute a legally binding agreement
-                  between you and Astra Studio. By engaging our services, you
+                  between you and Design Nuvio. By engaging our services, you
                   acknowledge that you have read, understood, and agree to be
                   bound by these terms. If you have any questions, please consult
                   legal counsel before proceeding.
@@ -209,7 +209,7 @@ export function TermsOfServicePage() {
                   <div className="mt-4 p-5 rounded-xl bg-muted/50 border border-border/50">
                     <div className="space-y-2 text-sm">
                       <p className="font-semibold text-foreground">
-                        Astra Studio
+                        Design Nuvio
                       </p>
                       <p className="text-muted-foreground">
                         Email: legal@astrastudio.com

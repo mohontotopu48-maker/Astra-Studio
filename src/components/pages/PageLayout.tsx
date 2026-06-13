@@ -19,7 +19,7 @@ export function PageLayout({
   children,
   title,
   subtitle,
-  badge = "Astra Studio",
+  badge = "Design Nuvio",
   gradient = "from-[#592DB5] to-[#773DF2]",
 }: PageLayoutProps) {
   const { goHome } = useRouter();

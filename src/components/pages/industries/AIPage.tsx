@@ -156,7 +156,7 @@ export default function AIPage() {
               AI is only as powerful as the interface that delivers it. The most
               sophisticated model in the world is useless if users don&apos;t understand
               its outputs, trust its recommendations, or know when to apply human judgment.
-              At Astra Studio, we specialize in the emerging discipline of AI interaction
+              At Design Nuvio, we specialize in the emerging discipline of AI interaction
               design—creating interfaces that make artificial intelligence genuinely
               intelligible.
             </p>
