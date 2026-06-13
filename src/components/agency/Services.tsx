@@ -3,30 +3,38 @@
 import { useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 import {
-  Layers, Palette, Smartphone, BarChart3,
-  Shield, ArrowRight,
-  Globe, ChevronRight
+  Layers, Palette, Globe, Smartphone, BarChart3,
+  ArrowRight, ChevronRight, Code2, Globe2
 } from 'lucide-react'
 import { AnimatedSection, StaggerContainer, StaggerItem } from '@/lib/animations'
 import { useRouter, type PageRoute } from '@/hooks/use-router'
 
-const services: { icon: typeof Layers; title: string; subtitle: string; description: string; items: { label: string; value: string }[]; gradient: string; accentLight: string; accentColor: string; accentBorder: string; tools: string[]; route: PageRoute }[] = [
+const services: {
+  icon: typeof Layers
+  title: string
+  subtitle: string
+  description: string
+  serviceList: string
+  gradient: string
+  route: PageRoute
+}[] = [
   {
     icon: Layers,
     title: 'UI/UX Design',
     route: 'product-design',
     subtitle: 'Creating user-friendly digital experiences.',
     description: 'When it comes to UI/UX design, we create experiences that are simple to navigate. Our goal is to deliver user-friendly interactions that align with your brand and fulfill user needs.',
-    items: [
-      { label: 'UI/UX Design', value: 'Visual UI Design' },
-      { label: 'User Research', value: 'Usability Testing' },
-      { label: 'Wireframe & Prototyping', value: 'Interaction Design' },
-    ],
-    gradient: 'from-[#592DB5]/90 to-[#773DF2]/90',
-    accentLight: 'bg-[#592DB5]/10',
-    accentColor: 'text-[#773DF2]',
-    accentBorder: 'border-[#592DB5]/20',
-    tools: ['Figma', 'XD', 'Sketch', 'Principle'],
+    serviceList: 'UI/UX Design, App Design, Website Design, Dashboard Design, Wireframing & Prototyping, Interaction Design, and Product Design.',
+    gradient: 'from-violet-600 to-purple-700',
+  },
+  {
+    icon: Code2,
+    title: 'Web Development',
+    route: 'product-design',
+    subtitle: 'Building visually appealing & functional websites.',
+    description: 'Frontend Development, Backend Development, Full Stack Solutions, Mobile App Development, Custom Web Applications, API Integration.',
+    serviceList: 'Frontend Development, Backend Development, Full Stack Solutions, Mobile App Development, Custom Web Applications, API Integration.',
+    gradient: 'from-amber-500 to-orange-600',
   },
   {
     icon: Palette,
@@ -34,50 +42,17 @@ const services: { icon: typeof Layers; title: string; subtitle: string; descript
     route: 'product-design',
     subtitle: 'Creating memorable identities for brands.',
     description: 'Create distinctive logos and cohesive brand identities that reflect your company\'s essence with our advanced logo and branding services that help you connect with your target audience.',
-    items: [
-      { label: 'Custom Logo Design', value: 'Brand Identity Development' },
-      { label: 'Brand Guidelines & Strategy', value: 'Typography & Color Palette' },
-      { label: 'Marketing Collateral', value: 'Social Media Branding' },
-    ],
-    gradient: 'from-[#773DF2]/90 to-[#592DB5]/90',
-    accentLight: 'bg-[#773DF2]/10',
-    accentColor: 'text-[#773DF2]',
-    accentBorder: 'border-[#773DF2]/20',
-    tools: ['Illustrator', 'Photoshop', 'Figma', 'After Effects'],
+    serviceList: 'Logo Design, Full Branding, Business Branding, 3D Logo, Custom Logo, Visual Identity, Brand Strategy, Social Media Branding, and Brand Guidelines.',
+    gradient: 'from-emerald-500 to-teal-600',
   },
   {
-    icon: Globe,
-    title: 'Web Design',
+    icon: Globe2,
+    title: 'Webflow & Framer',
     route: 'product-design',
-    subtitle: 'Building visually appealing & functional websites.',
-    description: 'We create visually appealing and user-friendly websites that offer flawless navigation, optimized performance, and a strong connection to your brand\'s identity.',
-    items: [
-      { label: 'Responsive Web Design', value: 'UI/UX Design' },
-      { label: 'E-commerce Website', value: 'Figma Sites Development' },
-      { label: 'CMS Integration', value: 'Landing Page Design' },
-    ],
-    gradient: 'from-[#592DB5]/80 to-[#9B6BF5]/90',
-    accentLight: 'bg-[#592DB5]/10',
-    accentColor: 'text-[#592DB5]',
-    accentBorder: 'border-[#592DB5]/20',
-    tools: ['Figma', 'Webflow', 'Framer', 'WordPress'],
-  },
-  {
-    icon: Smartphone,
-    title: 'Mobile App Design',
-    route: 'mobile-app-design',
-    subtitle: 'Intuitive interfaces for every device.',
-    description: 'We design mobile experiences that are simple to use and visually appealing. Our design ensures smoother performance and maximum value for users on every device.',
-    items: [
-      { label: 'App Concept & Strategy', value: 'UI/UX for Mobile' },
-      { label: 'Interaction Design', value: 'Mobile Prototyping' },
-      { label: 'Responsive Design', value: 'App Screenshot Service' },
-    ],
-    gradient: 'from-[#773DF2]/80 to-[#B68DF7]/90',
-    accentLight: 'bg-[#773DF2]/10',
-    accentColor: 'text-[#773DF2]',
-    accentBorder: 'border-[#773DF2]/20',
-    tools: ['Figma', 'ProtoPie', 'Principle', 'InVision'],
+    subtitle: 'Interactive web designs made simple.',
+    description: 'We create visually appealing and user-friendly websites that offer flawless navigation, optimized performance, and a strong connection to your brand\'s identity using modern no-code tools.',
+    serviceList: 'Custom Webflow Websites, Webflow Plugin, Framer Prototypes, Framer Material, Framer App, CMS Integration, Rapid Development.',
+    gradient: 'from-sky-500 to-blue-600',
   },
   {
     icon: BarChart3,
@@ -85,33 +60,8 @@ const services: { icon: typeof Layers; title: string; subtitle: string; descript
     route: 'saas-design',
     subtitle: 'Intuitive interfaces that boost user engagement.',
     description: 'We focus on designing user-friendly and high-performing SaaS products that streamline workflows and enhance user satisfaction. We ensure a smooth journey from start to finish.',
-    items: [
-      { label: 'SaaS Product Strategy', value: 'UI/UX Design for SaaS' },
-      { label: 'Dashboard & Admin Panel', value: 'Usability Testing' },
-      { label: 'Onboarding Experience', value: 'Design System Creation' },
-    ],
-    gradient: 'from-[#4520A0]/90 to-[#592DB5]/90',
-    accentLight: 'bg-[#4520A0]/10',
-    accentColor: 'text-[#592DB5]',
-    accentBorder: 'border-[#4520A0]/20',
-    tools: ['Figma', 'Mixpanel', 'Hotjar', 'Dovetail'],
-  },
-  {
-    icon: Shield,
-    title: 'UX Audit',
-    route: 'ux-audit',
-    subtitle: 'Comprehensive usability analysis for growth.',
-    description: 'Comprehensive usability analysis that identifies friction points and reveals growth opportunities. We analyze your product end-to-end and provide actionable recommendations.',
-    items: [
-      { label: 'Heuristic Evaluation', value: 'User Flow Analysis' },
-      { label: 'Accessibility Audit', value: 'Performance Review' },
-      { label: 'Competitive Analysis', value: 'Actionable Report' },
-    ],
-    gradient: 'from-[#592DB5]/90 to-[#4520A0]/90',
-    accentLight: 'bg-[#592DB5]/10',
-    accentColor: 'text-[#773DF2]',
-    accentBorder: 'border-[#592DB5]/20',
-    tools: ['Hotjar', 'Maze', 'Lighthouse', 'Axe'],
+    serviceList: 'SaaS Product Strategy, UI/UX Design for SaaS, Dashboard & Admin Panel, Usability Testing, Onboarding Experience, Design System Creation.',
+    gradient: 'from-rose-500 to-pink-600',
   },
 ]
 
@@ -127,27 +77,32 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
         ref={ref}
         initial={{ opacity: 0, y: 60 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.7, delay: index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+        transition={{ duration: 0.7, delay: index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onClick={() => navigate(service.route)}
         className="group relative rounded-2xl border border-border/50 bg-card overflow-hidden cursor-pointer"
       >
-        {/* Image/gradient banner area */}
+        {/* Gradient banner area - same as Design Monks */}
         <div className={`relative h-48 md:h-56 bg-gradient-to-br ${service.gradient} overflow-hidden`}>
           {/* Dot pattern overlay */}
           <div className="absolute inset-0 dot-pattern opacity-10" />
-          
-          {/* Animated shapes */}
+
+          {/* Animated decorative shapes */}
           <motion.div
             className="absolute -right-12 -top-12 w-48 h-48 rounded-full bg-white/10"
             animate={isHovered ? { scale: 1.2, rotate: 45 } : { scale: 1, rotate: 0 }}
-            transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] }}
           />
           <motion.div
             className="absolute -left-8 -bottom-8 w-32 h-32 rounded-full bg-white/5"
             animate={isHovered ? { scale: 1.3, x: 10 } : { scale: 1, x: 0 }}
-            transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] }}
+          />
+          <motion.div
+            className="absolute right-1/4 top-1/4 w-20 h-20 rounded-full bg-white/5"
+            animate={isHovered ? { scale: 1.5, y: -10 } : { scale: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
           />
 
           {/* Service icon and title on the banner */}
@@ -177,41 +132,27 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
           </motion.div>
         </div>
 
-        {/* Content area */}
+        {/* Content area - Design Monks style */}
         <div className="p-6 md:p-8">
+          {/* Description */}
           <p className="text-muted-foreground text-sm leading-relaxed mb-6">
             {service.description}
           </p>
 
-          {/* Two-column service listing */}
-          <div className="grid grid-cols-2 gap-3 mb-6">
-            {service.items.map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: -10 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.3 + i * 0.1, duration: 0.4 }}
-                className="flex items-center gap-2 text-sm group/item cursor-pointer"
-              >
-                <ChevronRight className="h-3.5 w-3.5 text-muted-foreground shrink-0 group-hover/item:text-[#773DF2] group-hover/item:translate-x-0.5 transition-all duration-200" />
-                <span className="text-foreground/80 group-hover/item:text-foreground transition-colors duration-200">
-                  {item.label}
-                </span>
-              </motion.div>
-            ))}
-          </div>
+          {/* Comma-separated service list - same as Design Monks */}
+          <p className="text-sm text-foreground/80 leading-relaxed mb-6">
+            {service.serviceList}
+          </p>
 
-          {/* Tool icons row */}
-          <div className="flex items-center gap-2 pt-4 border-t border-border/50">
-            <span className="text-xs text-muted-foreground mr-2">Tools:</span>
-            {service.tools.map((tool) => (
-              <span
-                key={tool}
-                className={`text-xs px-2.5 py-1 rounded-full ${service.accentLight} ${service.accentColor} border ${service.accentBorder} font-medium`}
-              >
-                {tool}
-              </span>
-            ))}
+          {/* See More link - same as Design Monks */}
+          <div className="flex items-center pt-4 border-t border-border/50">
+            <motion.span
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-[#773DF2] hover:text-[#592DB5] transition-colors cursor-pointer group/see"
+              whileHover={{ x: 4 }}
+            >
+              See More
+              <ChevronRight className="h-4 w-4 group-hover/see:translate-x-1 transition-transform" />
+            </motion.span>
           </div>
         </div>
 
@@ -247,7 +188,7 @@ export function Services() {
           ))}
         </StaggerContainer>
 
-        {/* Bottom CTA */}
+        {/* Bottom CTA - Book a Call button */}
         <AnimatedSection className="text-center mt-12 md:mt-16">
           <motion.button
             onClick={() => navigate('contact')}
@@ -255,7 +196,7 @@ export function Services() {
             whileTap={{ scale: 0.98 }}
             className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-[#592DB5] to-[#773DF2] text-white font-semibold text-base hover:shadow-[0_0_40px_#592DB540] transition-all duration-500"
           >
-            Start a Project
+            Book a Call
             <ArrowRight className="h-4 w-4" />
           </motion.button>
         </AnimatedSection>
