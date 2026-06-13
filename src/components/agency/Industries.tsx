@@ -9,12 +9,13 @@ import {
   Truck, Globe, Code, Gavel, Leaf, Gamepad2, ShoppingBag, Droplet
 } from 'lucide-react'
 import { ArrowRight } from 'lucide-react'
+import { useRouter, type PageRoute } from '@/hooks/use-router'
 
-const industries = [
-  { icon: Building2, title: 'SaaS', description: 'Effective SaaS solutions that enhance usability, build trust, and drive subscription growth.' },
-  { icon: Landmark, title: 'Fintech', description: 'Regulatory-compliant financial interfaces that build trust and simplify complex transactions.' },
-  { icon: Brain, title: 'AI & ML', description: 'AI-powered products that make complex data accessible and intelligent automation intuitive.' },
-  { icon: HeartPulse, title: 'Healthcare', description: 'HIPAA-aware healthcare interfaces that improve patient outcomes and streamline workflows.' },
+const industries: { icon: typeof Building2; title: string; description: string; route?: PageRoute }[] = [
+  { icon: Building2, title: 'SaaS', description: 'Effective SaaS solutions that enhance usability, build trust, and drive subscription growth.', route: 'saas' },
+  { icon: Landmark, title: 'Fintech', description: 'Regulatory-compliant financial interfaces that build trust and simplify complex transactions.', route: 'fintech' },
+  { icon: Brain, title: 'AI & ML', description: 'AI-powered products that make complex data accessible and intelligent automation intuitive.', route: 'ai' },
+  { icon: HeartPulse, title: 'Healthcare', description: 'HIPAA-aware healthcare interfaces that improve patient outcomes and streamline workflows.', route: 'healthcare' },
   { icon: Plane, title: 'Tourism', description: 'Smooth UX designs for tourism websites to simplify travel planning and inspire bookings.' },
   { icon: UtensilsCrossed, title: 'Food & Beverages', description: 'Smart designs for food platforms that simplify browsing, ordering, and delivery tracking.' },
   { icon: Dumbbell, title: 'Fitness & Gym', description: 'Intuitive design that encourages consistency and keeps users actively engaged.' },
@@ -50,6 +51,7 @@ function IndustryCard({ industry, index }: { industry: typeof industries[0]; ind
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-30px' })
   const gradient = gradients[index % gradients.length]
+  const { navigate } = useRouter()
 
   return (
     <motion.div
@@ -61,7 +63,8 @@ function IndustryCard({ industry, index }: { industry: typeof industries[0]; ind
       <motion.div
         whileHover={{ y: -4, scale: 1.02 }}
         transition={{ duration: 0.3, type: 'spring', stiffness: 200 }}
-        className={`group relative rounded-xl border border-border/50 p-5 bg-gradient-to-br ${gradient} hover:border-border cursor-pointer h-full overflow-hidden`}
+        onClick={() => industry.route && navigate(industry.route)}
+        className={`group relative rounded-xl border border-border/50 p-5 bg-gradient-to-br ${gradient} hover:border-border ${industry.route ? 'cursor-pointer' : ''} h-full overflow-hidden`}
       >
         {/* Icon */}
         <motion.div

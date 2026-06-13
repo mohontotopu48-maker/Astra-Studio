@@ -8,11 +8,13 @@ import {
   Globe, ChevronRight
 } from 'lucide-react'
 import { AnimatedSection, StaggerContainer, StaggerItem } from '@/lib/animations'
+import { useRouter, type PageRoute } from '@/hooks/use-router'
 
-const services = [
+const services: { icon: typeof Layers; title: string; subtitle: string; description: string; items: { label: string; value: string }[]; gradient: string; accentLight: string; accentColor: string; accentBorder: string; tools: string[]; route: PageRoute }[] = [
   {
     icon: Layers,
     title: 'UI/UX Design',
+    route: 'product-design',
     subtitle: 'Creating user-friendly digital experiences.',
     description: 'When it comes to UI/UX design, we create experiences that are simple to navigate. Our goal is to deliver user-friendly interactions that align with your brand and fulfill user needs.',
     items: [
@@ -29,6 +31,7 @@ const services = [
   {
     icon: Palette,
     title: 'Logo & Branding',
+    route: 'product-design',
     subtitle: 'Creating memorable identities for brands.',
     description: 'Create distinctive logos and cohesive brand identities that reflect your company\'s essence with our advanced logo and branding services that help you connect with your target audience.',
     items: [
@@ -45,6 +48,7 @@ const services = [
   {
     icon: Globe,
     title: 'Web Design',
+    route: 'product-design',
     subtitle: 'Building visually appealing & functional websites.',
     description: 'We create visually appealing and user-friendly websites that offer flawless navigation, optimized performance, and a strong connection to your brand\'s identity.',
     items: [
@@ -61,6 +65,7 @@ const services = [
   {
     icon: Smartphone,
     title: 'Mobile App Design',
+    route: 'mobile-app-design',
     subtitle: 'Intuitive interfaces for every device.',
     description: 'We design mobile experiences that are simple to use and visually appealing. Our design ensures smoother performance and maximum value for users on every device.',
     items: [
@@ -77,6 +82,7 @@ const services = [
   {
     icon: BarChart3,
     title: 'SaaS Design',
+    route: 'saas-design',
     subtitle: 'Intuitive interfaces that boost user engagement.',
     description: 'We focus on designing user-friendly and high-performing SaaS products that streamline workflows and enhance user satisfaction. We ensure a smooth journey from start to finish.',
     items: [
@@ -93,6 +99,7 @@ const services = [
   {
     icon: Shield,
     title: 'UX Audit',
+    route: 'ux-audit',
     subtitle: 'Comprehensive usability analysis for growth.',
     description: 'Comprehensive usability analysis that identifies friction points and reveals growth opportunities. We analyze your product end-to-end and provide actionable recommendations.',
     items: [
@@ -112,6 +119,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
   const [isHovered, setIsHovered] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const { navigate } = useRouter()
 
   return (
     <StaggerItem>
@@ -122,6 +130,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
         transition={{ duration: 0.7, delay: index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
+        onClick={() => navigate(service.route)}
         className="group relative rounded-2xl border border-border/50 bg-card overflow-hidden cursor-pointer"
       >
         {/* Image/gradient banner area */}
@@ -214,6 +223,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
 }
 
 export function Services() {
+  const { navigate } = useRouter()
   return (
     <section id="services" className="py-24 md:py-32 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -239,15 +249,15 @@ export function Services() {
 
         {/* Bottom CTA */}
         <AnimatedSection className="text-center mt-12 md:mt-16">
-          <motion.a
-            href="#contact"
+          <motion.button
+            onClick={() => navigate('contact')}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-[#592DB5] to-[#773DF2] text-white font-semibold text-base hover:shadow-[0_0_40px_#592DB540] transition-all duration-500"
           >
             Start a Project
             <ArrowRight className="h-4 w-4" />
-          </motion.a>
+          </motion.button>
         </AnimatedSection>
       </div>
     </section>

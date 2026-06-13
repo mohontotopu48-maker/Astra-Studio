@@ -5,9 +5,11 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowRight, Calendar, Mail } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { AnimatedSection } from '@/lib/animations'
+import { useRouter } from '@/hooks/use-router'
 
 export function CTA() {
   const sectionRef = useRef<HTMLElement>(null)
+  const { navigate } = useRouter()
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start end', 'end start'],
@@ -78,23 +80,21 @@ export function CTA() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
             <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
               <Button
-                asChild
+                onClick={() => navigate('contact')}
                 size="lg"
                 className="bg-gradient-to-r from-[#592DB5] to-[#773DF2] text-white border-0 hover:shadow-[0_0_60px_#592DB550] transition-all duration-700 rounded-full px-10 py-7 text-lg group relative overflow-hidden h-[56px]"
               >
-                <a href="#contact-form">
-                  <span className="relative z-10 flex items-center">
-                    <Calendar className="mr-2 h-5 w-5" />
-                    Book a Discovery Call
-                    <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                  </span>
-                  {/* Animated shimmer */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                    animate={{ x: ['-200%', '200%'] }}
-                    transition={{ duration: 3, repeat: Infinity, repeatDelay: 4, ease: 'linear' }}
-                  />
-                </a>
+                <span className="relative z-10 flex items-center">
+                  <Calendar className="mr-2 h-5 w-5" />
+                  Book a Discovery Call
+                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                </span>
+                {/* Animated shimmer */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                  animate={{ x: ['-200%', '200%'] }}
+                  transition={{ duration: 3, repeat: Infinity, repeatDelay: 4, ease: 'linear' }}
+                />
               </Button>
             </motion.div>
             <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>

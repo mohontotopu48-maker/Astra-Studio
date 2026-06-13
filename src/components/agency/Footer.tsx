@@ -1,65 +1,71 @@
 'use client'
 
+import { useRouter, type PageRoute } from '@/hooks/use-router'
 import { Separator } from '@/components/ui/separator'
 
-const footerLinks = {
+const footerLinks: Record<string, { label: string; route: PageRoute }[]> = {
   Services: [
-    { label: 'Product Design', href: '#services' },
-    { label: 'SaaS Design', href: '#services' },
-    { label: 'Dashboard Design', href: '#services' },
-    { label: 'Mobile App Design', href: '#services' },
-    { label: 'UX Audit', href: '#services' },
-    { label: 'Design Systems', href: '#services' },
+    { label: 'Product Design', route: 'product-design' },
+    { label: 'SaaS Design', route: 'saas-design' },
+    { label: 'Dashboard Design', route: 'dashboard-design' },
+    { label: 'Mobile App Design', route: 'mobile-app-design' },
+    { label: 'UX Audit', route: 'ux-audit' },
+    { label: 'Design Systems', route: 'design-systems' },
   ],
   Company: [
-    { label: 'About', href: '#about' },
-    { label: 'Case Studies', href: '#work' },
-    { label: 'Process', href: '#process' },
-    { label: 'Careers', href: '#' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'About', route: 'about' },
+    { label: 'Case Studies', route: 'case-studies' },
+    { label: 'Process', route: 'process' },
+    { label: 'Careers', route: 'careers' },
+    { label: 'Contact', route: 'contact' },
   ],
   Industries: [
-    { label: 'SaaS', href: '#' },
-    { label: 'Fintech', href: '#' },
-    { label: 'AI', href: '#' },
-    { label: 'Healthcare', href: '#' },
+    { label: 'SaaS', route: 'saas' },
+    { label: 'Fintech', route: 'fintech' },
+    { label: 'AI', route: 'ai' },
+    { label: 'Healthcare', route: 'healthcare' },
   ],
   Resources: [
-    { label: 'Blog', href: '#' },
-    { label: 'FAQ', href: '#' },
-    { label: 'Privacy Policy', href: '#' },
-    { label: 'Terms of Service', href: '#' },
+    { label: 'Blog', route: 'blog' },
+    { label: 'FAQ', route: 'faq' },
+    { label: 'Privacy Policy', route: 'privacy-policy' },
+    { label: 'Terms of Service', route: 'terms-of-service' },
   ],
 }
 
 export function Footer() {
+  const { navigate, goHome } = useRouter()
+
   return (
     <footer className="bg-surface border-t border-border/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-12">
           {/* Brand column */}
           <div className="col-span-2 md:col-span-1">
-            <a href="#" className="flex items-center gap-2 mb-4">
+            <button
+              onClick={goHome}
+              className="flex items-center gap-2 mb-4"
+            >
               <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#592DB5] to-[#773DF2] flex items-center justify-center">
                 <span className="text-white font-bold text-sm">A</span>
               </div>
               <span className="text-lg font-semibold font-display tracking-tight">
                 Astra Studio
               </span>
-            </a>
+            </button>
             <p className="text-sm text-muted-foreground leading-relaxed mb-4">
               Premium UI/UX &amp; Brand Design Agency. Crafting digital
               experiences that drive growth.
             </p>
             <div className="flex gap-3">
               {['X', 'Li', 'Dr', 'Ig'].map((social) => (
-                <a
+                <button
                   key={social}
-                  href="#"
+                  onClick={goHome}
                   className="w-8 h-8 rounded-full border border-border flex items-center justify-center text-xs text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-colors"
                 >
                   {social}
-                </a>
+                </button>
               ))}
             </div>
           </div>
@@ -71,12 +77,12 @@ export function Footer() {
               <ul className="space-y-2.5">
                 {links.map((link) => (
                   <li key={link.label}>
-                    <a
-                      href={link.href}
+                    <button
+                      onClick={() => navigate(link.route)}
                       className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                     >
                       {link.label}
-                    </a>
+                    </button>
                   </li>
                 ))}
               </ul>
@@ -91,12 +97,18 @@ export function Footer() {
             © {new Date().getFullYear()} Astra Studio. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <button
+              onClick={() => navigate('privacy-policy')}
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
               Privacy Policy
-            </a>
-            <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            </button>
+            <button
+              onClick={() => navigate('terms-of-service')}
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
               Terms of Service
-            </a>
+            </button>
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 'use client'
 
+import { useRouter, type PageRoute } from '@/hooks/use-router'
 import { Navigation } from '@/components/agency/Navigation'
 import { Hero } from '@/components/agency/Hero'
 import { ClientLogos } from '@/components/agency/ClientLogos'
@@ -17,14 +18,63 @@ import { CustomCursor } from '@/components/agency/CustomCursor'
 import { PageLoader } from '@/components/agency/PageLoader'
 import { ScrollProgress } from '@/components/agency/ScrollProgress'
 
-export default function Home() {
+// Service pages
+import ProductDesignPage from '@/components/pages/services/ProductDesignPage'
+import SaaSDesignPage from '@/components/pages/services/SaaSDesignPage'
+import DashboardDesignPage from '@/components/pages/services/DashboardDesignPage'
+import MobileAppDesignPage from '@/components/pages/services/MobileAppDesignPage'
+import UXAuditPage from '@/components/pages/services/UXAuditPage'
+import DesignSystemsPage from '@/components/pages/services/DesignSystemsPage'
+
+// Company pages
+import AboutPage from '@/components/pages/company/AboutPage'
+import CaseStudiesPage from '@/components/pages/company/CaseStudiesPage'
+import ProcessPage from '@/components/pages/company/ProcessPage'
+import CareersPage from '@/components/pages/company/CareersPage'
+import ContactPage from '@/components/pages/company/ContactPage'
+
+// Industry pages
+import SaaSPage from '@/components/pages/industries/SaaSPage'
+import FintechPage from '@/components/pages/industries/FintechPage'
+import AIPage from '@/components/pages/industries/AIPage'
+import HealthcarePage from '@/components/pages/industries/HealthcarePage'
+
+// Resource pages
+import { BlogPage } from '@/components/pages/resources/BlogPage'
+import { FAQPage } from '@/components/pages/resources/FAQPage'
+import { PrivacyPolicyPage } from '@/components/pages/resources/PrivacyPolicyPage'
+import { TermsOfServicePage } from '@/components/pages/resources/TermsOfServicePage'
+
+const pageMap: Record<PageRoute, React.ComponentType> = {
+  home: () => null, // handled separately
+  'product-design': ProductDesignPage,
+  'saas-design': SaaSDesignPage,
+  'dashboard-design': DashboardDesignPage,
+  'mobile-app-design': MobileAppDesignPage,
+  'ux-audit': UXAuditPage,
+  'design-systems': DesignSystemsPage,
+  about: AboutPage,
+  'case-studies': CaseStudiesPage,
+  process: ProcessPage,
+  careers: CareersPage,
+  contact: ContactPage,
+  saas: SaaSPage,
+  fintech: FintechPage,
+  ai: AIPage,
+  healthcare: HealthcarePage,
+  blog: BlogPage,
+  faq: FAQPage,
+  'privacy-policy': PrivacyPolicyPage,
+  'terms-of-service': TermsOfServicePage,
+}
+
+function HomePage() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <>
       <PageLoader />
       <CustomCursor />
       <ScrollProgress />
       <Navigation />
-
       <main className="flex-1">
         <Hero />
         <ClientLogos />
@@ -38,8 +88,30 @@ export default function Home() {
         <CTA />
         <ContactForm />
       </main>
-
       <Footer />
+    </>
+  )
+}
+
+export default function Home() {
+  const { currentRoute } = useRouter()
+
+  if (currentRoute === 'home') {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <HomePage />
+      </div>
+    )
+  }
+
+  const PageComponent = pageMap[currentRoute]
+  if (PageComponent) {
+    return <PageComponent />
+  }
+
+  return (
+    <div className="min-h-screen flex flex-col">
+      <HomePage />
     </div>
   )
 }
