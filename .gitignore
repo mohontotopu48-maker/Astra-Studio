@@ -55,3 +55,9 @@ examples/
 tailwind.config.ts
 mini-services/
 worklog.md
+
+# Upload directory
+upload/
+
+# Extracted PDF images
+page*.png

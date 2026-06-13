@@ -5,13 +5,6 @@ import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { ArrowRight, Sparkles, Phone, Star, ChevronDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
-const heroStats = [
-  { value: '200+', label: 'Projects Delivered' },
-  { value: '50+', label: 'Enterprise Clients' },
-  { value: '4.9', label: 'Average Rating' },
-  { value: '12', label: 'Design Awards' },
-]
-
 const trustedLogos = [
   'Google', 'Microsoft', 'Stripe', 'Spotify', 'Notion', 'Figma', 'Shopify', 'Airbnb',
 ]
@@ -199,10 +192,10 @@ export function Hero() {
           >
             <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full border border-border/50 bg-surface/50 backdrop-blur-sm">
               <div className="flex items-center gap-1">
-                <span className="text-lg font-bold gradient-text">4.9</span>
+                <span className="text-lg font-bold text-yellow-400">4.9</span>
                 <div className="flex">
                   {[1, 2, 3, 4, 5].map((i) => (
-                    <Star key={i} className="h-3.5 w-3.5 fill-[#773DF2] text-[#773DF2]" />
+                    <Star key={i} className="h-3.5 w-3.5 fill-yellow-400 text-yellow-400" />
                   ))}
                 </div>
               </div>
@@ -239,8 +232,8 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 3.8, ease: [0.76, 0, 0.24, 1] }}
             className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed"
           >
-            Astra Studio is a premium design agency that transforms complex ideas into
-            elegant, conversion-focused digital experiences for the world&apos;s leading brands.
+            We transform complex ideas into elegant,<br />
+            conversion-focused digital experiences.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -310,35 +303,7 @@ export function Hero() {
             </div>
           </motion.div>
 
-          {/* Stats with stagger */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 4.5 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto"
-          >
-            {heroStats.map((stat, i) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{
-                  duration: 0.6,
-                  delay: 4.6 + i * 0.12,
-                  ease: [0.76, 0, 0.24, 1],
-                }}
-                whileHover={{ scale: 1.05, y: -2 }}
-                className="text-center cursor-default"
-              >
-                <div className="text-2xl sm:text-3xl font-bold gradient-text mb-1 font-display">
-                  {stat.value}
-                </div>
-                <div className="text-xs sm:text-sm text-muted-foreground">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
+
 
           {/* Scroll indicator */}
           <motion.div
