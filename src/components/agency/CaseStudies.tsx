@@ -1,12 +1,24 @@
 'use client'
 
-import { useRef, useState, useEffect } from 'react'
-import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'framer-motion'
-import { ArrowUpRight, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react'
-import { Badge } from '@/components/ui/badge'
+import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
+import { ArrowRight } from 'lucide-react'
 import { AnimatedSection } from '@/lib/animations'
+import { useRouter, type PageRoute } from '@/hooks/use-router'
 
-const caseStudies = [
+interface CaseStudy {
+  title: string
+  description: string
+  category: string
+  metrics: { label: string; value: string }[]
+  client: { name: string; role: string; avatar: string }
+  image: string
+  bgColor: string
+  tagColor: string
+  route: PageRoute
+}
+
+const caseStudies: CaseStudy[] = [
   {
     title: 'Easy Booking for Dream Trips',
     description: 'Triply is a hassle-free & effective tour solution for travelers. It\'s an all-inclusive booking and planning website that helps people make their dream trips easier.',
@@ -15,11 +27,11 @@ const caseStudies = [
       { label: 'Pages in Projects', value: '40+' },
       { label: 'Retention Growth', value: '36%' },
     ],
-    client: { name: 'Shubho Al-Faroque', role: 'Triply CEO' },
-    gradient: 'from-[#592DB5]/90 to-[#773DF2]/90',
-    bgColor: 'bg-[#592DB5]',
-    accentColor: 'text-[#773DF2]',
-    iconBg: 'bg-[#592DB5]/10',
+    client: { name: 'Shubho Al-Faroque', role: 'Triply CEO', avatar: 'SA' },
+    image: '/images/case-travel.png',
+    bgColor: 'bg-[#C6CFFF]',         // Light blue/lavender
+    tagColor: 'text-[#1a1a2e]',
+    route: 'case-studies',
   },
   {
     title: 'Transform Your Dining',
@@ -27,261 +39,197 @@ const caseStudies = [
     category: 'Restaurant',
     metrics: [
       { label: 'Location', value: 'France' },
-      { label: 'Duration', value: '5 Months' },
+      { label: 'Project Duration', value: '5 Months' },
     ],
-    client: { name: 'Neil Saidi', role: 'Plate CEO' },
-    gradient: 'from-[#773DF2]/90 to-[#592DB5]/90',
-    bgColor: 'bg-[#773DF2]',
-    accentColor: 'text-[#773DF2]',
-    iconBg: 'bg-[#773DF2]/10',
+    client: { name: 'Neil Saidi', role: 'Plate CEO', avatar: 'NS' },
+    image: '/images/case-restaurant.png',
+    bgColor: 'bg-[#FFB8B0]',         // Light coral/pink
+    tagColor: 'text-[#1a1a2e]',
+    route: 'case-studies',
   },
   {
     title: 'Reducing Carbon Footprints',
     description: 'Yenex is a smart and sustainable energy platform. It empowers users with distributed energy solutions to reduce carbon footprints effortlessly.',
     category: 'SaaS',
     metrics: [
-      { label: 'Timeline', value: '2.5 Months' },
+      { label: 'Project Timeline', value: '2.5 Months' },
       { label: 'Customer Acquisition', value: '40%' },
     ],
-    client: { name: 'Ted Nash', role: 'Yenex CEO' },
-    gradient: 'from-[#592DB5]/80 to-[#9B6BF5]/90',
-    bgColor: 'bg-[#9B6BF5]',
-    accentColor: 'text-[#9B6BF5]',
-    iconBg: 'bg-[#592DB5]/10',
+    client: { name: 'Ted Nash', role: 'Yenex CEO', avatar: 'TN' },
+    image: '/images/case-saas.png',
+    bgColor: 'bg-[#FBE8A4]',         // Light warm yellow
+    tagColor: 'text-[#1a1a2e]',
+    route: 'case-studies',
   },
   {
     title: 'Revolutionize Fitness Goals',
     description: 'Fitmate transforms fitness in Australia with flexible gym access, personalized schedules, and AI-driven insights to solve common workout limitations for users.',
     category: 'Healthcare',
     metrics: [
-      { label: 'Scope', value: 'Mobile App' },
-      { label: 'Duration', value: '2 Months' },
+      { label: 'Project Scope', value: 'Mobile App' },
+      { label: 'Project Duration', value: '2 Months' },
     ],
-    client: { name: 'Omar', role: 'Fitmate CEO' },
-    gradient: 'from-[#4520A0]/90 to-[#592DB5]/90',
-    bgColor: 'bg-[#4520A0]',
-    accentColor: 'text-[#592DB5]',
-    iconBg: 'bg-[#4520A0]/10',
+    client: { name: 'Omar', role: 'Fitmate CEO', avatar: 'OM' },
+    image: '/images/case-healthcare.png',
+    bgColor: 'bg-[#ABF5FF]',         // Light cyan
+    tagColor: 'text-[#1a1a2e]',
+    route: 'case-studies',
   },
   {
     title: 'Simplifying Vehicle Care',
     description: 'Zantrik is an innovative vehicle maintenance app. We revamped it with a fresh design, gamification, and intuitive features to boost user engagement.',
-    category: 'Vehicle',
+    category: 'Vehicle Maintenance Platform',
     metrics: [
-      { label: 'Duration', value: '8 Weeks' },
-      { label: 'Scope', value: 'Mobile App' },
+      { label: 'Project Duration', value: '8 Weeks' },
+      { label: 'Work Scope', value: 'Mobile App' },
     ],
-    client: { name: 'Shubho Al-Farooque', role: 'Zantrik CEO' },
-    gradient: 'from-[#773DF2]/80 to-[#B68DF7]/90',
-    bgColor: 'bg-[#773DF2]',
-    accentColor: 'text-[#773DF2]',
-    iconBg: 'bg-[#773DF2]/10',
+    client: { name: 'Shubho Al-Farooque', role: 'Zantrik CEO', avatar: 'SA' },
+    image: '/images/case-vehicle.png',
+    bgColor: 'bg-[#C9FFF7]',         // Light mint/teal
+    tagColor: 'text-[#1a1a2e]',
+    route: 'case-studies',
   },
 ]
 
-export function CaseStudies() {
-  const scrollContainerRef = useRef<HTMLDivElement>(null)
-  const [canScrollLeft, setCanScrollLeft] = useState(false)
-  const [canScrollRight, setCanScrollRight] = useState(true)
-
-  const checkScroll = () => {
-    const el = scrollContainerRef.current
-    if (!el) return
-    setCanScrollLeft(el.scrollLeft > 0)
-    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10)
-  }
-
-  useEffect(() => {
-    const el = scrollContainerRef.current
-    if (!el) return
-    checkScroll()
-    el.addEventListener('scroll', checkScroll)
-    return () => el.removeEventListener('scroll', checkScroll)
-  }, [])
-
-  const scroll = (direction: 'left' | 'right') => {
-    const el = scrollContainerRef.current
-    if (!el) return
-    const scrollAmount = el.clientWidth * 0.8
-    el.scrollBy({
-      left: direction === 'left' ? -scrollAmount : scrollAmount,
-      behavior: 'smooth',
-    })
-  }
-
-  return (
-    <section id="work" className="py-24 md:py-32 bg-surface relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#592DB5] opacity-[0.03] blur-[200px] rounded-full" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#773DF2] opacity-[0.03] blur-[200px] rounded-full" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-16 md:mb-20">
-          <span className="text-sm text-[#773DF2] font-medium uppercase tracking-widest mb-4 block">
-            Industry Wins
-          </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-display tracking-tight mb-6">
-            Proven Success in{' '}
-            <span className="gradient-text">Every Industry</span>
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Real results for real businesses. Every project is a partnership
-            built on trust and driven by measurable outcomes.
-          </p>
-        </AnimatedSection>
-
-        {/* Horizontal scroll container */}
-        <div className="relative">
-          {/* Navigation arrows */}
-          <div className="flex items-center justify-end gap-2 mb-6">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => scroll('left')}
-              disabled={!canScrollLeft}
-              className={`w-10 h-10 rounded-full border border-border flex items-center justify-center transition-all duration-300 ${
-                canScrollLeft
-                  ? 'bg-card hover:bg-accent hover:border-[#592DB5]/30 cursor-pointer'
-                  : 'opacity-30 cursor-not-allowed'
-              }`}
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => scroll('right')}
-              disabled={!canScrollRight}
-              className={`w-10 h-10 rounded-full border border-border flex items-center justify-center transition-all duration-300 ${
-                canScrollRight
-                  ? 'bg-card hover:bg-accent hover:border-[#592DB5]/30 cursor-pointer'
-                  : 'opacity-30 cursor-not-allowed'
-              }`}
-            >
-              <ChevronRight className="h-4 w-4" />
-            </motion.button>
-          </div>
-
-          {/* Scrollable area */}
-          <div
-            ref={scrollContainerRef}
-            className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 snap-x snap-mandatory"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
-            {caseStudies.map((study, i) => (
-              <CaseStudyCard key={study.title} study={study} index={i} />
-            ))}
-          </div>
-
-          {/* Edge fade gradients */}
-          <div className="absolute left-0 top-0 bottom-4 w-8 bg-gradient-to-r from-surface to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-4 w-8 bg-gradient-to-l from-surface to-transparent z-10 pointer-events-none" />
-        </div>
-
-        {/* See all projects link */}
-        <AnimatedSection className="text-center mt-10">
-          <motion.a
-            href="#work"
-            whileHover={{ x: 4 }}
-            className="inline-flex items-center gap-2 text-sm font-medium text-[#773DF2] hover:text-[#773DF2]/80 transition-colors"
-          >
-            See All Projects
-            <ArrowRight className="h-4 w-4" />
-          </motion.a>
-        </AnimatedSection>
-      </div>
-    </section>
-  )
-}
-
-function CaseStudyCard({ study, index }: { study: typeof caseStudies[0]; index: number }) {
+function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-50px' })
+  const isInView = useInView(ref, { once: true, margin: '-80px' })
+  const { navigate } = useRouter()
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="flex-shrink-0 w-[340px] sm:w-[400px] snap-start"
+      transition={{ duration: 0.7, delay: index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+      onClick={() => navigate(study.route)}
+      className="cursor-pointer"
     >
       <motion.div
-        whileHover={{ y: -6, scale: 1.01 }}
+        whileHover={{ y: -4, scale: 1.005 }}
         transition={{ duration: 0.4, type: 'spring', stiffness: 200 }}
-        className="group relative rounded-2xl border border-border/50 bg-card overflow-hidden cursor-pointer h-full"
+        className={`group rounded-2xl ${study.bgColor} overflow-hidden flex flex-col md:flex-row gap-0`}
       >
-        {/* Gradient banner */}
-        <div className={`relative h-44 bg-gradient-to-br ${study.gradient} overflow-hidden`}>
-          {/* Dot pattern */}
-          <div className="absolute inset-0 dot-pattern opacity-10" />
-          
-          {/* Decorative circles */}
-          <motion.div
-            className="absolute -right-8 -top-8 w-32 h-32 rounded-full bg-white/10"
-            whileHover={{ scale: 1.2 }}
-          />
-          <motion.div
-            className="absolute -left-4 -bottom-4 w-24 h-24 rounded-full bg-white/5"
-            whileHover={{ scale: 1.3 }}
-          />
-
-          {/* Category badge */}
-          <div className="absolute top-4 left-4 z-10">
-            <Badge className="bg-white/20 backdrop-blur-sm text-white border-0 text-xs font-medium px-3 py-1">
+        {/* Text Content - Left side */}
+        <div className="flex-1 p-6 sm:p-8 md:p-10 flex flex-col justify-between">
+          {/* Top: Tag, Title, Description */}
+          <div>
+            {/* Industry tag */}
+            <h3 className={`text-lg sm:text-xl font-bold ${study.tagColor} mb-2`}>
               {study.category}
-            </Badge>
+            </h3>
+
+            {/* Title */}
+            <h4 className="text-2xl sm:text-3xl font-bold text-[#0a0a0a] font-display mb-3 leading-tight">
+              {study.title}
+            </h4>
+
+            {/* Description */}
+            <p className="text-sm sm:text-base text-[#555] leading-relaxed mb-6">
+              {study.description}
+            </p>
+
+            {/* Statistics - two columns */}
+            <div className="flex gap-8 sm:gap-12 mb-6">
+              {study.metrics.map((metric, i) => (
+                <div key={i}>
+                  <p className="text-xs sm:text-sm text-[#777] mb-1">{metric.label}</p>
+                  <div className="text-2xl sm:text-3xl font-bold text-[#0a0a0a] font-display">
+                    {metric.value}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* Phone mockup placeholder */}
-          <div className="absolute bottom-4 right-4 w-20 h-36 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center">
-            <div className="w-14 h-28 rounded-lg bg-white/20" />
-          </div>
-        </div>
-
-        {/* Content */}
-        <div className="p-6">
-          <h3 className="text-xl font-bold font-display mb-2 group-hover:gradient-text transition-all duration-300">
-            {study.title}
-          </h3>
-          <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-3">
-            {study.description}
-          </p>
-
-          {/* Metrics */}
-          <div className="flex gap-4 mb-5">
-            {study.metrics.map((metric, i) => (
-              <div key={i}>
-                <div className={`text-lg font-bold ${study.accentColor}`}>{metric.value}</div>
-                <div className="text-xs text-muted-foreground">{metric.label}</div>
+          {/* Bottom: Author + View Project */}
+          <div className="flex items-center justify-between pt-4 border-t border-[#00000015]">
+            <div className="flex items-center gap-3">
+              {/* Author avatar */}
+              <div className="w-10 h-10 rounded-full bg-[#00000015] flex items-center justify-center">
+                <span className="text-xs font-bold text-[#0a0a0a]">{study.client.avatar}</span>
               </div>
-            ))}
-          </div>
+              <div>
+                <div className="text-sm font-semibold text-[#0a0a0a]">{study.client.name}</div>
+                <div className="text-xs text-[#777]">{study.client.role}</div>
+              </div>
+            </div>
 
-          {/* Client testimonial */}
-          <div className="flex items-center gap-3 pt-4 border-t border-border/50">
-            <div className={`w-9 h-9 rounded-full ${study.iconBg} flex items-center justify-center`}>
-              <span className="text-xs font-bold text-foreground/70">
-                {study.client.name.split(' ').map(n => n[0]).join('')}
-              </span>
+            {/* View Project button */}
+            <div className="flex items-center gap-2 text-sm font-medium text-[#0a0a0a] group-hover:gap-3 transition-all duration-300">
+              View Project
+              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
             </div>
-            <div className="flex-1 min-w-0">
-              <div className="text-sm font-medium truncate">{study.client.name}</div>
-              <div className="text-xs text-muted-foreground">{study.client.role}</div>
-            </div>
-            <motion.div
-              whileHover={{ scale: 1.1, rotate: 45 }}
-              transition={{ type: 'spring', stiffness: 300 }}
-              className="w-8 h-8 rounded-full border border-border flex items-center justify-center group-hover:bg-foreground group-hover:text-background group-hover:border-foreground transition-all duration-300 shrink-0"
-            >
-              <ArrowUpRight className="h-3.5 w-3.5" />
-            </motion.div>
           </div>
         </div>
 
-        {/* Bottom accent line */}
-        <div className={`absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r ${study.gradient} scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left`} />
+        {/* Image - Right side */}
+        <div className="w-full md:w-[45%] lg:w-[42%] flex-shrink-0 relative">
+          <div className="h-64 md:h-full overflow-hidden">
+            <motion.img
+              src={study.image}
+              alt={`${study.title} - ${study.category} project showcase`}
+              className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+            />
+          </div>
+          {/* Subtle overlay */}
+          <div className="absolute inset-0 bg-gradient-to-l from-transparent to-[#00000008]" />
+        </div>
       </motion.div>
     </motion.div>
+  )
+}
+
+export function CaseStudies() {
+  const { navigate } = useRouter()
+
+  return (
+    <section id="work" className="py-24 md:py-32 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header - designmonks.co style */}
+        <AnimatedSection className="mb-12 md:mb-16">
+          {/* "Industry Wins" badge */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center px-3 py-1 rounded-full bg-[#592DB5]/10 border border-[#592DB5]/20 mb-4"
+          >
+            <span className="text-xs font-medium text-[#773DF2] uppercase tracking-widest">
+              Industry Wins
+            </span>
+          </motion.div>
+
+          {/* Main heading with emphasis */}
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight font-display">
+            Proven Success in{' '}
+            <em className="not-italic bg-gradient-to-r from-[#592DB5] to-[#773DF2] bg-clip-text text-transparent">
+              Every Industry
+            </em>
+          </h2>
+        </AnimatedSection>
+
+        {/* Case Study Cards - stacked vertically with large gap */}
+        <div className="flex flex-col gap-12 md:gap-20">
+          {caseStudies.map((study, i) => (
+            <CaseStudyCard key={study.title} study={study} index={i} />
+          ))}
+        </div>
+
+        {/* See All Projects button */}
+        <AnimatedSection className="text-center mt-12 md:mt-16">
+          <motion.button
+            onClick={() => navigate('case-studies')}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-[#592DB5] to-[#773DF2] text-white font-semibold text-base hover:shadow-[0_0_40px_#592DB540] transition-all duration-500"
+          >
+            See All Projects
+            <ArrowRight className="h-4 w-4" />
+          </motion.button>
+        </AnimatedSection>
+      </div>
+    </section>
   )
 }
