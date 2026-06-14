@@ -29,7 +29,7 @@ const caseStudies: CaseStudy[] = [
     ],
     client: { name: 'Shubho Al-Faroque', role: 'Triply CEO', avatar: 'SA' },
     image: '/images/case-travel.jpg',
-    bgColor: 'bg-[#C6CFFF]',         // Light blue/lavender
+    bgColor: 'bg-[#C6CFFF]',
     tagColor: 'text-[#1a1a2e]',
     route: 'case-studies',
   },
@@ -43,7 +43,7 @@ const caseStudies: CaseStudy[] = [
     ],
     client: { name: 'Neil Saidi', role: 'Plate CEO', avatar: 'NS' },
     image: '/images/case-restaurant.png',
-    bgColor: 'bg-[#FFB8B0]',         // Light coral/pink
+    bgColor: 'bg-[#FFB8B0]',
     tagColor: 'text-[#1a1a2e]',
     route: 'case-studies',
   },
@@ -57,7 +57,7 @@ const caseStudies: CaseStudy[] = [
     ],
     client: { name: 'Ted Nash', role: 'Yenex CEO', avatar: 'TN' },
     image: '/images/case-saas.png',
-    bgColor: 'bg-[#FBE8A4]',         // Light warm yellow
+    bgColor: 'bg-[#FBE8A4]',
     tagColor: 'text-[#1a1a2e]',
     route: 'case-studies',
   },
@@ -71,21 +71,21 @@ const caseStudies: CaseStudy[] = [
     ],
     client: { name: 'Omar', role: 'Fitmate CEO', avatar: 'OM' },
     image: '/images/case-healthcare.png',
-    bgColor: 'bg-[#ABF5FF]',         // Light cyan
+    bgColor: 'bg-[#ABF5FF]',
     tagColor: 'text-[#1a1a2e]',
     route: 'case-studies',
   },
   {
     title: 'Simplifying Vehicle Care',
     description: 'Zantrik is an innovative vehicle maintenance app. We revamped it with a fresh design, gamification, and intuitive features to boost user engagement.',
-    category: 'Vehicle Maintenance Platform',
+    category: 'Automotive',
     metrics: [
       { label: 'Project Duration', value: '8 Weeks' },
       { label: 'Work Scope', value: 'Mobile App' },
     ],
     client: { name: 'Shubho Al-Farooque', role: 'Zantrik CEO', avatar: 'SA' },
     image: '/images/case-vehicle.png',
-    bgColor: 'bg-[#C9FFF7]',         // Light mint/teal
+    bgColor: 'bg-[#C9FFF7]',
     tagColor: 'text-[#1a1a2e]',
     route: 'case-studies',
   },
@@ -95,6 +95,7 @@ function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
   const { navigate } = useRouter()
+  const isReversed = index % 2 === 1 // Alternate layout on odd cards
 
   return (
     <motion.div
@@ -108,9 +109,9 @@ function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
       <motion.div
         whileHover={{ y: -4, scale: 1.005 }}
         transition={{ duration: 0.4, type: 'spring', stiffness: 200 }}
-        className={`group rounded-2xl ${study.bgColor} overflow-hidden flex flex-col md:flex-row gap-0`}
+        className={`group rounded-2xl ${study.bgColor} overflow-hidden flex flex-col ${isReversed ? 'md:flex-row-reverse' : 'md:flex-row'} gap-0`}
       >
-        {/* Text Content - Left side */}
+        {/* Text Content */}
         <div className="flex-1 p-5 sm:p-7 md:p-8 flex flex-col justify-between">
           {/* Top: Tag, Title, Description */}
           <div>
@@ -163,17 +164,17 @@ function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
           </div>
         </div>
 
-        {/* Image - Right side */}
+        {/* Image */}
         <div className="w-full md:w-[45%] lg:w-[42%] flex-shrink-0 relative">
-          <div className="h-52 md:h-full overflow-hidden">
+          <div className="h-56 sm:h-64 md:min-h-[380px] md:h-full overflow-hidden">
             <motion.img
               src={study.image}
               alt={`${study.title} - ${study.category} project showcase`}
-              className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+              className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
             />
           </div>
           {/* Subtle overlay */}
-          <div className="absolute inset-0 bg-gradient-to-l from-transparent to-[#00000008]" />
+          <div className={`absolute inset-0 ${isReversed ? 'bg-gradient-to-r from-transparent to-[#00000008]' : 'bg-gradient-to-l from-transparent to-[#00000008]'}`} />
         </div>
       </motion.div>
     </motion.div>
@@ -210,7 +211,7 @@ export function CaseStudies() {
           </h2>
         </AnimatedSection>
 
-        {/* Case Study Cards - stacked vertically with large gap */}
+        {/* Case Study Cards - stacked vertically */}
         <div className="flex flex-col gap-8 md:gap-12">
           {caseStudies.map((study, i) => (
             <CaseStudyCard key={study.title} study={study} index={i} />
