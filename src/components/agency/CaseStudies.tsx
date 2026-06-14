@@ -28,7 +28,7 @@ const caseStudies: CaseStudy[] = [
       { label: 'Retention Growth', value: '36%' },
     ],
     client: { name: 'Shubho Al-Faroque', role: 'Triply CEO', avatar: 'SA' },
-    image: '/images/case-travel.png',
+    image: '/images/case-travel.jpg',
     bgColor: 'bg-[#C6CFFF]',         // Light blue/lavender
     tagColor: 'text-[#1a1a2e]',
     route: 'case-studies',
