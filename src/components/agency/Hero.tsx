@@ -194,7 +194,7 @@ export function Hero() {
           >
             <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full border border-border/50 bg-surface/50 backdrop-blur-sm">
               <div className="flex items-center gap-1">
-                <span className="text-lg font-bold text-yellow-400">4.9</span>
+                <span className="text-lg font-bold text-white">4.9</span>
                 <div className="flex">
                   {[1, 2, 3, 4, 5].map((i) => (
                     <Star key={i} className="h-3.5 w-3.5 fill-yellow-400 text-yellow-400" />
