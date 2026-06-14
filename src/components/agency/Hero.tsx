@@ -1,14 +1,10 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
-import { ArrowRight, Sparkles, Phone, Star, ChevronDown } from 'lucide-react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { Sparkles, Phone, Star, ChevronDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useRouter } from '@/hooks/use-router'
-
-const trustedLogos = [
-  'Google', 'Microsoft', 'Stripe', 'Spotify', 'Notion', 'Figma', 'Shopify', 'Airbnb',
-]
 
 // Animated text reveal word by word
 function AnimatedText({ text, className, delay = 0 }: { text: string; className?: string; delay?: number }) {
@@ -279,36 +275,6 @@ export function Hero() {
               </Button>
             </MagneticButton>
           </motion.div>
-
-          {/* Trusted by logos marquee */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 4.3 }}
-            className="mb-12"
-          >
-            <p className="text-xs text-muted-foreground uppercase tracking-widest mb-6">
-              Trusted by 200+ of the world&apos;s top brands
-            </p>
-            <div className="relative overflow-hidden max-w-3xl mx-auto">
-              {/* Edge fade gradients */}
-              <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-background to-transparent z-10" />
-              <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-background to-transparent z-10" />
-              
-              <div className="flex animate-marquee whitespace-nowrap">
-                {[...trustedLogos, ...trustedLogos].map((logo, i) => (
-                  <span
-                    key={i}
-                    className="mx-8 text-lg font-semibold text-muted-foreground/40 hover:text-muted-foreground/60 transition-colors duration-300 cursor-default"
-                  >
-                    {logo}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-
-
 
           {/* Scroll indicator */}
           <motion.div

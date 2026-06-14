@@ -3,7 +3,6 @@
 import { useRouter, type PageRoute } from '@/hooks/use-router'
 import { Navigation } from '@/components/agency/Navigation'
 import { Hero } from '@/components/agency/Hero'
-import { ClientLogos } from '@/components/agency/ClientLogos'
 import { Services } from '@/components/agency/Services'
 import { About } from '@/components/agency/About'
 import { CaseStudies } from '@/components/agency/CaseStudies'
@@ -77,7 +76,6 @@ function HomePage() {
       <Navigation />
       <main className="flex-1">
         <Hero />
-        <ClientLogos />
         <Services />
         <About />
         <CaseStudies />
