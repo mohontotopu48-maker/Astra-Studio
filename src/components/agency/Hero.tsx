@@ -254,7 +254,7 @@ export function Hero() {
                 <a href="#contact">
                   <span className="relative z-10 flex items-center">
                     <Phone className="mr-2 h-4 w-4" />
-                    Book a Strategy Call
+                    Book a Call
                   </span>
                   {/* Shimmer overlay */}
                   <motion.div
@@ -274,7 +274,7 @@ export function Hero() {
               >
                 <span className="flex items-center">
                   <Sparkles className="mr-2 h-4 w-4" />
-                  Let's Make Some Impressive
+                  Discover Us
                 </span>
               </Button>
             </MagneticButton>
