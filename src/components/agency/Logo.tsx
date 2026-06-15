@@ -8,7 +8,7 @@ interface LogoProps {
   onClick?: () => void
 }
 
-// D+N interlocking monogram with double-line strokes, white outline, and neon glow
+// D+N interlocking monogram — clean flat design
 // Brand purple gradient: #592DB5 → #773DF2
 function MonogramIcon({ size = 36 }: { size?: number }) {
   return (
@@ -21,116 +21,35 @@ function MonogramIcon({ size = 36 }: { size?: number }) {
     >
       <defs>
         <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#592DB5" />
-          <stop offset="100%" stopColor="#773DF2" />
+          <stop offset="0%" stopColor="#773DF2" />
+          <stop offset="100%" stopColor="#592DB5" />
         </linearGradient>
-        <linearGradient id="brandGradLight" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#9B6BF5" />
-          <stop offset="100%" stopColor="#B68DF7" />
-        </linearGradient>
-        {/* Neon glow filter */}
-        <filter id="neonGlow" x="-25%" y="-25%" width="150%" height="150%">
-          <feGaussianBlur stdDeviation="2.5" result="blur1" />
-          <feGaussianBlur stdDeviation="5" result="blur2" />
-          <feMerge>
-            <feMergeNode in="blur2" />
-            <feMergeNode in="blur1" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-        {/* Subtle shadow filter */}
-        <filter id="softShadow" x="-10%" y="-10%" width="120%" height="120%">
-          <feDropShadow dx="0" dy="1" stdDeviation="2" floodColor="#592DB5" floodOpacity="0.3" />
-        </filter>
       </defs>
 
-      {/* Dark rounded square background */}
-      <rect x="2" y="2" width="96" height="96" rx="20" fill="#0A0A14" />
-      {/* Subtle inner border */}
-      <rect x="3" y="3" width="94" height="94" rx="19" fill="none" stroke="#592DB5" strokeOpacity="0.2" strokeWidth="0.5" />
+      {/* Black square background — sharp corners */}
+      <rect x="0" y="0" width="100" height="100" fill="#0A0A14" />
 
-      {/* === D letter === */}
-      {/* D outer stroke with white outline first */}
+      {/* D letter — outer shape */}
       <path
-        d="M22 26H40C52 26 62 35 62 48V52C62 65 52 74 40 74H22V26Z"
-        stroke="white"
-        strokeWidth="1.5"
-        strokeOpacity="0.35"
-        fill="none"
-      />
-      {/* D outer fill with gradient + glow */}
-      <path
-        d="M22 26H40C52 26 62 35 62 48V52C62 65 52 74 40 74H22V26Z"
+        d="M18 22H42C56 22 67 33 67 48V52C67 67 56 78 42 78H18V22Z"
         fill="url(#brandGrad)"
-        filter="url(#neonGlow)"
       />
-      {/* D inner cutout */}
+      {/* D letter — inner cutout */}
       <path
-        d="M32 36H38C45 36 51 41 51 48V52C51 59 45 64 38 64H32V36Z"
+        d="M30 34H40C48 34 54 40 54 48V52C54 60 48 66 40 66H30V34Z"
         fill="#0A0A14"
       />
-      {/* D inner parallel outline (double-line effect) */}
-      <path
-        d="M32 36H38C45 36 51 41 51 48V52C51 59 45 64 38 64H32"
-        fill="none"
-        stroke="url(#brandGradLight)"
-        strokeWidth="1.5"
-        strokeOpacity="0.6"
-      />
-      {/* D white inner outline for double-stroke effect */}
-      <path
-        d="M22 26H40C52 26 62 35 62 48V52C62 65 52 74 40 74H22V26Z"
-        fill="none"
-        stroke="white"
-        strokeWidth="0.8"
-        strokeOpacity="0.25"
-      />
 
-      {/* === N letter === */}
-      {/* N white outline first */}
+      {/* N letter — interlocking through D's interior */}
       <path
-        d="M46 74V56L58 74H70V26H58V44L46 26H34V74H46Z"
-        stroke="white"
-        strokeWidth="1.5"
-        strokeOpacity="0.35"
-        fill="none"
-      />
-      {/* N outer fill with gradient + glow */}
-      <path
-        d="M46 74V56L58 74H70V26H58V44L46 26H34V74H46Z"
+        d="M44 78V60L56 78H72V22H58V40L44 22H30V78H44Z"
         fill="url(#brandGrad)"
-        filter="url(#neonGlow)"
       />
       {/* N inner cutout for diagonal */}
       <path
-        d="M58 44V64L46 42V26H58V44Z"
+        d="M58 40V62L44 38V22H58V40Z"
         fill="#0A0A14"
       />
-      {/* N inner parallel outline (double-line effect) */}
-      <path
-        d="M34 74V26H46L58 44V26H70V74H58L46 56V74H34Z"
-        fill="none"
-        stroke="url(#brandGradLight)"
-        strokeWidth="1.5"
-        strokeOpacity="0.6"
-      />
-      {/* N white inner outline for double-stroke effect */}
-      <path
-        d="M46 74V56L58 74H70V26H58V44L46 26H34V74H46Z"
-        fill="none"
-        stroke="white"
-        strokeWidth="0.8"
-        strokeOpacity="0.25"
-      />
-
-      {/* Subtle shine overlay on top half */}
-      <rect x="2" y="2" width="96" height="46" rx="20" fill="white" fillOpacity="0.03" />
-      {/* Tiny star specks for futuristic feel */}
-      <circle cx="12" cy="15" r="0.6" fill="white" fillOpacity="0.15" />
-      <circle cx="88" cy="12" r="0.5" fill="white" fillOpacity="0.12" />
-      <circle cx="85" cy="88" r="0.4" fill="white" fillOpacity="0.1" />
-      <circle cx="15" cy="85" r="0.5" fill="white" fillOpacity="0.12" />
-      <circle cx="75" cy="18" r="0.3" fill="white" fillOpacity="0.08" />
     </svg>
   )
 }
@@ -151,21 +70,31 @@ export function Logo({ variant = 'full', className = '', onClick }: LogoProps) {
 
   if (variant === 'footer') {
     return (
-      <button onClick={onClick} className={`flex items-center gap-2.5 group ${className}`}>
-        <MonogramIcon size={32} />
-        <div className="flex flex-col">
-          <span className="text-lg font-semibold font-display tracking-tight leading-none">
-            Design
+      <button onClick={onClick} className={`flex flex-col items-start group ${className}`}>
+        <div className="flex items-center gap-3 mb-2">
+          <MonogramIcon size={40} />
+          <div className="flex items-baseline gap-1.5">
+            <span className="text-xl font-bold font-display tracking-tight text-white">
+              Design
+            </span>
+            <span className="text-xl font-bold font-display tracking-tight bg-gradient-to-r from-[#773DF2] to-[#592DB5] bg-clip-text text-transparent">
+              Nuvio
+            </span>
+          </div>
+        </div>
+        {/* Tagline with decorative lines */}
+        <div className="flex items-center gap-2 ml-[52px]">
+          <div className="w-5 h-[1px] bg-gradient-to-r from-[#592DB5] to-[#773DF2]" />
+          <span className="text-[10px] text-muted-foreground tracking-wider uppercase">
+            Creative, Innovative &amp; Elegant
           </span>
-          <span className="text-xs bg-gradient-to-r from-[#592DB5] to-[#773DF2] bg-clip-text text-transparent tracking-wide font-semibold">
-            Nuvio
-          </span>
+          <div className="w-5 h-[1px] bg-gradient-to-r from-[#773DF2] to-[#592DB5]" />
         </div>
       </button>
     )
   }
 
-  // Full variant (navigation)
+  // Full variant (navigation) — horizontal layout
   return (
     <motion.button
       onClick={onClick}
@@ -178,7 +107,7 @@ export function Logo({ variant = 'full', className = '', onClick }: LogoProps) {
         <span className="text-lg font-semibold font-display tracking-tight">
           Design
         </span>
-        <span className="text-lg font-semibold font-display tracking-tight bg-gradient-to-r from-[#592DB5] to-[#773DF2] bg-clip-text text-transparent">
+        <span className="text-lg font-semibold font-display tracking-tight bg-gradient-to-r from-[#773DF2] to-[#592DB5] bg-clip-text text-transparent">
           Nuvio
         </span>
       </div>
