@@ -16,7 +16,6 @@ import {
   UserSearch,
   MessageSquare,
   Award,
-  ArrowRight,
   Palette,
   Code,
   Search,

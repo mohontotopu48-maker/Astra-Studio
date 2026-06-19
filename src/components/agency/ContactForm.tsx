@@ -42,6 +42,7 @@ interface ContactFormProps {
 
 export function ContactForm({ showLeftPanel = true, className = '' }: ContactFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [budget, setBudget] = useState('')
   const { toast } = useToast()
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -54,7 +55,7 @@ export function ContactForm({ showLeftPanel = true, className = '' }: ContactFor
       email: formData.get('email') as string,
       company: formData.get('company') as string,
       phone: formData.get('phone') as string,
-      budget: formData.get('budget') as string,
+      budget,
       message: formData.get('message') as string,
     }
 
@@ -76,6 +77,7 @@ export function ContactForm({ showLeftPanel = true, className = '' }: ContactFor
         description: "Thank you! We'll be in touch within 24 hours.",
       })
       ;(e.target as HTMLFormElement).reset()
+      setBudget('')
     } catch (err) {
       toast({
         title: 'Submission failed',
@@ -172,6 +174,7 @@ export function ContactForm({ showLeftPanel = true, className = '' }: ContactFor
                 <a
                   href="#contact"
                   className="inline-flex items-center gap-2 text-sm font-medium text-[#9B6BF5] hover:text-[#773DF2] transition-colors group ml-13 pl-1"
+                  aria-label="Book a call directly"
                 >
                   Book A Call Directly
                   <CalendarClock className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -247,7 +250,8 @@ export function ContactForm({ showLeftPanel = true, className = '' }: ContactFor
                   <Label htmlFor="budget" className="text-white text-sm font-medium">
                     Project budget <span className="text-[#9B6BF5]">*</span>
                   </Label>
-                  <Select name="budget">
+                  <input type="hidden" name="budget" value={budget} />
+                  <Select name="budget" value={budget} onValueChange={setBudget}>
                     <SelectTrigger
                       id="budget"
                       className="bg-white/5 border-white/10 text-white focus:ring-[#773DF2]/20 rounded-lg h-12 [&>span]:text-white/40 data-[placeholder]:text-white/40"

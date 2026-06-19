@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import {
   Eye, MessageSquare, LineChart, Heart, Handshake, ShieldCheck,
   Palette, LayoutDashboard, Component, Search, ArrowRight, Brain,
-  Sparkles, Cpu, Bot, Workflow, Layers, Lightbulb, ToggleLeft,
+  Sparkles, Workflow, Layers, Lightbulb, ToggleLeft,
   CheckCircle2, Star, GitBranch, Wand2,
 } from "lucide-react";
 import { PageLayout } from "@/components/pages/PageLayout";

@@ -15,6 +15,7 @@ function ThemeToggle({ mounted, theme, setTheme }: { mounted: boolean; theme: st
       variant="ghost"
       size="icon"
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+      aria-label="Toggle color theme"
       className="rounded-full overflow-hidden relative"
     >
       <AnimatePresence mode="wait">
@@ -247,6 +248,7 @@ export function Navigation() {
                 variant="ghost"
                 size="icon"
                 onClick={() => setIsMobileOpen(!isMobileOpen)}
+                aria-label={isMobileOpen ? 'Close menu' : 'Open menu'}
                 className="rounded-full"
               >
                 <AnimatePresence mode="wait">

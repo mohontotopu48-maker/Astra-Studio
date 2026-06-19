@@ -5,7 +5,6 @@ import {
   Shield, Lock, BarChart3, CreditCard, Globe, Zap,
   Palette, LayoutDashboard, Component, Search, ArrowRight, FileCheck,
   Scale, Eye, Fingerprint, CheckCircle2, Star, AlertTriangle,
-  Banknote, Wallet, PieChart, Bell,
 } from "lucide-react";
 import { PageLayout } from "@/components/pages/PageLayout";
 import { PageCTA } from "@/components/pages/PageCTA";

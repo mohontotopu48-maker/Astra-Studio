@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import {
   ShieldCheck, UserCircle, Stethoscope, Accessibility, Lock,
   Video, Palette, LayoutDashboard, Component, Search, ArrowRight,
-  HeartPulse, ClipboardCheck, Eye, FileCheck, Scale, Fingerprint,
-  CheckCircle2, Star, AlertTriangle, HandHeart,
+  HeartPulse, ClipboardCheck, Eye, FileCheck, Scale,
+  CheckCircle2, Star, HandHeart,
 } from "lucide-react";
 import { PageLayout } from "@/components/pages/PageLayout";
 import { PageCTA } from "@/components/pages/PageCTA";

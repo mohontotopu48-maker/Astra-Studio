@@ -8,7 +8,6 @@ import {
   Compass,
   Heart,
   BarChart3,
-  ArrowRight,
   CheckCircle2,
   TrendingUp,
   Users,

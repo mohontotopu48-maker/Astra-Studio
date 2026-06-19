@@ -19,9 +19,7 @@ import {
   MousePointer,
   ChevronDown,
   Zap,
-  Target,
   Clock,
-  ArrowRight,
 } from "lucide-react";
 import { PageLayout } from "@/components/pages/PageLayout";
 import { PageCTA } from "@/components/pages/PageCTA";

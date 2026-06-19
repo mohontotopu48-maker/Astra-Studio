@@ -8,7 +8,6 @@ import {
   BookOpen,
   Award,
   Code2,
-  ArrowRight,
   CheckCircle2,
   Search,
   Lightbulb,

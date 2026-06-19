@@ -8,7 +8,6 @@ import {
   Smartphone,
   Shield,
   Filter,
-  ArrowRight,
   CheckCircle2,
   Layers,
   Database,

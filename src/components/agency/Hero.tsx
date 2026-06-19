@@ -215,13 +215,13 @@ export function Hero() {
           </motion.div>
 
           {/* Main Headline - 2 lines */}
-          <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-6 font-display">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-6 font-display">
             <AnimatedText text="We Design Products" delay={2.4} />
             <br />
             <span className="hero-gradient-text">
               <AnimatedText text="That Drive Results" delay={3.0} />
             </span>
-          </div>
+          </h1>
 
           {/* Subheadline */}
           <motion.p

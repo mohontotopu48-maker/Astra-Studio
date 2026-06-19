@@ -11,9 +11,6 @@ import {
   Star,
   Target,
   Eye,
-  Rocket,
-  Briefcase,
-  Palette,
 } from "lucide-react";
 import { PageLayout } from "@/components/pages/PageLayout";
 import { PageCTA } from "@/components/pages/PageCTA";

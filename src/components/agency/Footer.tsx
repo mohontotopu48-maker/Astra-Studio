@@ -49,14 +49,22 @@ export function Footer() {
               experiences that drive growth.
             </p>
             <div className="flex gap-3">
-              {['X', 'Li', 'Dr', 'Ig'].map((social) => (
-                <button
-                  key={social}
-                  onClick={goHome}
+              {[
+                { label: 'X', url: 'https://twitter.com/designnuvio', name: 'Twitter / X' },
+                { label: 'Li', url: 'https://linkedin.com/company/designnuvio', name: 'LinkedIn' },
+                { label: 'Dr', url: 'https://dribbble.com/designnuvio', name: 'Dribbble' },
+                { label: 'Ig', url: 'https://instagram.com/designnuvio', name: 'Instagram' },
+              ].map((social) => (
+                <a
+                  key={social.label}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.name}
                   className="w-8 h-8 rounded-full border border-border flex items-center justify-center text-xs text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-colors"
                 >
-                  {social}
-                </button>
+                  {social.label}
+                </a>
               ))}
             </div>
           </div>

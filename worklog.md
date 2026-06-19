@@ -275,3 +275,195 @@ Stage Summary:
 - Both home page (#contact-form section) and Contact page (#contact) now use the identical new design.
 - Responsive: stacks cleanly on mobile, meets touch-target requirements.
 - Verified end-to-end via Agent Browser: design match (desktop+mobile), successful submission with toast, form reset, validation.
+
+---
+Task ID: 4
+Agent: Explore (component recheck)
+Task: Comprehensive recheck of all components for code quality, bugs, and consistency issues
+
+Work Log:
+- Read /home/z/my-project/worklog.md to understand prior agent work (Tasks 1-6 + logo-seo-mobile-audit + contact-redesign)
+- Surveyed directory structure via LS — identified 21 agency components, 18 page components, 3 hooks, 5 app files, 3 API routes
+- Ran global greps for: astra references (none), off-brand colors (#7b2ff7/#9d4edd/#5a1b8c/#6b1ee7/indigo-N/blue-N — none), console.log (only in API routes — acceptable), TODO/FIXME (none), <img> raw tags (many — flagged), div onClick (none — good), index keys (many — flagged duplicates), eslint-disable (none), @ts-ignore (none)
+- Read each priority file in full: Logo, Navigation, Footer, ContactForm, Hero, Services, Industries, CaseStudies, Testimonials, CTA, PageLoader, About, Statistics, Process, FAQ, AIPoweredDesign, WhyChooseUs, ClientLogos, CustomCursor, ScrollProgress, PageLayout, PageCTA, use-router, use-mobile, use-toast, page.tsx, layout.tsx, manifest.ts, sitemap.ts, robots.ts, all 6 service pages, all 5 company pages, all 4 industry pages, CaseStudyDetailPage, all 4 resource pages, case-studies-data.ts (partial), animations.tsx, api/contact/route.ts, api/leads/route.ts, api/route.ts, globals.css (partial), select.tsx (partial)
+- Verified each unused import with targeted grep to confirm 100% certainty before flagging
+- Cross-referenced Statistics.tsx, About.tsx, AboutPage.tsx, FAQPage.tsx stats for consistency check
+- Checked globals.css to confirm #4520A0 (--brand-dark) and #B68DF7 (--chart-5) ARE part of brand palette as defined, so those uses are NOT off-brand
+- Confirmed Radix Select does not submit through FormData — identified real bug in ContactForm
+
+Stage Summary:
+
+=== TOTAL FILES REVIEWED: 56 ===
+
+=== HIGH SEVERITY ISSUES ===
+
+1. **src/components/agency/ContactForm.tsx:250-268, 57** — BUG: Radix `<Select name="budget">` does NOT submit its value through FormData. The `formData.get('budget')` call on line 57 will always return null/empty when the form is submitted, even when the user selects a budget range. The selected budget is silently lost on every submission. Fix: Either (a) use controlled state with a hidden `<input name="budget" value={selectedBudget} />`, or (b) switch to a native `<select>` element, or (c) handle the Select's `onValueChange` and add the value to the request body manually in `handleSubmit`.
+
+2. **src/components/agency/Hero.tsx:218** — SEO ISSUE: The home page's main hero headline ("We Design Products That Drive Results") is rendered inside a `<div>` element, NOT an `<h1>`. This means the home page has NO h1 tag, which is a significant SEO/accessibility problem. Fix: Change `<div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl ...">` to `<h1 className="...">`.
+
+3. **src/components/agency/Footer.tsx:51-61** — BUG/UX: The 4 social media buttons (X, Li, Dr, Ig) all call `onClick={goHome}` instead of linking to the actual social profiles. This is misleading — clicking Twitter/LinkedIn/Dribbble/Instagram buttons takes the user back to the home page. Fix: Replace with `<a href="https://twitter.com/designnuvio" target="_blank" rel="noopener noreferrer">` etc. using the same URLs already declared in layout.tsx JSON-LD `sameAs` array.
+
+=== MEDIUM SEVERITY ISSUES ===
+
+4. **src/components/agency/Statistics.tsx:11 vs :15** — CONTENT INCONSISTENCY: Main stats card says "12 Design Awards" while detail stats card says "16 Total Awards". Two different award counts on the same section.
+
+5. **src/components/agency/Statistics.tsx:18 vs src/components/agency/About.tsx:42 vs src/components/pages/company/AboutPage.tsx:61 vs src/components/pages/resources/FAQPage.tsx:41,231** — CONTENT INCONSISTENCY: Team size is stated as "80+ Team Members" (Statistics), "30+ strategists, designers, and technologists" (About home), "50+ Team Members" (AboutPage), and "30+ talented designers, developers, and strategists" (FAQPage). Three different numbers (30+, 50+, 80+) across the site for the same metric.
+
+6. **src/components/pages/resources/PrivacyPolicyPage.tsx:231 & src/components/pages/resources/TermsOfServicePage.tsx:218** — CONTENT INCONSISTENCY: Legal pages list the company address as "123 Design Avenue, San Francisco, CA 94102" while src/components/pages/company/ContactPage.tsx:50 lists "350 Fifth Avenue, Suite 4200, New York, NY 10118". Two different addresses for the same company.
+
+7. **src/components/agency/Navigation.tsx:14-18, 246-250** — ACCESSIBILITY: Theme toggle button (line 14) and mobile menu toggle button (line 246) are icon-only (`<Button variant="ghost" size="icon">`) without `aria-label`. Screen readers will announce them as empty buttons. Fix: Add `aria-label="Toggle dark mode"` and `aria-label={isMobileOpen ? "Close menu" : "Open menu"}`.
+
+8. **src/components/agency/Logo.tsx:77, 103** — ACCESSIBILITY: The footer and full Logo variants render as `<button>` elements without `aria-label`. Screen readers may announce the inner text "Design Nuvio Creative, Innovative & Elegant" but it's not semantically clear this is a "go home" button. Fix: Add `aria-label="Design Nuvio — go to home page"` to both button variants.
+
+9. **src/components/agency/Hero.tsx:196 vs src/components/agency/Testimonials.tsx:121** — BRAND CONSISTENCY: Hero rating badge uses yellow stars (`fill-yellow-400 text-yellow-400`) while Testimonials uses brand-purple stars (`fill-[#773DF2] text-[#773DF2]`). Inconsistent rating-star color across the site. Fix: Pick one color (recommend brand purple #773DF2 for consistency, or yellow for convention) and apply everywhere.
+
+10. **src/components/agency/Services.tsx:24,32,40,48** — UX BUG: 4 of 5 service cards (UI/UX Design, Web Development, Logo & Branding, Webflow & Framer) all navigate to the same `'product-design'` route. Only SaaS Design links to its dedicated page. Clicking "Web Development" or "Logo & Branding" takes the user to the Product Design page, which doesn't match the card title. Fix: Either add dedicated routes for web-development / branding / webflow-framer, or update the card titles/copy to reflect that they all live under Product Design.
+
+11. **src/components/pages/resources/BlogPage.tsx:228-233, 329-333** — BUG: The blog search input (line 228) and newsletter email input (line 329) have no `onChange`/`onSubmit` handlers — typing into them does nothing. The search doesn't filter posts and the subscribe button doesn't capture the email. Both are decorative. Fix: Wire up state + handler for search filter; wrap email input in `<form onSubmit>` with toast confirmation.
+
+12. **src/components/agency/ContactForm.tsx:174** — BUG (minor): `ml-13` is not a standard Tailwind spacing class (default scale jumps 12 → 14). It generates no CSS, so the "Book A Call Directly" link has no left margin as intended. Fix: Change to `ml-12` or `ml-14`.
+
+13. **src/components/pages/services/MobileAppDesignPage.tsx:10-11** — DEAD CODE: `Monitor` and `ArrowRight` imported but never used in JSX. Fix: Remove from import list.
+
+14. **src/components/pages/services/UXAuditPage.tsx:16** — DEAD CODE: `ArrowRight` imported but never used. Fix: Remove.
+
+15. **src/components/pages/services/DesignSystemsPage.tsx:11** — DEAD CODE: `ArrowRight` imported but never used. Fix: Remove.
+
+16. **src/components/pages/services/SaaSDesignPage.tsx:11** — DEAD CODE: `ArrowRight` imported but never used. Fix: Remove.
+
+17. **src/components/pages/services/DashboardDesignPage.tsx:11** — DEAD CODE: `ArrowRight` imported but never used. Fix: Remove.
+
+18. **src/components/pages/company/AboutPage.tsx:14-16** — DEAD CODE: `Rocket`, `Briefcase`, `Palette` all imported but never used. Fix: Remove.
+
+19. **src/components/pages/company/ProcessPage.tsx:22,24** — DEAD CODE: `Target` and `ArrowRight` imported but never used. Fix: Remove.
+
+20. **src/components/pages/company/CareersPage.tsx:19** — DEAD CODE: `ArrowRight` imported but never used. Fix: Remove.
+
+21. **src/components/pages/industries/SaaSPage.tsx:7** — DEAD CODE: `Rocket` and `Target` imported but never used. Fix: Remove.
+
+22. **src/components/pages/industries/FintechPage.tsx:8** — DEAD CODE: `Banknote`, `Wallet`, `PieChart`, `Bell` imported but never used. Fix: Remove.
+
+23. **src/components/pages/industries/AIPage.tsx:7** — DEAD CODE: `Cpu` and `Bot` imported but never used. Fix: Remove.
+
+24. **src/components/pages/industries/HealthcarePage.tsx:7-8** — DEAD CODE: `Fingerprint` and `AlertTriangle` imported but never used. Fix: Remove.
+
+=== LOW SEVERITY ISSUES ===
+
+25. **src/components/agency/Services.tsx:177,191 & src/components/agency/CaseStudies.tsx:86** — PERF/SEO: Uses `<motion.img>` (raw HTML img) instead of Next.js `<Image>`. Images have alt text (good) but lose Next.js image optimization (lazy loading, responsive sizes, modern formats). Same pattern in 8 other places across service/industry pages (ProductDesignPage:56, SaaSDesignPage:47, DashboardDesignPage:48, MobileAppDesignPage:52, UXAuditPage:54, DesignSystemsPage:54, SaaSPage:103, FintechPage:101, AIPage:131, HealthcarePage:101, AboutPage:89, CaseStudiesPage:99,155, CaseStudyDetailPage:222,559). Fix: Migrate to `next/image` with proper `width`/`height` or `fill` props.
+
+26. **src/components/agency/ClientLogos.tsx:20** — CONSISTENCY: Uses `py-20` (non-responsive) while home page sections use `py-16 md:py-24`. This section was not updated when other home sections were reduced in Task 4.
+
+27. **src/components/pages/PageCTA.tsx:25** — CONSISTENCY: Uses `py-24` (non-responsive). Should be `py-16 md:py-24` to match home page CTA.
+
+28. **All service pages (ProductDesignPage, SaaSDesignPage, DashboardDesignPage, MobileAppDesignPage, UXAuditPage, DesignSystemsPage)** — CONSISTENCY: All section paddings use `py-24` (non-responsive, 6rem on all screens). Home page sections were updated to `py-16 md:py-24` in Task 4 but the service pages were not updated. Same applies to industry pages and resource pages which use `py-20` non-responsive.
+
+29. **src/components/agency/AIPoweredDesign.tsx:6** — NAMING: Imports `Image` from lucide-react which shadows the global `Image` constructor and Next.js's `next/image` default export. Not currently a bug (file doesn't use either) but a footgun if a future edit adds an image. Fix: Rename to `ImageIcon` (lucide exports under this name too) for clarity.
+
+30. **src/components/agency/WhyChooseUs.tsx:6** — NAMING: Imports `Infinity` from lucide-react which shadows JavaScript's global `Infinity` property. Same concern as above. Fix: Rename to `Infinity as InfinityIcon`.
+
+31. **src/components/agency/CustomCursor.tsx:11-12, 25** — PERF: Maintains `trailRef` (mutable ref) AND `trail` (state) as dual sources of truth, and calls `setTrail(...)` on every `mousemove` event (line 25). This causes a React re-render on every mouse movement, which is performance-heavy. Not a bug but a perf concern. Fix: Use direct DOM manipulation via refs for the trail dots, or throttle the state update with `requestAnimationFrame`.
+
+32. **src/components/pages/case-studies/CaseStudyDetailPage.tsx:432** — MINOR: `md:text-right text-center md:text-right` — duplicate `md:text-right` class. Harmless but sloppy. Fix: Remove the duplicate.
+
+33. **src/app/sitemap.ts:6-30** — SEO ARCHITECTURE: Sitemap lists 23 hash-based URLs (`#product-design`, `#case-triply`, etc.). Search engines typically do not index hash-fragment URLs as separate pages — they're treated as anchors on the root URL (`/`). This means the sitemap effectively tells Google there's one URL with many anchors. The sitemap should either be a single entry for `/` (acknowledging the SPA architecture), or the site should migrate to real Next.js routes for true multi-page SEO. (Architectural decision — flagging for awareness.)
+
+34. **src/lib/case-studies-data.ts:92,253,411,569,727** — OFF-BRAND COLORS (by design): Each case study has a unique `accentColor` representing the client's brand — Triply uses #3B4BDB (indigo), Plate uses #E5594F (coral), Yenex uses #C99700 (gold), Fitmate uses #0EA5C7 (cyan), Zantrik uses #0DA68C (mint). These are intentional per-case-study accents, NOT Design Nuvio brand colors. No fix needed — flagging so future agents don't try to "fix" them.
+
+35. **src/components/agency/CaseStudies.tsx:51-52 & multiple other list iterations** — KEYS: Many places use `key={i}` (array index) for static lists. This is acceptable for static lists that never reorder (the task said index keys are OK). However, some lists like the metrics in CaseStudyCard could benefit from `key={metric.label}` for clarity. No fix required.
+
+36. **src/app/api/contact/route.ts:93,100 & src/app/api/leads/route.ts:15,56** — LOGGING: Uses `console.log`/`console.error` for server-side logging. Acceptable for development but should ideally use a structured logger (pino, winston) in production. Not a bug.
+
+=== CLEAN BILL OF HEALTH (no issues found) ===
+
+The following components/files were reviewed and have no issues:
+- src/components/agency/Logo.tsx (visual SVG component — clean)
+- src/components/agency/Industries.tsx (marquee implementation — clean)
+- src/components/agency/PageLoader.tsx (loading animation — clean)
+- src/components/agency/Process.tsx (timeline — clean, uses good keys)
+- src/components/agency/ScrollProgress.tsx (tiny utility — clean)
+- src/components/agency/About.tsx (clean, uses value.title as key)
+- src/components/agency/FAQ.tsx (uses Accordion properly)
+- src/components/agency/CTA.tsx (clean, uses brand colors)
+- src/components/pages/PageLayout.tsx (clean, well-typed)
+- src/hooks/use-router.ts (clean, SSR-safe with useSyncExternalStore)
+- src/hooks/use-mobile.ts (clean, SSR-safe)
+- src/hooks/use-toast.ts (shadcn boilerplate, works correctly)
+- src/app/layout.tsx (comprehensive SEO/metadata/JSON-LD)
+- src/app/manifest.ts (clean PWA manifest)
+- src/app/robots.ts (clean)
+- src/app/page.tsx (clean pageMap router)
+- src/app/api/route.ts (simple health check)
+- src/app/api/contact/route.ts (zod validation, rate limiting, spam detection — well-built)
+- src/app/api/leads/route.ts (zod validation)
+- src/lib/animations.tsx (well-typed reusable animation utilities)
+- src/lib/case-studies-data.ts (well-typed data file)
+
+=== BRAND NAME AUDIT ===
+"Design Nuvio" is 100% consistent across all 25+ files that mention the brand. Zero "Astra" or "Astra Studio" references remain. Zero misspellings (no "DesignNuvio", "DesignNuvia", "DesignNuvio ", trailing spaces, etc.).
+
+=== BRAND COLOR AUDIT ===
+Brand palette (#592DB5, #773DF2, #9B6BF5) is used consistently throughout. The colors #4520A0 (--brand-dark) and #B68DF7 (--chart-5) are also part of the defined brand palette in globals.css and are used appropriately. No truly off-brand purples/blues (no #7b2ff7, #9d4edd, #5a1b8c, #6b1ee7, indigo-N, blue-N). The case study accent colors (indigo/coral/gold/cyan/mint) are intentional per-client and not Design Nuvio brand misuse.
+
+=== ACCESSIBILITY AUDIT ===
+- All images have alt text (good)
+- No `<div onClick>` patterns (good — all interactive elements use `<button>` or `<a>`)
+- Missing aria-labels on icon-only buttons (Navigation theme toggle, mobile menu, Logo buttons) — flagged above
+- All form inputs have associated `<Label htmlFor>` (good)
+
+=== RESPONSIVE AUDIT ===
+- All grids use proper sm:/md:/lg: breakpoints
+- All hero text uses responsive font sizes (text-3xl sm:text-4xl md:text-5xl lg:text-6xl)
+- Hamburger menu works for mobile (lg:hidden + full-screen overlay)
+- Tables wrap in `overflow-x-auto` for horizontal scroll on mobile
+- Main inconsistency: page sections use mixed `py-16 md:py-24` (home, updated in Task 4) vs `py-20`/`py-24` (subpages, not updated)
+
+=== SEO AUDIT ===
+- Comprehensive metadata in layout.tsx (title template, description, keywords, OG, Twitter, canonical)
+- 3 JSON-LD structured data blocks (Organization, WebSite, ProfessionalService)
+- Sitemap (23 routes), robots.ts, manifest.ts all present
+- MISSING: Home page has no `<h1>` (Hero uses `<div>` for headline) — flagged as HIGH severity
+- All subpages correctly use `<h1>` via PageLayout
+
+=== RECOMMENDED PRIORITY ORDER FOR FIXES ===
+1. (HIGH) Fix ContactForm Select not submitting budget value — users lose data on every submission
+2. (HIGH) Add `<h1>` to Hero.tsx home page headline — critical for SEO
+3. (HIGH) Fix Footer social buttons to link to actual social profiles (currently all go home)
+4. (MEDIUM) Reconcile team-size stat across Statistics/About/AboutPage/FAQPage (30+ vs 50+ vs 80+)
+5. (MEDIUM) Reconcile awards count in Statistics (12 vs 16)
+6. (MEDIUM) Reconcile legal address (PrivacyPolicy/TermsOfService say San Francisco, ContactPage says New York)
+7. (MEDIUM) Add aria-labels to icon-only buttons in Navigation + Logo
+8. (MEDIUM) Standardize rating star color (Hero yellow vs Testimonials purple)
+9. (MEDIUM) Wire up BlogPage search + newsletter inputs (currently non-functional)
+10. (MEDIUM) Fix Services.tsx — 4 service cards all navigate to same route
+11. (LOW) Remove 13 unused imports across 9 files (cleanup)
+12. (LOW) Standardize section padding to `py-16 md:py-24` across all pages
+13. (LOW) Migrate raw `<img>`/`<motion.img>` to `next/image` for optimization
+
+---
+Task ID: 6-cleanup
+Agent: general-purpose (dead import cleanup)
+Task: Remove unused imports flagged in component audit
+
+Work Log:
+- Read worklog.md to gather context
+- For each of the 12 target files, used Grep with each unused import name to verify it appears ONLY in the lucide-react import statement (no other usages in the file body)
+- Read the head of each file to see exact import block formatting
+- Removed only the flagged unused imports while preserving all remaining imports and import statement syntax
+- Ran `bun run lint` (eslint .) to confirm no new errors introduced — exit code 0, no output
+
+Stage Summary:
+- Files modified (12):
+  1. src/components/pages/services/MobileAppDesignPage.tsx — removed `Monitor`, `ArrowRight`
+  2. src/components/pages/services/UXAuditPage.tsx — removed `ArrowRight`
+  3. src/components/pages/services/DesignSystemsPage.tsx — removed `ArrowRight`
+  4. src/components/pages/services/SaaSDesignPage.tsx — removed `ArrowRight`
+  5. src/components/pages/services/DashboardDesignPage.tsx — removed `ArrowRight`
+  6. src/components/pages/company/AboutPage.tsx — removed `Rocket`, `Briefcase`, `Palette`
+  7. src/components/pages/company/ProcessPage.tsx — removed `Target`, `ArrowRight`
+  8. src/components/pages/company/CareersPage.tsx — removed `ArrowRight`
+  9. src/components/pages/industries/SaaSPage.tsx — removed `Rocket`, `Target`
+  10. src/components/pages/industries/FintechPage.tsx — removed `Banknote`, `Wallet`, `PieChart`, `Bell`
+  11. src/components/pages/industries/AIPage.tsx — removed `Cpu`, `Bot`
+  12. src/components/pages/industries/HealthcarePage.tsx — removed `Fingerprint`, `AlertTriangle`
+- Total: 19 unused imports removed across 12 files
+- Lint passes cleanly (exit 0, no warnings/errors)

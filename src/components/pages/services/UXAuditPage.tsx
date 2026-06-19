@@ -13,7 +13,6 @@ import {
   BarChart3,
   Shield,
   AlertTriangle,
-  ArrowRight,
   CheckCircle2,
   XCircle,
   FileVideo,

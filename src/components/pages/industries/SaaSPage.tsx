@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import {
   UserPlus, Compass, DollarSign, TrendingDown, LayoutDashboard, Users,
   Palette, BarChart3, Component, Search, ArrowRight, Zap, Shield,
-  Layers, Rocket, Target, Globe, Code, Database, Cloud, Lock, Cpu,
+  Layers, Globe, Code, Database, Cloud, Lock, Cpu,
   CheckCircle2, Star,
 } from "lucide-react";
 import { PageLayout } from "@/components/pages/PageLayout";

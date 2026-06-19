@@ -7,8 +7,6 @@ import {
   Watch,
   Globe,
   Apple,
-  Monitor,
-  ArrowRight,
   CheckCircle2,
   Layers,
   Search,

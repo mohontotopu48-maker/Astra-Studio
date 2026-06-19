@@ -8,7 +8,7 @@ const mainStats = [
   { value: 200, suffix: '+', label: 'Projects Delivered' },
   { value: 50, suffix: '+', label: 'Enterprise Clients' },
   { value: 4.9, suffix: '', label: 'Average Rating' },
-  { value: 12, suffix: '', label: 'Design Awards' },
+  { value: 16, suffix: '', label: 'Design Awards' },
 ]
 
 const detailStats = [
