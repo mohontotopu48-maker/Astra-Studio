@@ -212,7 +212,7 @@ export function TermsOfServicePage() {
                         Design Nuvio
                       </p>
                       <p className="text-muted-foreground">
-                        Email: legal@astrastudio.com
+                        Email: legal@designnuvio.com
                       </p>
                       <p className="text-muted-foreground">
                         Address: 123 Design Avenue, San Francisco, CA 94102
@@ -248,11 +248,11 @@ export function TermsOfServicePage() {
               Service, our legal team is here to help.
             </p>
             <a
-              href="mailto:legal@astrastudio.com"
+              href="mailto:legal@designnuvio.com"
               className="inline-flex items-center gap-2 text-[#592DB5] font-semibold hover:gap-3 transition-all"
             >
               <Mail className="w-4 h-4" />
-              legal@astrastudio.com
+              legal@designnuvio.com
             </a>
           </motion.div>
         </div>

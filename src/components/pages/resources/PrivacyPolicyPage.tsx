@@ -77,7 +77,7 @@ const sections = [
     title: "6. Your Rights",
     content: [
       {
-        text: "Depending on your location, you may have certain rights regarding your personal information. These may include the right to access, correct, or delete your personal data; the right to restrict or object to the processing of your data; the right to data portability; the right to withdraw consent at any time; and the right to lodge a complaint with a supervisory authority. To exercise any of these rights, please contact us at privacy@astrastudio.com. We will respond to your request within 30 days in accordance with applicable data protection laws.",
+        text: "Depending on your location, you may have certain rights regarding your personal information. These may include the right to access, correct, or delete your personal data; the right to restrict or object to the processing of your data; the right to data portability; the right to withdraw consent at any time; and the right to lodge a complaint with a supervisory authority. To exercise any of these rights, please contact us at privacy@designnuvio.com. We will respond to your request within 30 days in accordance with applicable data protection laws.",
       },
     ],
   },
@@ -95,7 +95,7 @@ const sections = [
     title: "8. Children's Privacy",
     content: [
       {
-        text: "Our services are not directed to individuals under the age of 16. We do not knowingly collect personal information from children under 16. If we become aware that we have inadvertently collected personal information from a child under 16, we will take immediate steps to delete such information from our records. If you are a parent or guardian and believe that your child has provided us with personal information, please contact us at privacy@astrastudio.com so we can take appropriate action.",
+        text: "Our services are not directed to individuals under the age of 16. We do not knowingly collect personal information from children under 16. If we become aware that we have inadvertently collected personal information from a child under 16, we will take immediate steps to delete such information from our records. If you are a parent or guardian and believe that your child has provided us with personal information, please contact us at privacy@designnuvio.com so we can take appropriate action.",
       },
     ],
   },
@@ -225,7 +225,7 @@ export function PrivacyPolicyPage() {
                         Design Nuvio
                       </p>
                       <p className="text-muted-foreground">
-                        Email: privacy@astrastudio.com
+                        Email: privacy@designnuvio.com
                       </p>
                       <p className="text-muted-foreground">
                         Address: 123 Design Avenue, San Francisco, CA 94102
@@ -262,11 +262,11 @@ export function PrivacyPolicyPage() {
               out.
             </p>
             <a
-              href="mailto:privacy@astrastudio.com"
+              href="mailto:privacy@designnuvio.com"
               className="inline-flex items-center gap-2 text-[#592DB5] font-semibold hover:gap-3 transition-all"
             >
               <Mail className="w-4 h-4" />
-              privacy@astrastudio.com
+              privacy@designnuvio.com
             </a>
           </motion.div>
         </div>

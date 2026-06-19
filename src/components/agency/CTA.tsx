@@ -104,9 +104,9 @@ export function CTA() {
                 size="lg"
                 className="rounded-full px-8 py-7 text-lg border-white/20 text-white hover:bg-white/10 hover:border-[#773DF2]/50 transition-all duration-300 h-[56px] bg-transparent"
               >
-                <a href="mailto:hello@astra.studio">
+                <a href="mailto:hello@designnuvio.com">
                   <Mail className="mr-2 h-4 w-4" />
-                  hello@astra.studio
+                  hello@designnuvio.com
                 </a>
               </Button>
             </motion.div>

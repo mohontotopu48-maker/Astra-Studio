@@ -33,7 +33,7 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email Us",
-    value: "hello@astra.studio",
+    value: "hello@designnuvio.com",
     subtitle: "We respond within 24 hours",
     gradient: "from-[#592DB5] to-[#773DF2]",
   },
@@ -54,7 +54,7 @@ const contactInfo = [
   {
     icon: Share2,
     title: "Social Media",
-    value: "@astra.studio",
+    value: "@designnuvio",
     subtitle: "Twitter, LinkedIn, Dribbble",
     gradient: "from-[#4520A0] to-[#592DB5]",
   },

@@ -125,8 +125,8 @@ export default function FintechPage() {
             <p className="text-lg text-muted-foreground leading-relaxed mb-6">
               In fintech, trust isn&apos;t optional—it&apos;s the foundation of every interaction.
               Users are entrusting you with their money, their data, and their financial
-              future. Every pixel must reinforce confidence, clarity, and control. At Astra
-              Studio, we understand that fintech design lives at the intersection of
+              future. Every pixel must reinforce confidence, clarity, and control. At Design
+              Nuvio, we understand that fintech design lives at the intersection of
               regulatory rigor and user delight.
             </p>
             <p className="text-muted-foreground leading-relaxed">

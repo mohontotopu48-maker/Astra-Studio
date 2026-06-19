@@ -37,11 +37,11 @@ const features = [
 ]
 
 const comparisonData = [
-  { feature: 'Speed', astraStudio: true, inHouse: false, agency: false, freelancer: false, selfService: false },
-  { feature: 'Flexibility', astraStudio: true, inHouse: true, agency: false, freelancer: true, selfService: true },
-  { feature: 'Quality', astraStudio: true, inHouse: true, agency: true, freelancer: false, selfService: false },
-  { feature: 'Scalability', astraStudio: true, inHouse: false, agency: true, freelancer: false, selfService: false },
-  { feature: 'Affordability', astraStudio: true, inHouse: false, agency: false, freelancer: true, selfService: true },
+  { feature: 'Speed', designNuvio: true, inHouse: false, agency: false, freelancer: false, selfService: false },
+  { feature: 'Flexibility', designNuvio: true, inHouse: true, agency: false, freelancer: true, selfService: true },
+  { feature: 'Quality', designNuvio: true, inHouse: true, agency: true, freelancer: false, selfService: false },
+  { feature: 'Scalability', designNuvio: true, inHouse: false, agency: true, freelancer: false, selfService: false },
+  { feature: 'Affordability', designNuvio: true, inHouse: false, agency: false, freelancer: true, selfService: true },
 ]
 
 const skillTags = [
@@ -183,7 +183,7 @@ export function WhyChooseUs() {
                     <td
                       className={`p-4 md:p-5 text-center transition-colors duration-200 ${hoveredCol === 'us' ? 'bg-[#592DB5]/5' : ''}`}
                     >
-                      {row.astraStudio ? (
+                      {row.designNuvio ? (
                         <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[#592DB5]/10">
                           <Check className="h-4 w-4 text-[#773DF2]" />
                         </span>

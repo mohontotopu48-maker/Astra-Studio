@@ -164,3 +164,50 @@ Stage Summary:
 - Full navigation flow: home cards → detail pages → next case (loops) → back to list
 - List page filters work by category (Travel, Restaurant, SaaS, Healthcare, Automotive)
 - All 5 detail pages verified working in browser with no errors
+
+---
+Task ID: 6
+Agent: Main Agent
+Task: Verify logo, check brand name consistency in content, audit SEO, and audit mobile-friendliness
+
+Work Log:
+- Note: User message referenced "this attached logo" but no image was attached to the message. Verified the existing D+N monogram logo (black square, purple gradient D+N) is correctly applied everywhere instead.
+- Searched entire codebase for leftover "astra" brand references — found 7 files still containing old brand:
+  - WhyChooseUs.tsx: renamed `astraStudio` variable → `designNuvio` (7 occurrences in comparisonData + rendering)
+  - CTA.tsx: updated email hello@astra.studio → hello@designnuvio.com
+  - ContactPage.tsx: updated email + social handle (@astra.studio → @designnuvio)
+  - FintechPage.tsx: fixed "At Astra Studio" → "At Design Nuvio" in body copy
+  - PrivacyPolicyPage.tsx: updated privacy@astrastudio.com → privacy@designnuvio.com (4 occurrences)
+  - TermsOfServicePage.tsx: updated legal@astrastudio.com → legal@designnuvio.com (3 occurrences)
+  - sitemap.ts: updated baseUrl https://astra.studio → https://designnuvio.com
+- SEO improvements:
+  - Updated layout.tsx metadata: added metadataBase, canonical alternates, OpenGraph images (1200x630), Twitter card images, creator/handle @designnuvio, manifest reference, apple icon, applicationName, category
+  - Added explicit Viewport export (Next.js 16 best practice): width=device-width, initial-scale=1, maximumScale=5, themeColor (light/dark), colorScheme
+  - Added 3 JSON-LD structured data blocks in <head>: Organization, WebSite, ProfessionalService (with services, email, sameAs social links, areaServed)
+  - Rewrote sitemap.ts: expanded from 6 to 23 routes covering all pages (services, case studies, case study details, industries, company, resources), all with correct https://designnuvio.com baseUrl
+  - Created app/robots.ts (Next.js route) with per-user-agent rules + sitemap reference; removed redundant static public/robots.txt
+  - Created app/manifest.ts (PWA manifest) with name, short_name, theme_color #592DB5, background_color, icons, start_url
+- Mobile-friendliness audit & fixes:
+  - Verified Navigation.tsx: hamburger menu (lg:hidden), desktop dropdowns (hidden lg:flex), body scroll lock, touch-friendly button sizes — all correct
+  - Verified Hero.tsx: responsive font sizes (text-3xl→lg:text-6xl), responsive padding, stacked CTA buttons on mobile — correct
+  - Fixed CaseStudyDetailPage Process section: removed `pl-20` mobile padding that misaligned content; badge now responsive (w-14 sm:w-16); content no longer indented on mobile
+  - Verified case study hero, features grid, results, testimonial, next-case all use responsive classes (sm:/md:/lg: breakpoints, grid stacking)
+- Browser verification (Agent Browser):
+  - Desktop: logo (black square + D+N monogram) + "Design Nuvio" text confirmed in nav via VLM
+  - Footer: logo + "Design Nuvio" + tagline "CREATIVE, INNOVATIVE & ELEGANT" confirmed via VLM
+  - SEO tags verified via JS eval: title, description, canonical, OG title/image, Twitter card, manifest, themeColor, viewport (width=device-width, initial-scale=1, maximum-scale=5), robots (index,follow), 3 JSON-LD blocks (Organization/WebSite/ProfessionalService), favicon /logo.svg, html lang=en — ALL present
+  - robots.txt served correctly with Sitemap: https://designnuvio.com/sitemap.xml
+  - sitemap.xml served correctly with 23 URLs
+  - manifest.webmanifest served (200)
+  - Mobile viewport (390x844) home page: hamburger menu present, hero headline readable, CTA buttons tappable, single-column stacking, no horizontal overflow — confirmed via VLM
+  - Mobile case study detail page (#case-triply): hero title readable, snapshot card stacks, hero image full-width, sections single-column, process timeline readable, no overflow — confirmed via VLM
+  - Mobile menu opens correctly with Home/Services/Company/etc.
+  - Brand name audit across rendered pages (home, fintech, case-studies, contact, privacy-policy, terms-of-service): 0 "astra" references, "Design Nuvio" present on all
+  - Console: only minor framer-motion position warnings (no errors)
+- Lint passes clean; dev server returns 200 for all routes
+
+Stage Summary:
+- Brand name fully consistent: 0 "astra" references remain anywhere in codebase or rendered content; "Design Nuvio" used everywhere
+- SEO production-ready: full metadata, canonical, OG/Twitter cards, 3 JSON-LD schemas, sitemap (23 routes), robots.ts, manifest, viewport, theme-color
+- Mobile-friendly: verified at 390px viewport on home + case study detail page — responsive nav, readable text, tappable buttons, single-column stacking, no overflow
+- Logo confirmed applied correctly in nav, footer, favicon (/logo.svg), with D+N monogram + "Design Nuvio" wordmark + "Creative, Innovative & Elegant" tagline

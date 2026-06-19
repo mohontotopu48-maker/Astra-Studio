@@ -419,9 +419,9 @@ function Process({ study }: { study: CaseStudy }) {
                 transition={{ duration: 0.5, delay: i * 0.08 }}
                 className="relative md:grid md:grid-cols-[10rem_1fr] md:gap-12 items-start"
               >
-                <div className="flex md:flex-col md:items-end items-center gap-4 mb-4 md:mb-0">
+                <div className="flex md:flex-col md:items-end items-center gap-4 mb-2 md:mb-0">
                   <div
-                    className="w-16 h-16 rounded-2xl flex items-center justify-center font-display font-bold text-xl flex-shrink-0 relative z-10 border-4 border-background"
+                    className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center font-display font-bold text-lg sm:text-xl flex-shrink-0 relative z-10 border-4 border-background"
                     style={{
                       background: `${study.accentColor}15`,
                       color: study.accentColor,
@@ -429,14 +429,14 @@ function Process({ study }: { study: CaseStudy }) {
                   >
                     {phase.phase}
                   </div>
-                  <div className="md:text-right">
+                  <div className="md:text-right text-center md:text-right">
                     <p className="text-xs uppercase tracking-widest text-muted-foreground">
                       Duration
                     </p>
                     <p className="text-sm font-semibold">{phase.duration}</p>
                   </div>
                 </div>
-                <div className="pl-20 md:pl-0">
+                <div className="md:pl-0">
                   <h3 className="text-xl font-display font-semibold mb-2">
                     {phase.title}
                   </h3>
