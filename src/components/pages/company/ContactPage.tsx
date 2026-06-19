@@ -8,13 +8,13 @@ import {
   MapPin,
   Share2,
   ChevronDown,
-  Send,
   Building2,
   Clock,
   Globe,
 } from "lucide-react";
 import { PageLayout } from "@/components/pages/PageLayout";
 import { PageCTA } from "@/components/pages/PageCTA";
+import { ContactForm } from "@/components/agency/ContactForm";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -58,15 +58,6 @@ const contactInfo = [
     subtitle: "Twitter, LinkedIn, Dribbble",
     gradient: "from-[#4520A0] to-[#592DB5]",
   },
-];
-
-const budgetOptions = [
-  "Under $10,000",
-  "$10,000 - $25,000",
-  "$25,000 - $50,000",
-  "$50,000 - $100,000",
-  "$100,000+",
-  "Not sure yet",
 ];
 
 const faqs = [
@@ -118,18 +109,6 @@ const offices = [
 
 export default function ContactPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    budget: "",
-    message: "",
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Form submission logic
-  };
 
   return (
     <PageLayout
@@ -137,116 +116,38 @@ export default function ContactPage() {
       subtitle="Have a project in mind? Let's talk about how we can help transform your vision into reality."
       badge="Contact Us"
     >
-      {/* Contact Section - Two Column */}
+      {/* New Contact Form Section (matches home design) */}
+      <ContactForm />
+
+      {/* Reach Us — contact channels */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Left: Contact Info */}
-            <div>
-              <motion.div {...fadeInUp}>
-                <h2 className="text-3xl font-display font-bold mb-4">Let&apos;s Start a Conversation</h2>
-                <p className="text-muted-foreground mb-8 leading-relaxed">
-                  Whether you have a detailed brief or just a spark of an idea, we&apos;re here to listen. Reach out through any channel — we&apos;re always happy to chat.
-                </p>
-              </motion.div>
-              <div className="space-y-4">
-                {contactInfo.map((info, index) => (
-                  <motion.div
-                    key={info.title}
-                    {...stagger}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="flex items-start gap-4 p-5 rounded-2xl border border-border bg-card hover:border-[#592DB5]/40 hover:shadow-md hover:shadow-[#592DB5]/5 transition-all group"
-                  >
-                    <div
-                      className={`w-11 h-11 rounded-xl bg-gradient-to-r ${info.gradient} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform`}
-                    >
-                      <info.icon className="w-5 h-5 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="font-display font-semibold text-sm">{info.title}</h3>
-                      <p className="text-foreground font-medium mt-0.5">{info.value}</p>
-                      <p className="text-muted-foreground text-xs mt-1">{info.subtitle}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            {/* Right: Contact Form */}
-            <motion.div
-              {...fadeInUp}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="p-8 rounded-2xl border border-border bg-card"
-            >
-              <h3 className="text-xl font-display font-bold mb-6">Send Us a Message</h3>
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div>
-                  <label className="block text-sm font-medium mb-2">Name</label>
-                  <input
-                    type="text"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="Your full name"
-                    className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-[#592DB5] focus:ring-2 focus:ring-[#592DB5]/20 transition-all text-sm"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2">Email</label>
-                  <input
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="you@company.com"
-                    className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-[#592DB5] focus:ring-2 focus:ring-[#592DB5]/20 transition-all text-sm"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2">Company</label>
-                  <input
-                    type="text"
-                    value={formData.company}
-                    onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    placeholder="Your company name"
-                    className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-[#592DB5] focus:ring-2 focus:ring-[#592DB5]/20 transition-all text-sm"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2">Budget Range</label>
-                  <div className="relative">
-                    <select
-                      value={formData.budget}
-                      onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:border-[#592DB5] focus:ring-2 focus:ring-[#592DB5]/20 transition-all text-sm appearance-none"
-                    >
-                      <option value="">Select your budget range</option>
-                      {budgetOptions.map((option) => (
-                        <option key={option} value={option}>
-                          {option}
-                        </option>
-                      ))}
-                    </select>
-                    <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2">Message</label>
-                  <textarea
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Tell us about your project..."
-                    rows={4}
-                    className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-[#592DB5] focus:ring-2 focus:ring-[#592DB5]/20 transition-all text-sm resize-none"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="w-full inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-gradient-to-r from-[#592DB5] to-[#773DF2] text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-[#592DB5]/20 transition-all hover:scale-[1.02]"
+          <motion.div {...fadeInUp} className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-display font-bold mb-4">Reach Us Directly</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Prefer a different channel? Here&apos;s how else you can get in touch with the Design Nuvio team.
+            </p>
+          </motion.div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {contactInfo.map((info, index) => (
+              <motion.div
+                key={info.title}
+                {...stagger}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="flex flex-col items-start gap-3 p-6 rounded-2xl border border-border bg-card hover:border-[#592DB5]/40 hover:shadow-md hover:shadow-[#592DB5]/5 transition-all group"
+              >
+                <div
+                  className={`w-11 h-11 rounded-xl bg-gradient-to-r ${info.gradient} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform`}
                 >
-                  <Send className="w-4 h-4" />
-                  Send Message
-                </button>
-              </form>
-            </motion.div>
+                  <info.icon className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <h3 className="font-display font-semibold text-sm">{info.title}</h3>
+                  <p className="text-foreground font-medium mt-0.5 break-all">{info.value}</p>
+                  <p className="text-muted-foreground text-xs mt-1">{info.subtitle}</p>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>

@@ -241,3 +241,37 @@ Stage Summary:
 - Brand name: "Design Nuvio" is 100% consistent across all content (25 files).
 - SEO: comprehensive — metadata, OG, Twitter, 3 JSON-LD schemas, sitemap (22 routes), robots, manifest. All meta tags verified rendering in-browser.
 - Mobile: fully responsive with working hamburger menu, stacked layouts, proper viewport, and sticky footer on all page types (home + detail pages).
+
+---
+Task ID: contact-redesign-logo-recheck
+Agent: main (Z.ai Code)
+Task: Redesign contact form to match user-provided reference image; re-check logo against new reference URL; act as full-stack developer and implement properly (frontend + backend).
+
+Work Log:
+- Analyzed contact-form reference image (upload/WhatsApp Image 2026-06-19 at 11.17.13 PM.jpeg, 1600x702) via VLM — captured full design spec: dark gradient bg + dotted pattern, 2-col layout, left = "Let's Walk & Work Together" eyebrow + 3-line headline + 5 purple-checkmark benefits + phone/"Book A Call Directly", right = form (Full Name*, Email ID*, Phone no*, Company Name, Project budget* dropdown, Project details* textarea, "Send Inquiry" button).
+- Downloaded logo reference URL (https://i.ibb.co.com/r25pRwTm/Design-Nuvio-Logo.png) and compared byte-for-byte against the previously uploaded logo — IDENTICAL (same 1254x1254 PNG, same MD5). Current SVG logo + brand PNG assets already match. No logo changes needed.
+- Confirmed backend: /api/contact POST route already exists with zod schema validation, rate limiting (3/min), spam detection, and in-memory store. No backend changes needed.
+- Rewrote src/components/agency/ContactForm.tsx to match the reference design exactly:
+  * Dark gradient background (from-[#0a0a0a] via-[#0d0820] to-[#1a0a2e]) + dot-pattern overlay + decorative purple glows.
+  * Two-column responsive grid (lg:grid-cols-2), stacks vertically on mobile.
+  * LEFT: purple eyebrow "Let's Walk & Work Together", 3-line headline with "Let's get started" in purple gradient, 5 benefit bullets with purple check-circle icons, phone (+1 (555) 123-4567 as tel: link) with phone icon, "Book A Call Directly" link with calendar icon.
+  * RIGHT: glassmorphism form card (border-white/10, bg-white/[0.03], backdrop-blur) with Full Name, Email+Phone row, Company+Budget row, Project details textarea, "Send Inquiry" purple-gradient button with Send icon.
+  * Form wired to POST /api/contact; uses useToast() for success/error feedback; loading state with Loader2 spinner; resets form on success.
+  * Native HTML5 required validation (removed noValidate) so empty submissions are blocked client-side.
+  * Reusable via showLeftPanel prop (default true) for flexibility.
+- Updated src/components/pages/company/ContactPage.tsx: replaced old two-column contact section (inline form + contact-info cards) with the new <ContactForm /> component; kept the contact-info cards as a separate "Reach Us Directly" 4-col grid below; removed unused budgetOptions/formData/handleSubmit; FAQ + Global Offices sections preserved.
+- Lint passes clean. Dev log shows no errors.
+- Agent Browser end-to-end verification:
+  * Desktop (1440x900): VLM confirmed design matches reference — dark gradient bg, 2-col layout, all 5 bullets with purple checkmarks, phone + Book A Call, form with all 6 fields + Send Inquiry button.
+  * Mobile (375x812): layout stacks vertically (benefits on top, form below), headings readable, fields full-width, button meets 44px touch target, no overflow.
+  * Form submission flow: filled all fields → selected budget "$25,000 — $50,000" → clicked Send Inquiry → API returned 200 → success toast "Inquiry sent! Thank you! We'll be in touch within 24 hours." appeared bottom-right → form auto-reset. Dev log confirmed "New contact submission: jane@acme.io Acme Inc".
+  * Validation path: empty submission blocked by native required validation.
+  * Contact page (#contact): hero (Back to Home + Contact Us badge + Get in Touch title) renders, followed by the new dark form section, then "Reach Us Directly" contact cards, FAQ, Global Offices.
+
+Stage Summary:
+- Logo: reference URL is byte-identical to the already-integrated logo; no changes needed. SVG logo component + PNG brand assets (logo-full, apple-touch-icon, icon-192/512, og-image) all remain correct.
+- Contact form: fully redesigned to match the user's reference image — dark gradient + dotted pattern, two-column layout, benefits+phone on left, glassmorphism form card on right with all 6 fields and "Send Inquiry" button. Uses brand purple (#592DB5/#773DF2/#9B6BF5).
+- Full-stack: frontend form posts to existing /api/contact backend (zod validation + rate limiting + spam detection); success/error toast feedback; loading state; form auto-reset on success.
+- Both home page (#contact-form section) and Contact page (#contact) now use the identical new design.
+- Responsive: stacks cleanly on mobile, meets touch-target requirements.
+- Verified end-to-end via Agent Browser: design match (desktop+mobile), successful submission with toast, form reset, validation.

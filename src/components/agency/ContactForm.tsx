@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Send, CheckCircle, Loader2 } from 'lucide-react'
+import { Check, Phone, Send, Loader2, CalendarClock } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -14,25 +14,39 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { useToast } from '@/hooks/use-toast'
 import { AnimatedSection } from '@/lib/animations'
 
 const budgetRanges = [
-  'Under $25,000',
+  'Under $10,000',
+  '$10,000 — $25,000',
   '$25,000 — $50,000',
   '$50,000 — $100,000',
   '$100,000 — $250,000',
   '$250,000+',
 ]
 
-export function ContactForm() {
+const benefits = [
+  'Expect a response from us within 24 hours',
+  'Secure and encrypted data handling for all project briefs',
+  'Zero obligation, 100% transparent custom proposal',
+  'Flexible milestone-based payment plans available',
+  'Flexible & scalable design sprints tailored to your launch date',
+]
+
+interface ContactFormProps {
+  /** Show the section heading on the left column (default true) */
+  showLeftPanel?: boolean
+  className?: string
+}
+
+export function ContactForm({ showLeftPanel = true, className = '' }: ContactFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const { toast } = useToast()
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
-    setError(null)
 
     const formData = new FormData(e.currentTarget)
     const data = {
@@ -51,143 +65,231 @@ export function ContactForm() {
         body: JSON.stringify(data),
       })
 
+      const result = await res.json()
+
       if (!res.ok) {
-        const result = await res.json()
         throw new Error(result.error || 'Something went wrong')
       }
 
-      setIsSubmitted(true)
+      toast({
+        title: 'Inquiry sent!',
+        description: "Thank you! We'll be in touch within 24 hours.",
+      })
+      ;(e.target as HTMLFormElement).reset()
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to submit form')
+      toast({
+        title: 'Submission failed',
+        description: err instanceof Error ? err.message : 'Failed to submit form',
+        variant: 'destructive',
+      })
     } finally {
       setIsSubmitting(false)
     }
   }
 
-  if (isSubmitted) {
-    return (
-      <section id="contact-form" className="py-16 md:py-24 bg-surface">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            <CheckCircle className="h-16 w-16 text-[#773DF2] mx-auto mb-6" />
-            <h3 className="text-2xl font-bold mb-3">Thank You!</h3>
-            <p className="text-muted-foreground">
-              We&apos;ve received your message and will get back to you within 24 hours.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-    )
-  }
-
   return (
-    <section id="contact-form" className="py-16 md:py-24 bg-surface">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-12">
-          <span className="text-sm text-[#773DF2] font-medium uppercase tracking-widest mb-4 block">
-            Get in Touch
-          </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold font-display tracking-tight mb-6">
-            Let&apos;s Build Something Great
-          </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Tell us about your project and we&apos;ll get back to you within 24 hours
-            with a personalized proposal.
-          </p>
-        </AnimatedSection>
+    <section
+      id="contact-form"
+      className={`relative py-20 md:py-28 overflow-hidden ${className}`}
+    >
+      {/* Dark gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0a] via-[#0d0820] to-[#1a0a2e]" />
+      {/* Dotted pattern overlay */}
+      <div className="absolute inset-0 dot-pattern opacity-[0.15]" />
+      {/* Decorative purple glows */}
+      <div className="absolute top-1/4 -left-32 w-[500px] h-[500px] rounded-full bg-[#592DB5] opacity-[0.08] blur-[140px]" />
+      <div className="absolute bottom-1/4 -right-32 w-[500px] h-[500px] rounded-full bg-[#773DF2] opacity-[0.06] blur-[140px]" />
 
-        <AnimatedSection delay={0.2}>
-          <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl mx-auto">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className={`grid ${showLeftPanel ? 'lg:grid-cols-2' : ''} gap-12 lg:gap-16 items-start`}>
+          {/* === LEFT PANEL === */}
+          {showLeftPanel && (
+            <AnimatedSection className="flex flex-col">
+              <motion.span
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="text-sm font-medium uppercase tracking-[0.25em] text-[#9B6BF5] mb-5"
+              >
+                Let&apos;s Walk &amp; Work Together
+              </motion.span>
+
+              <motion.h2
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold tracking-tight text-white leading-[1.15] mb-8"
+              >
+                Have a project
+                <br />
+                idea in mind?
+                <br />
+                <span className="bg-gradient-to-r from-[#9B6BF5] via-[#773DF2] to-[#592DB5] bg-clip-text text-transparent">
+                  Let&apos;s get started
+                </span>
+              </motion.h2>
+
+              {/* Benefits list */}
+              <ul className="space-y-3.5 mb-10">
+                {benefits.map((benefit, i) => (
+                  <motion.li
+                    key={benefit}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: 0.2 + i * 0.08 }}
+                    className="flex items-start gap-3 text-sm sm:text-base text-white/90"
+                  >
+                    <span className="flex-shrink-0 w-5 h-5 rounded-full bg-gradient-to-br from-[#773DF2] to-[#592DB5] flex items-center justify-center mt-0.5">
+                      <Check className="w-3 h-3 text-white" strokeWidth={3} />
+                    </span>
+                    <span className="leading-relaxed">{benefit}</span>
+                  </motion.li>
+                ))}
+              </ul>
+
+              {/* Phone + book a call */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+                className="pt-6 border-t border-white/10"
+              >
+                <div className="flex items-center gap-3 mb-2">
+                  <span className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-[#773DF2] to-[#592DB5] flex items-center justify-center">
+                    <Phone className="w-4 h-4 text-white" />
+                  </span>
+                  <a
+                    href="tel:+15551234567"
+                    className="text-lg font-semibold text-white hover:text-[#9B6BF5] transition-colors"
+                  >
+                    +1 (555) 123-4567
+                  </a>
+                </div>
+                <a
+                  href="#contact"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-[#9B6BF5] hover:text-[#773DF2] transition-colors group ml-13 pl-1"
+                >
+                  Book A Call Directly
+                  <CalendarClock className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </a>
+              </motion.div>
+            </AnimatedSection>
+          )}
+
+          {/* === RIGHT PANEL — FORM === */}
+          <AnimatedSection
+            delay={showLeftPanel ? 0.3 : 0}
+            className="relative rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-xl p-6 sm:p-8 lg:p-10 shadow-2xl"
+          >
+            <form onSubmit={handleSubmit} className="space-y-5">
+              {/* Full Name */}
               <div className="space-y-2">
-                <Label htmlFor="name">Full Name *</Label>
+                <Label htmlFor="name" className="text-white text-sm font-medium">
+                  Full Name <span className="text-[#9B6BF5]">*</span>
+                </Label>
                 <Input
                   id="name"
                   name="name"
-                  placeholder="John Smith"
+                  placeholder="Type Here"
                   required
-                  className="bg-background border-border/50 focus:border-[#592DB5]/50"
+                  className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-[#773DF2] focus:ring-[#773DF2]/20 rounded-lg h-12"
                 />
               </div>
+
+              {/* Email + Phone row */}
+              <div className="grid sm:grid-cols-2 gap-5">
+                <div className="space-y-2">
+                  <Label htmlFor="email" className="text-white text-sm font-medium">
+                    Email ID <span className="text-[#9B6BF5]">*</span>
+                  </Label>
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="Type Here"
+                    required
+                    className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-[#773DF2] focus:ring-[#773DF2]/20 rounded-lg h-12"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="phone" className="text-white text-sm font-medium">
+                    Phone no <span className="text-[#9B6BF5]">*</span>
+                  </Label>
+                  <Input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    placeholder="Type Here"
+                    required
+                    className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-[#773DF2] focus:ring-[#773DF2]/20 rounded-lg h-12"
+                  />
+                </div>
+              </div>
+
+              {/* Company + Budget row */}
+              <div className="grid sm:grid-cols-2 gap-5">
+                <div className="space-y-2">
+                  <Label htmlFor="company" className="text-white text-sm font-medium">
+                    Company Name
+                  </Label>
+                  <Input
+                    id="company"
+                    name="company"
+                    placeholder="Type Here"
+                    className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-[#773DF2] focus:ring-[#773DF2]/20 rounded-lg h-12"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="budget" className="text-white text-sm font-medium">
+                    Project budget <span className="text-[#9B6BF5]">*</span>
+                  </Label>
+                  <Select name="budget">
+                    <SelectTrigger
+                      id="budget"
+                      className="bg-white/5 border-white/10 text-white focus:ring-[#773DF2]/20 rounded-lg h-12 [&>span]:text-white/40 data-[placeholder]:text-white/40"
+                    >
+                      <SelectValue placeholder="Select budget Range" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-[#1a0a2e] border-white/10 text-white">
+                      {budgetRanges.map((range) => (
+                        <SelectItem
+                          key={range}
+                          value={range}
+                          className="text-white focus:bg-[#773DF2]/30 focus:text-white"
+                        >
+                          {range}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+
+              {/* Project details */}
               <div className="space-y-2">
-                <Label htmlFor="email">Work Email *</Label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  placeholder="john@company.com"
+                <Label htmlFor="message" className="text-white text-sm font-medium">
+                  Project details <span className="text-[#9B6BF5]">*</span>
+                </Label>
+                <Textarea
+                  id="message"
+                  name="message"
+                  placeholder="Tell us more about your idea...."
                   required
-                  className="bg-background border-border/50 focus:border-[#592DB5]/50"
+                  rows={5}
+                  className="bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:border-[#773DF2] focus:ring-[#773DF2]/20 rounded-lg resize-none min-h-[140px]"
                 />
               </div>
-            </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <Label htmlFor="company">Company</Label>
-                <Input
-                  id="company"
-                  name="company"
-                  placeholder="Company name"
-                  className="bg-background border-border/50 focus:border-[#592DB5]/50"
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="phone">Phone</Label>
-                <Input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  placeholder="+1 (555) 000-0000"
-                  className="bg-background border-border/50 focus:border-[#592DB5]/50"
-                />
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="budget">Project Budget</Label>
-              <Select name="budget">
-                <SelectTrigger className="bg-background border-border/50">
-                  <SelectValue placeholder="Select a range" />
-                </SelectTrigger>
-                <SelectContent>
-                  {budgetRanges.map((range) => (
-                    <SelectItem key={range} value={range}>
-                      {range}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="message">Project Details *</Label>
-              <Textarea
-                id="message"
-                name="message"
-                placeholder="Tell us about your project, goals, and timeline..."
-                required
-                rows={5}
-                className="bg-background border-border/50 focus:border-[#592DB5]/50 resize-none"
-              />
-            </div>
-
-            {error && (
-              <div className="text-sm text-destructive text-center">
-                {error}
-              </div>
-            )}
-
-            <div className="flex justify-center pt-4">
+              {/* Submit */}
               <Button
                 type="submit"
                 disabled={isSubmitting}
                 size="lg"
-                className="bg-gradient-to-r from-[#592DB5] to-[#773DF2] text-white border-0 hover:opacity-90 transition-all rounded-full px-8 py-6 text-base group"
+                className="w-full sm:w-auto bg-gradient-to-r from-[#592DB5] to-[#773DF2] text-white border-0 hover:shadow-[0_0_40px_#773DF240] transition-all duration-500 rounded-lg px-10 h-12 text-base font-medium group"
               >
                 {isSubmitting ? (
                   <>
@@ -196,18 +298,18 @@ export function ContactForm() {
                   </>
                 ) : (
                   <>
-                    Send Message
+                    Send Inquiry
                     <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </>
                 )}
               </Button>
-            </div>
 
-            <p className="text-xs text-center text-muted-foreground">
-              By submitting, you agree to our Privacy Policy. We&apos;ll never share your information.
-            </p>
-          </form>
-        </AnimatedSection>
+              <p className="text-xs text-white/40 leading-relaxed">
+                By submitting, you agree to our Privacy Policy. We&apos;ll never share your information.
+              </p>
+            </form>
+          </AnimatedSection>
+        </div>
       </div>
     </section>
   )
