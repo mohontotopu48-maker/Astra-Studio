@@ -211,3 +211,33 @@ Stage Summary:
 - SEO production-ready: full metadata, canonical, OG/Twitter cards, 3 JSON-LD schemas, sitemap (23 routes), robots.ts, manifest, viewport, theme-color
 - Mobile-friendly: verified at 390px viewport on home + case study detail page — responsive nav, readable text, tappable buttons, single-column stacking, no overflow
 - Logo confirmed applied correctly in nav, footer, favicon (/logo.svg), with D+N monogram + "Design Nuvio" wordmark + "Creative, Innovative & Elegant" tagline
+
+---
+Task ID: logo-seo-mobile-audit
+Agent: main (Z.ai Code)
+Task: Check uploaded "Design Nuvio Logo 1.png", add it to the project, verify brand name consistency, audit SEO, and audit mobile-friendliness.
+
+Work Log:
+- Analyzed uploaded logo (upload/Design Nuvio Logo 1.png, 1254x1254 PNG) via VLM — confirmed D+N monogram with purple gradient on black, "Design Nuvio" wordmark (white Design + purple Nuvio), "Creative, Innovative & Elegant" tagline.
+- Copied logo to public/logo-full.png as the canonical brand asset.
+- Created icon crops with PIL: public/apple-touch-icon.png (564x564 monogram crop), public/icon-192.png, public/icon-512.png (PWA icons).
+- Created public/og-image.png — branded 1200x630 social-share image (logo on subtle purple gradient) to fix the previous OG image dimension mismatch (was 1344x768).
+- Updated src/app/layout.tsx: added PNG icon + apple-touch-icon to metadata.icons; pointed OG/Twitter images to /og-image.png; updated JSON-LD Organization + ProfessionalService schema logo refs to /logo-full.png.
+- Updated src/app/manifest.ts: added icon-192.png, icon-512.png, and apple-touch-icon.png (maskable) PWA icons alongside the SVG.
+- Audited brand name "Design Nuvio" across all 25 files containing the name — 100% consistent, no typos or variations (DesignNuvio / trailing spaces).
+- Audited SEO: title template, description, keywords, authors, canonical, OpenGraph, Twitter card, robots, 3x JSON-LD schemas (Organization, WebSite, ProfessionalService), sitemap.ts (22 routes), robots.ts, manifest.ts — all present and correct. Verified via browser eval that all meta tags render.
+- Audited mobile-friendliness: viewport meta set (width=device-width, initial-scale=1, maximum-scale=5), theme-color, responsive breakpoints throughout (sm/md/lg), hamburger menu with full-screen overlay, sticky footer pattern (min-h-screen flex flex-col + main flex-1 + Footer) on both home and PageLayout.
+- Verified all 9 brand/SEO assets serve HTTP 200 (logo.svg, logo-full.png, apple-touch-icon.png, icon-192/512.png, og-image.png, manifest.webmanifest, sitemap.xml, robots.txt).
+- Agent Browser verification at 1440x900 (desktop) and 375x812 (mobile):
+  * Desktop home: logo, nav, hero all render correctly.
+  * Mobile home: headline fits (no overflow), hamburger menu present.
+  * Mobile footer: "Design Nuvio" logo + "© 2026 Design Nuvio" copyright visible, 2-col stacked links, sticky footer working (no gap).
+  * Mobile case study detail (#case-triply): logo, back button, TRAVEL/CASE STUDY badges, title, PROJECT SNAPSHOT all render correctly.
+  * Mobile menu overlay: opens full-screen with Home/Services/Company/Industries/Resources + Start a Project button.
+- Lint passes clean. Dev log shows only 200 responses, no errors.
+
+Stage Summary:
+- Logo asset: uploaded PNG is now used for favicon (apple-touch-icon), PWA icons (192/512), OG/Twitter social image (1200x630), and JSON-LD structured-data logo. The crisp SVG logo component remains in the nav/footer for theme-aware rendering.
+- Brand name: "Design Nuvio" is 100% consistent across all content (25 files).
+- SEO: comprehensive — metadata, OG, Twitter, 3 JSON-LD schemas, sitemap (22 routes), robots, manifest. All meta tags verified rendering in-browser.
+- Mobile: fully responsive with working hamburger menu, stacked layouts, proper viewport, and sticky footer on all page types (home + detail pages).

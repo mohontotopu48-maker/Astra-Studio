@@ -54,9 +54,10 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/logo.svg", type: "image/svg+xml" },
+      { url: "/icon-192.png", type: "image/png", sizes: "192x192" },
     ],
     shortcut: ["/logo.svg"],
-    apple: [{ url: "/logo.svg" }],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
   },
   manifest: "/manifest.webmanifest",
   openGraph: {
@@ -69,7 +70,7 @@ export const metadata: Metadata = {
       "Award-winning design agency specializing in UI/UX design, brand identity, and digital transformation. We craft premium digital experiences for SaaS, Fintech, AI, and Healthcare companies.",
     images: [
       {
-        url: "/images/case-studies-hero.png",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Design Nuvio — Premium UI/UX & Brand Design Agency",
@@ -81,7 +82,7 @@ export const metadata: Metadata = {
     title: "Design Nuvio — Premium UI/UX & Brand Design Agency",
     description:
       "Award-winning design agency specializing in UI/UX design, brand identity, and digital transformation.",
-    images: ["/images/case-studies-hero.png"],
+    images: ["/og-image.png"],
     creator: "@designnuvio",
     site: "@designnuvio",
   },
@@ -115,7 +116,7 @@ const organizationSchema = {
   "@type": "Organization",
   name: "Design Nuvio",
   url: siteUrl,
-  logo: `${siteUrl}/logo.svg`,
+  logo: `${siteUrl}/logo-full.png`,
   description:
     "Award-winning design agency specializing in UI/UX design, brand identity, and digital transformation.",
   email: "hello@designnuvio.com",
@@ -155,7 +156,7 @@ const professionalServiceSchema = {
   description:
     "Premium UI/UX design, brand identity, and digital transformation agency.",
   url: siteUrl,
-  logo: `${siteUrl}/logo.svg`,
+  logo: `${siteUrl}/logo-full.png`,
   email: "hello@designnuvio.com",
   priceRange: "$$$",
   areaServed: "Worldwide",
