@@ -22,7 +22,12 @@ export type PageRoute =
   | "blog"
   | "faq"
   | "privacy-policy"
-  | "terms-of-service";
+  | "terms-of-service"
+  | "case-triply"
+  | "case-plate"
+  | "case-yenex"
+  | "case-fitmate"
+  | "case-zantrik";
 
 const routeMap: Record<string, PageRoute> = {
   "": "home",
@@ -46,6 +51,11 @@ const routeMap: Record<string, PageRoute> = {
   faq: "faq",
   "privacy-policy": "privacy-policy",
   "terms-of-service": "terms-of-service",
+  "case-triply": "case-triply",
+  "case-plate": "case-plate",
+  "case-yenex": "case-yenex",
+  "case-fitmate": "case-fitmate",
+  "case-zantrik": "case-zantrik",
 };
 
 function getHashRoute(): PageRoute {

@@ -32,6 +32,15 @@ import ProcessPage from '@/components/pages/company/ProcessPage'
 import CareersPage from '@/components/pages/company/CareersPage'
 import ContactPage from '@/components/pages/company/ContactPage'
 
+// Case study detail pages
+import CaseStudyDetailPage from '@/components/pages/case-studies/CaseStudyDetailPage'
+
+const CaseTriplyPage = () => <CaseStudyDetailPage route="case-triply" />
+const CasePlatePage = () => <CaseStudyDetailPage route="case-plate" />
+const CaseYenexPage = () => <CaseStudyDetailPage route="case-yenex" />
+const CaseFitmatePage = () => <CaseStudyDetailPage route="case-fitmate" />
+const CaseZantrikPage = () => <CaseStudyDetailPage route="case-zantrik" />
+
 // Industry pages
 import SaaSPage from '@/components/pages/industries/SaaSPage'
 import FintechPage from '@/components/pages/industries/FintechPage'
@@ -65,6 +74,11 @@ const pageMap: Record<PageRoute, React.ComponentType> = {
   faq: FAQPage,
   'privacy-policy': PrivacyPolicyPage,
   'terms-of-service': TermsOfServicePage,
+  'case-triply': CaseTriplyPage,
+  'case-plate': CasePlatePage,
+  'case-yenex': CaseYenexPage,
+  'case-fitmate': CaseFitmatePage,
+  'case-zantrik': CaseZantrikPage,
 }
 
 function HomePage() {

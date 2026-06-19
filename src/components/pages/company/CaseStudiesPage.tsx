@@ -8,13 +8,13 @@ import {
   Users,
   Star,
   Zap,
-  Shield,
-  BarChart3,
   Quote,
   Filter,
 } from "lucide-react";
 import { PageLayout } from "@/components/pages/PageLayout";
 import { PageCTA } from "@/components/pages/PageCTA";
+import { useRouter, type PageRoute } from "@/hooks/use-router";
+import { caseStudies } from "@/lib/case-studies-data";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -29,97 +29,13 @@ const stagger = {
   viewport: { once: true },
 };
 
-const categories = ["All", "SaaS", "Fintech", "Healthcare", "AI"];
-
-const caseStudies = [
-  {
-    title: "FinFlow — Banking Dashboard Redesign",
-    description: "Reimagined a legacy banking dashboard into a modern, intuitive experience that reduced user friction and increased engagement across all user segments.",
-    category: "Fintech",
-    gradient: "from-[#592DB5] to-[#773DF2]",
-    metrics: [
-      { value: "45%", label: "Faster Onboarding" },
-      { value: "60%", label: "Less Support Tickets" },
-      { value: "4.8", label: "App Rating" },
-    ],
-  },
-  {
-    title: "MedSync — Patient Portal",
-    description: "Designed a HIPAA-compliant patient portal that streamlined appointment scheduling and medical record access for over 500,000 patients.",
-    category: "Healthcare",
-    gradient: "from-[#4520A0] to-[#9B6BF5]",
-    metrics: [
-      { value: "3x", label: "User Engagement" },
-      { value: "92%", label: "Patient Satisfaction" },
-      { value: "70%", label: "Fewer Calls" },
-    ],
-  },
-  {
-    title: "CloudMetrics — Analytics Platform",
-    description: "Built a comprehensive analytics platform with real-time data visualization that helps businesses make data-driven decisions 10x faster.",
-    category: "SaaS",
-    gradient: "from-[#773DF2] to-[#B68DF7]",
-    metrics: [
-      { value: "10x", label: "Faster Insights" },
-      { value: "300%", label: "ROI Increase" },
-      { value: "99.9%", label: "Uptime" },
-    ],
-  },
-  {
-    title: "NeuralPay — AI Payment System",
-    description: "Created an AI-powered payment interface that predicts user behavior and optimizes checkout flows for maximum conversion.",
-    category: "AI",
-    gradient: "from-[#9B6BF5] to-[#592DB5]",
-    metrics: [
-      { value: "38%", label: "Higher Conversion" },
-      { value: "50ms", label: "Avg Response" },
-      { value: "2M+", label: "Transactions/mo" },
-    ],
-  },
-  {
-    title: "HealthHub — Telemedicine App",
-    description: "Designed an end-to-end telemedicine experience connecting patients with doctors seamlessly, from scheduling to follow-up care.",
-    category: "Healthcare",
-    gradient: "from-[#592DB5] to-[#4520A0]",
-    metrics: [
-      { value: "85%", label: "Return Rate" },
-      { value: "4.9", label: "App Store Rating" },
-      { value: "40%", label: "Cost Reduction" },
-    ],
-  },
-  {
-    title: "SaaSly — Project Management Suite",
-    description: "Redesigned a project management tool that teams actually love to use, reducing onboarding time and boosting daily active usage.",
-    category: "SaaS",
-    gradient: "from-[#773DF2] to-[#592DB5]",
-    metrics: [
-      { value: "55%", label: "More Daily Users" },
-      { value: "2h", label: "Saved Per Week" },
-      { value: "98%", label: "Retention Rate" },
-    ],
-  },
-  {
-    title: "CryptoVault — Digital Wallet",
-    description: "Designed a secure and intuitive cryptocurrency wallet that makes digital asset management accessible to mainstream users.",
-    category: "Fintech",
-    gradient: "from-[#4520A0] to-[#773DF2]",
-    metrics: [
-      { value: "200K+", label: "Active Users" },
-      { value: "0", label: "Security Breaches" },
-      { value: "4.7", label: "User Rating" },
-    ],
-  },
-  {
-    title: "AIForge — ML Training Platform",
-    description: "Built a visual interface for machine learning model training that empowers non-technical users to leverage AI capabilities.",
-    category: "AI",
-    gradient: "from-[#B68DF7] to-[#4520A0]",
-    metrics: [
-      { value: "5x", label: "Faster Deployment" },
-      { value: "80%", label: "Less Code Needed" },
-      { value: "150+", label: "Enterprise Clients" },
-    ],
-  },
+const categories = [
+  "All",
+  "Travel",
+  "Restaurant",
+  "SaaS",
+  "Healthcare",
+  "Automotive",
 ];
 
 const aggregateMetrics = [
@@ -131,27 +47,34 @@ const aggregateMetrics = [
 
 const testimonials = [
   {
-    quote: "Design Nuvio transformed our entire digital presence. The results exceeded every KPI we set. They don't just design — they solve business problems.",
-    name: "Sarah Mitchell",
-    role: "VP of Product, FinFlow",
-    gradient: "from-[#592DB5] to-[#773DF2]",
+    quote:
+      "Design Nuvio didn't just redesign our booking flow — they reframed how we think about the traveler's journey. The new Triply feels effortless, and our retention numbers prove it.",
+    name: "Shubho Al-Faroque",
+    role: "Triply CEO",
+    avatar: "SA",
+    accentColor: "#3B4BDB",
   },
   {
-    quote: "The team's ability to understand our complex healthcare requirements and translate them into an intuitive interface was remarkable. Our patients love it.",
-    name: "Dr. James Park",
-    role: "CTO, MedSync",
-    gradient: "from-[#773DF2] to-[#9B6BF5]",
+    quote:
+      "Design Nuvio understood that Plate isn't a reservation app — it's a love letter to French dining. They gave every restaurant a voice and every diner a reason to fall in love.",
+    name: "Neil Saidi",
+    role: "Plate CEO",
+    avatar: "NS",
+    accentColor: "#E5594F",
   },
   {
-    quote: "Working with Design Nuvio felt like having an extension of our own team. Their design system has become the foundation of everything we build.",
-    name: "Lisa Chen",
-    role: "Head of Design, CloudMetrics",
-    gradient: "from-[#4520A0] to-[#592DB5]",
+    quote:
+      "Design Nuvio took a dashboard that scared people away and turned it into something my parents could use. Our activation rate is the highest it's ever been.",
+    name: "Ted Nash",
+    role: "Yenex CEO",
+    avatar: "TN",
+    accentColor: "#C99700",
   },
 ];
 
 export default function CaseStudiesPage() {
   const [activeFilter, setActiveFilter] = useState("All");
+  const { navigate } = useRouter();
 
   const filteredStudies =
     activeFilter === "All"
@@ -218,16 +141,23 @@ export default function CaseStudiesPage() {
               className="grid md:grid-cols-2 gap-8"
             >
               {filteredStudies.map((study, index) => (
-                <motion.div
-                  key={study.title}
+                <motion.button
+                  key={study.slug}
                   {...stagger}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="group rounded-2xl border border-border bg-card overflow-hidden hover:border-[#592DB5]/40 hover:shadow-xl hover:shadow-[#592DB5]/5 transition-all"
+                  onClick={() => navigate(study.route as PageRoute)}
+                  className="group text-left rounded-2xl border border-border bg-card overflow-hidden hover:border-[#592DB5]/40 hover:shadow-xl hover:shadow-[#592DB5]/5 transition-all"
                 >
-                  {/* Gradient placeholder */}
-                  <div className={`h-48 bg-gradient-to-br ${study.gradient} relative`}>
-                    <div className="absolute inset-0 grid-pattern opacity-10" />
-                    <span className="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm text-white text-xs font-medium">
+                  {/* Image */}
+                  <div
+                    className={`h-56 sm:h-64 relative overflow-hidden ${study.bgColor}`}
+                  >
+                    <img
+                      src={study.image}
+                      alt={`${study.title} - ${study.category} project`}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <span className="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/85 backdrop-blur-sm text-[#1a1a2e] text-xs font-semibold">
                       {study.category}
                     </span>
                   </div>
@@ -238,22 +168,27 @@ export default function CaseStudiesPage() {
                     <p className="text-muted-foreground text-sm leading-relaxed mb-6">
                       {study.description}
                     </p>
-                    <div className="grid grid-cols-3 gap-4 mb-6">
+                    <div className="grid grid-cols-2 gap-4 mb-6">
                       {study.metrics.map((metric) => (
-                        <div key={metric.label} className="text-center">
-                          <span className="text-lg font-display font-bold text-[#592DB5]">
+                        <div key={metric.label} className="text-center p-3 rounded-lg bg-muted/40">
+                          <span
+                            className="text-lg font-display font-bold block"
+                            style={{ color: study.accentColor }}
+                          >
                             {metric.value}
                           </span>
-                          <p className="text-xs text-muted-foreground mt-1">{metric.label}</p>
+                          <p className="text-xs text-muted-foreground mt-1">
+                            {metric.label}
+                          </p>
                         </div>
                       ))}
                     </div>
-                    <button className="inline-flex items-center gap-2 text-sm font-medium text-[#773DF2] hover:text-[#592DB5] transition-colors group/btn">
+                    <div className="inline-flex items-center gap-2 text-sm font-medium text-[#773DF2] group-hover:text-[#592DB5] transition-colors">
                       Read Case Study
-                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                    </button>
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </div>
                   </div>
-                </motion.div>
+                </motion.button>
               ))}
             </motion.div>
           </AnimatePresence>
@@ -264,9 +199,12 @@ export default function CaseStudiesPage() {
       <section className="py-20 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeInUp} className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-display font-bold mb-4">Results That Speak</h2>
+            <h2 className="text-3xl sm:text-4xl font-display font-bold mb-4">
+              Results That Speak
+            </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Our clients don&apos;t just get beautiful designs — they get measurable business impact.
+              Our clients don&apos;t just get beautiful designs — they get
+              measurable business impact.
             </p>
           </motion.div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -283,7 +221,9 @@ export default function CaseStudiesPage() {
                 <span className="text-3xl font-display font-bold bg-gradient-to-r from-[#592DB5] to-[#773DF2] bg-clip-text text-transparent">
                   {metric.value}
                 </span>
-                <p className="text-muted-foreground text-sm mt-2">{metric.label}</p>
+                <p className="text-muted-foreground text-sm mt-2">
+                  {metric.label}
+                </p>
               </motion.div>
             ))}
           </div>
@@ -294,7 +234,9 @@ export default function CaseStudiesPage() {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeInUp} className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-display font-bold mb-4">Client Testimonials</h2>
+            <h2 className="text-3xl sm:text-4xl font-display font-bold mb-4">
+              Client Testimonials
+            </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Hear directly from the leaders we&apos;ve partnered with.
             </p>
@@ -313,15 +255,18 @@ export default function CaseStudiesPage() {
                 </p>
                 <div className="flex items-center gap-3">
                   <div
-                    className={`w-10 h-10 rounded-full bg-gradient-to-br ${testimonial.gradient} flex items-center justify-center`}
+                    className="w-10 h-10 rounded-full flex items-center justify-center text-white text-xs font-bold"
+                    style={{ background: testimonial.accentColor }}
                   >
-                    <span className="text-white text-xs font-bold">
-                      {testimonial.name.split(" ").map((n) => n[0]).join("")}
-                    </span>
+                    {testimonial.avatar}
                   </div>
                   <div>
-                    <p className="font-display font-semibold text-sm">{testimonial.name}</p>
-                    <p className="text-muted-foreground text-xs">{testimonial.role}</p>
+                    <p className="font-display font-semibold text-sm">
+                      {testimonial.name}
+                    </p>
+                    <p className="text-muted-foreground text-xs">
+                      {testimonial.role}
+                    </p>
                   </div>
                 </div>
               </motion.div>

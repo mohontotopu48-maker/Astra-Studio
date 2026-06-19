@@ -5,91 +5,7 @@ import { motion, useInView } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { AnimatedSection } from '@/lib/animations'
 import { useRouter, type PageRoute } from '@/hooks/use-router'
-
-interface CaseStudy {
-  title: string
-  description: string
-  category: string
-  metrics: { label: string; value: string }[]
-  client: { name: string; role: string; avatar: string }
-  image: string
-  bgColor: string
-  tagColor: string
-  route: PageRoute
-}
-
-const caseStudies: CaseStudy[] = [
-  {
-    title: 'Easy Booking for Dream Trips',
-    description: 'Triply is a hassle-free & effective tour solution for travelers. It\'s an all-inclusive booking and planning website that helps people make their dream trips easier.',
-    category: 'Travel',
-    metrics: [
-      { label: 'Pages in Projects', value: '40+' },
-      { label: 'Retention Growth', value: '36%' },
-    ],
-    client: { name: 'Shubho Al-Faroque', role: 'Triply CEO', avatar: 'SA' },
-    image: '/images/case-travel.jpg',
-    bgColor: 'bg-[#C6CFFF]',
-    tagColor: 'text-[#1a1a2e]',
-    route: 'case-studies',
-  },
-  {
-    title: 'Transform Your Dining',
-    description: 'At Plate, we bring you a handpicked selection of premium restaurants that offer not just meals, but memorable dining experiences you\'ll cherish.',
-    category: 'Restaurant',
-    metrics: [
-      { label: 'Location', value: 'France' },
-      { label: 'Project Duration', value: '5 Months' },
-    ],
-    client: { name: 'Neil Saidi', role: 'Plate CEO', avatar: 'NS' },
-    image: '/images/case-restaurant.png',
-    bgColor: 'bg-[#FFB8B0]',
-    tagColor: 'text-[#1a1a2e]',
-    route: 'case-studies',
-  },
-  {
-    title: 'Reducing Carbon Footprints',
-    description: 'Yenex is a smart and sustainable energy platform. It empowers users with distributed energy solutions to reduce carbon footprints effortlessly.',
-    category: 'SaaS',
-    metrics: [
-      { label: 'Project Timeline', value: '2.5 Months' },
-      { label: 'Customer Acquisition', value: '40%' },
-    ],
-    client: { name: 'Ted Nash', role: 'Yenex CEO', avatar: 'TN' },
-    image: '/images/case-saas.png',
-    bgColor: 'bg-[#FBE8A4]',
-    tagColor: 'text-[#1a1a2e]',
-    route: 'case-studies',
-  },
-  {
-    title: 'Revolutionize Fitness Goals',
-    description: 'Fitmate transforms fitness in Australia with flexible gym access, personalized schedules, and AI-driven insights to solve common workout limitations for users.',
-    category: 'Healthcare',
-    metrics: [
-      { label: 'Project Scope', value: 'Mobile App' },
-      { label: 'Project Duration', value: '2 Months' },
-    ],
-    client: { name: 'Omar', role: 'Fitmate CEO', avatar: 'OM' },
-    image: '/images/case-healthcare.png',
-    bgColor: 'bg-[#ABF5FF]',
-    tagColor: 'text-[#1a1a2e]',
-    route: 'case-studies',
-  },
-  {
-    title: 'Simplifying Vehicle Care',
-    description: 'Zantrik is an innovative vehicle maintenance app. We revamped it with a fresh design, gamification, and intuitive features to boost user engagement.',
-    category: 'Automotive',
-    metrics: [
-      { label: 'Project Duration', value: '8 Weeks' },
-      { label: 'Work Scope', value: 'Mobile App' },
-    ],
-    client: { name: 'Shubho Al-Farooque', role: 'Zantrik CEO', avatar: 'SA' },
-    image: '/images/case-vehicle.png',
-    bgColor: 'bg-[#C9FFF7]',
-    tagColor: 'text-[#1a1a2e]',
-    route: 'case-studies',
-  },
-]
+import { caseStudies, type CaseStudy } from '@/lib/case-studies-data'
 
 function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -103,7 +19,7 @@ function CaseStudyCard({ study, index }: { study: CaseStudy; index: number }) {
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7, delay: index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-      onClick={() => navigate(study.route)}
+      onClick={() => navigate(study.route as PageRoute)}
       className="cursor-pointer"
     >
       <motion.div
@@ -214,7 +130,7 @@ export function CaseStudies() {
         {/* Case Study Cards - stacked vertically */}
         <div className="flex flex-col gap-8 md:gap-12">
           {caseStudies.map((study, i) => (
-            <CaseStudyCard key={study.title} study={study} index={i} />
+            <CaseStudyCard key={study.slug} study={study} index={i} />
           ))}
         </div>
 

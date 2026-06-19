@@ -120,3 +120,47 @@ Stage Summary:
 - Industries section redesigned as compact dual-row marquee
 - Hero/CTA/Stats headings reduced for proportional balance
 - Page height significantly reduced - no more "huge" elements
+
+---
+Task ID: 5
+Agent: Main Agent
+Task: Create separate dedicated webpages for every case study (individual detail pages)
+
+Work Log:
+- Analyzed existing case study setup: home page CaseStudies.tsx had 5 cards all linking to a single #case-studies list page; CaseStudiesPage.tsx had 8 generic placeholder case studies with no detail pages
+- Created unified case studies data file at /src/lib/case-studies-data.ts with 5 comprehensive case studies (Triply, Plate, Yenex, Fitmate, Zantrik), each with rich detail content: overview, challenge (with bullet points), solution (with bullet points), 6 key features, 5-phase process timeline, 4 result metrics, testimonial, tags, accent colors, and next-case navigation pointer
+- Added 5 new routes to use-router.ts: case-triply, case-plate, case-yenex, case-fitmate, case-zantrik (added to PageRoute type and routeMap)
+- Created CaseStudyDetailPage.tsx component with 10 sections:
+  1. CaseStudyHero - title, tagline, tags, project snapshot card (client, location, metrics)
+  2. HeroImage - full-bleed image with overlay and "Visit Live Project" link
+  3. Overview - "The Project" with full description
+  4. Challenge - title, description, bullet-point cards with Target icons
+  5. Solution - title, description, bullet-point cards with Lightbulb icons
+  6. Features - 6-card grid with dynamic lucide icons (Map, Flame, QrCode, etc.)
+  7. Process - 5-phase timeline with numbered badges and durations
+  8. Results - 4 metric cards with TrendingUp icons
+  9. Testimonial - large quote with avatar
+  10. NextCaseStudy - navigation to next case (loops back to first)
+- Refactored home CaseStudies.tsx to use shared data file and navigate to individual detail pages (study.route) instead of generic 'case-studies'
+- Rewrote CaseStudiesPage.tsx (list page) to use shared data, with category filters (All/Travel/Restaurant/SaaS/Healthcare/Automotive), real images, and clickable cards navigating to detail pages
+- Registered 5 new routes in page.tsx via wrapper components (CaseTriplyPage, CasePlatePage, etc.) that pass route prop to CaseStudyDetailPage
+- Used dynamic lucide icon rendering via Icons namespace import for feature cards
+- Lint passes cleanly, dev server compiles without errors
+- Agent Browser verification (all passed):
+  - Home page cards navigate to detail pages (Triply → #case-triply) ✓
+  - Detail page renders all 10 sections with content ✓
+  - "Next Case Study" navigation works (Triply → Plate → ... → Zantrik → Triply loop) ✓
+  - Case studies list page (#case-studies) shows all 5 cards with filters ✓
+  - Filter tabs work (Healthcare filter shows only Fitmate) ✓
+  - List page cards navigate to detail pages (Fitmate → #case-fitmate) ✓
+  - "Back to All Case Studies" button works (Zantrik → #case-studies) ✓
+  - VLM confirmed feature icons render correctly (Flame, HeartHandshake, QrCode, etc.) ✓
+  - No console errors, all GET requests return 200 ✓
+
+Stage Summary:
+- Created 5 separate dedicated case study webpages, one per case study (Triply, Plate, Yenex, Fitmate, Zantrik)
+- Each detail page has 10 rich sections: Hero, Hero Image, Overview, Challenge, Solution, Features grid, Process timeline, Results metrics, Testimonial, Next Case navigation, plus CTA
+- Unified data architecture: single source of truth in case-studies-data.ts used by both home page and list page
+- Full navigation flow: home cards → detail pages → next case (loops) → back to list
+- List page filters work by category (Travel, Restaurant, SaaS, Healthcare, Automotive)
+- All 5 detail pages verified working in browser with no errors
