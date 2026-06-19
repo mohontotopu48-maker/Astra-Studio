@@ -1,13 +1,14 @@
 <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stopColor="#773DF2" />
+      <stop offset="0%" stopColor="#9B6BF5" />
+      <stop offset="50%" stopColor="#773DF2" />
       <stop offset="100%" stopColor="#592DB5" />
     </linearGradient>
   </defs>
-  <rect x="0" y="0" width="100" height="100" fill="#0A0A14" />
-  <path d="M18 22H42C56 22 67 33 67 48V52C67 67 56 78 42 78H18V22Z" fill="url(#bg)" />
-  <path d="M30 34H40C48 34 54 40 54 48V52C54 60 48 66 40 66H30V34Z" fill="#0A0A14" />
-  <path d="M44 78V60L56 78H72V22H58V40L44 22H30V78H44Z" fill="url(#bg)" />
-  <path d="M58 40V62L44 38V22H58V40Z" fill="#0A0A14" />
+  <rect x="0" y="0" width="100" height="100" fill="#000000" />
+  <path d="M16 20 H38 C54 20 66 32 66 48 V52 C66 68 54 80 38 80 H16 Z" fill="url(#bg)" />
+  <path d="M28 32 H38 C47 32 54 39 54 48 V52 C54 61 47 68 38 68 H28 Z" fill="#000000" />
+  <path d="M44 80 V62 L56 80 H78 V20 H62 V40 L44 20 H28 V80 H44 Z" fill="url(#bg)" />
+  <path d="M62 40 V64 L44 38 V20 H62 V40 Z" fill="#000000" />
 </svg>

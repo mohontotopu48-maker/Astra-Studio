@@ -9,7 +9,7 @@ interface LogoProps {
 }
 
 // D+N interlocking monogram — clean flat design
-// Brand purple gradient: #592DB5 → #773DF2
+// Purple gradient: #773DF2 (light, top-left) → #592DB5 (deep, bottom-right)
 function MonogramIcon({ size = 36 }: { size?: number }) {
   return (
     <svg
@@ -21,34 +21,38 @@ function MonogramIcon({ size = 36 }: { size?: number }) {
     >
       <defs>
         <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#773DF2" />
+          <stop offset="0%" stopColor="#9B6BF5" />
+          <stop offset="50%" stopColor="#773DF2" />
           <stop offset="100%" stopColor="#592DB5" />
         </linearGradient>
       </defs>
 
       {/* Black square background — sharp corners */}
-      <rect x="0" y="0" width="100" height="100" fill="#0A0A14" />
+      <rect x="0" y="0" width="100" height="100" fill="#000000" />
 
-      {/* D letter — outer shape */}
+      {/* === D letter === */}
+      {/* D outer shape — vertical stem + curved right side */}
       <path
-        d="M18 22H42C56 22 67 33 67 48V52C67 67 56 78 42 78H18V22Z"
+        d="M16 20 H38 C54 20 66 32 66 48 V52 C66 68 54 80 38 80 H16 Z"
         fill="url(#brandGrad)"
       />
-      {/* D letter — inner cutout */}
+      {/* D inner cutout — creates the hole inside the D */}
       <path
-        d="M30 34H40C48 34 54 40 54 48V52C54 60 48 66 40 66H30V34Z"
-        fill="#0A0A14"
+        d="M28 32 H38 C47 32 54 39 54 48 V52 C54 61 47 68 38 68 H28 Z"
+        fill="#000000"
       />
 
-      {/* N letter — interlocking through D's interior */}
+      {/* === N letter === */}
+      {/* N shape — interlocking through D's interior */}
+      {/* Left vertical of N starts inside D, diagonal goes up-right, right vertical on the right */}
       <path
-        d="M44 78V60L56 78H72V22H58V40L44 22H30V78H44Z"
+        d="M44 80 V62 L56 80 H78 V20 H62 V40 L44 20 H28 V80 H44 Z"
         fill="url(#brandGrad)"
       />
-      {/* N inner cutout for diagonal */}
+      {/* N inner cutout for the diagonal negative space */}
       <path
-        d="M58 40V62L44 38V22H58V40Z"
-        fill="#0A0A14"
+        d="M62 40 V64 L44 38 V20 H62 V40 Z"
+        fill="#000000"
       />
     </svg>
   )
@@ -77,7 +81,7 @@ export function Logo({ variant = 'full', className = '', onClick }: LogoProps) {
             <span className="text-xl font-bold font-display tracking-tight text-white">
               Design
             </span>
-            <span className="text-xl font-bold font-display tracking-tight bg-gradient-to-r from-[#773DF2] to-[#592DB5] bg-clip-text text-transparent">
+            <span className="text-xl font-bold font-display tracking-tight bg-gradient-to-r from-[#9B6BF5] via-[#773DF2] to-[#592DB5] bg-clip-text text-transparent">
               Nuvio
             </span>
           </div>
@@ -107,7 +111,7 @@ export function Logo({ variant = 'full', className = '', onClick }: LogoProps) {
         <span className="text-lg font-semibold font-display tracking-tight">
           Design
         </span>
-        <span className="text-lg font-semibold font-display tracking-tight bg-gradient-to-r from-[#773DF2] to-[#592DB5] bg-clip-text text-transparent">
+        <span className="text-lg font-semibold font-display tracking-tight bg-gradient-to-r from-[#9B6BF5] via-[#773DF2] to-[#592DB5] bg-clip-text text-transparent">
           Nuvio
         </span>
       </div>
